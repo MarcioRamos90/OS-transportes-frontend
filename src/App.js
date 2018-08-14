@@ -5,6 +5,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
 import Login from "./Pages/Login";
+import Register from "./Pages/Register";
 
 class App extends Component {
   render() {
@@ -12,8 +13,9 @@ class App extends Component {
       <Router>
         <div className="App">
           <Navbar />
-          <Route exact path="/login" component={Login} />
           <Route exact path="/" component={Landing} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/registro" component={Register} />
           <Footer />
         </div>
       </Router>

@@ -9,9 +9,9 @@ export default class Landing extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">Ordem de Serviço</h1>
-                <p className="lead">Gonçalves transportes</p>
-                <Link to="/login" className="btn btn-lg btn-light">
+                <h1 className="display-3 mb-4">GONÇALVES</h1>
+                <p className="lead">TRANSPORTES</p>
+                <Link to="/login" className="btn btn-lg btn-primary">
                   Entrar
                 </Link>
               </div>
