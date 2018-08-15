@@ -45,9 +45,9 @@ class Register extends Component {
   }
 
   componentDidMount() {
-    const { errors } = this.state;
-
-    console.log(errors);
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/dashboard");
+    }
   }
 
   render() {
@@ -131,6 +131,7 @@ class Register extends Component {
 }
 
 const mapStateToProps = state => ({
+  auth: state.auth,
   errors: state.errors
 });
 
