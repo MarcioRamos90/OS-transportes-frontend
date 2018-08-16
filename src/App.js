@@ -11,6 +11,7 @@ import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import Menu from "./components/Menu";
 
 import store from "./store";
 
@@ -43,6 +44,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/registro" component={Register} />
+            <Route exact path="/menu" component={Menu} />
             <Footer />
           </div>
         </Router>

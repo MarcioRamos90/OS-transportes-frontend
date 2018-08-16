@@ -1,0 +1,19 @@
+.container {
+  color: #333;
+  text-align: center;
+}
+
+.container i {
+  font-size: 60px;
+  margin-top: 20px;
+}
+
+.card {
+  margin: 30px;
+  width: 200px;
+  height: 200px;
+}
+
+.card:hover {
+  border: 3px solid black;
+}
