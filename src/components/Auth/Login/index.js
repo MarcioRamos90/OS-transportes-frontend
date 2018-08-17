@@ -55,11 +55,12 @@ class Login extends Component {
     return (
       <main id="main" className="">
         <section className="login">
+          <h1 className="text-center">Login</h1>
           <div className="container">
             <form onSubmit={this.onSubmit}>
-              <h2 className="text-center">Entre com seus dados</h2>
+              <h3 className="text-center">Entre com seus dados</h3>
               <div className="form-group input">
-                <label htmlFor="user_login">Usuario</label>
+                <label htmlFor="user_login">Email</label>
                 <input
                   type="text"
                   name="email"

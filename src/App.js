@@ -12,6 +12,9 @@ import Landing from "./components/layout/Landing";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Menu from "./components/Menu";
+import ListCompanies from "./components/Companies/list";
+import EditCompanie from "./components/Companies/edit";
+import CreateCompanie from "./components/Companies/create";
 
 import store from "./store";
 
@@ -45,6 +48,10 @@ class App extends Component {
             <Route exact path="/login" component={Login} />
             <Route exact path="/registro" component={Register} />
             <Route exact path="/menu" component={Menu} />
+            <Route exact path="/empresas" component={ListCompanies} />
+            <Route exact path="/nova/empresa/" component={CreateCompanie} />
+            <Route exact path="/empresa/:id" component={EditCompanie} />
+
             <Footer />
           </div>
         </Router>

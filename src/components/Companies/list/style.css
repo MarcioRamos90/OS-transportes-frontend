@@ -1,0 +1,56 @@
+.container.search {
+  text-align: left;
+  border: 1px #ccc solid;
+  border-radius: 5px;
+}
+.container.screen {
+  border-radius: 5px;
+  border: 1px #ccc solid;
+  padding: 40px;
+}
+.search {
+  padding: 20px;
+}
+
+table {
+  margin-top: 0px;
+}
+.controls {
+  font-size: 20px;
+  width: 90px;
+  margin-top: 30px;
+  margin-left: 60px;
+}
+.controls button {
+  height: 50px;
+}
+
+.controls button i {
+  font-size: 30px;
+  margin: 0;
+}
+
+tr:hover {
+  background-color: #999;
+}
+
+input {
+  margin: 30px;
+}
+
+h1 {
+  margin: 40px;
+}
+
+.btn-group {
+  height: 40px;
+  font-size: 30px;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.btn-group i {
+  font-size: 30px;
+  padding: 0;
+  margin: 0;
+}

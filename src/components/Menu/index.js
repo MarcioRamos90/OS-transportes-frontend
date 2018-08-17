@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import "./style.css";
 
@@ -9,17 +10,22 @@ class Menu extends Component {
       this.props.history.push("/login");
     }
   }
+
   render() {
     return (
       <div className="container">
         <h1 className="text-left">Cadastros</h1>
         <div className="row">
-          <div class="card bg-light mb-3" style={{ maxWidth: "18rem" }}>
+          <Link
+            to="/empresas"
+            class="card bg-light mb-3"
+            style={{ maxWidth: "18rem" }}
+          >
             <div class="card-body">
               <h5 class="card-title">Empresas</h5>
               <i className="fas fa-building" />
             </div>
-          </div>
+          </Link>
           <div class="card bg-light mb-3" style={{ maxWidth: "18rem" }}>
             <div class="card-body">
               <h5 class="card-title">Carros</h5>
