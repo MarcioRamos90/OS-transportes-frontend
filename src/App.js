@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 
 import { setCurrentUser, logoutUser } from "./actions/authActions";
+import PrivateRoute from "./components/common/PrivateRoute";
 
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
@@ -47,11 +48,26 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/registro" component={Register} />
-            <Route exact path="/menu" component={Menu} />
-            <Route exact path="/empresas" component={ListCompanies} />
-            <Route exact path="/nova/empresa/" component={CreateCompanie} />
-            <Route exact path="/empresa/:id" component={EditCompanie} />
-
+            <Switch>
+              <PrivateRoute exact path="/menu" component={Menu} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/empresas" component={ListCompanies} />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/nova/empresa/"
+                component={CreateCompanie}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/editar-empresa/:id/"
+                component={EditCompanie}
+              />
+            </Switch>
             <Footer />
           </div>
         </Router>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import classnames from "classnames";
 
+import TextFieldGroup from "../../common/TextFieldGroup";
 import { loginUser } from "../../../actions/authActions";
 
 import "./style.css";
@@ -61,45 +61,23 @@ class Login extends Component {
               <h3 className="text-center">Entre com seus dados</h3>
               <div className="form-group input">
                 <label htmlFor="user_login">Email</label>
-                <input
-                  type="text"
-                  name="email"
-                  id="user_login"
-                  className={classnames("form-control", {
-                    "is-invalid": errors.password
-                  })}
-                  size="20"
+                <TextFieldGroup
+                  type="email"
+                  placeholder="Email"
                   value={this.state.email}
+                  name="email"
                   onChange={this.onChange}
+                  error={errors.email}
                 />
-                {errors.email && (
-                  <div className="invalid-feedback">{errors.email}</div>
-                )}
-              </div>
-              <div className="form-group input">
-                <label htmlFor="user_pass">Senha</label>
-                <a
-                  className="form-sublink"
-                  href="https://themes.getbootstrap.com/my-account/lost-password/"
-                >
-                  Esqueceu a senha?
-                </a>
-                <input
+                <label htmlFor="user_login">Senha</label>
+                <TextFieldGroup
                   type="password"
-                  name="password"
-                  id="user_pass"
-                  className={classnames("form-control", {
-                    "is-invalid": errors.password
-                  })}
+                  placeholder="Senha"
                   value={this.state.password}
+                  name="password"
                   onChange={this.onChange}
-                  size="20"
-                />
-                {errors.password && (
-                  <div className="invalid-feedback">{errors.password}</div>
-                )}
-              </div>
-              <div className="form-group button-group">
+                  error={errors.password}
+                />{" "}
                 <button className="btn btn-brand btn-block mb-4 btn-primary">
                   Entrar
                 </button>

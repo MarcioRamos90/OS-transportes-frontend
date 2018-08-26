@@ -1,17 +1,62 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
+import { getCompanies } from "../../../actions/companiesAction";
+
 import "./style.css";
+import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
+
 class ListCompanies extends Component {
-  componentDidMount() {
-    if (!this.props.auth.isAuthenticated) {
-      this.props.history.push("/login");
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "",
+      adress: "",
+      phone: "",
+      cnpj: "",
+      companies: []
+    };
+
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.companies) {
+      this.setState({
+        companies: nextProps.companies
+      });
     }
   }
 
-  redirectEdit(id) {
-    this.props.history.push("empresa/" + id);
+  onSubmit(e) {
+    e.preventDefault();
+
+    const filter = {};
+    this.props.getCompanies(filter);
+  }
+
+  onChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
+
+  editClick(id) {
+    this.props.history.push("editar-empresa/" + id);
+  }
+
+  renderComp() {
+    return this.state.companies.map(comp => (
+      <tr onClick={() => this.editClick(comp._id)} key={comp._id}>
+        <td>{comp.name}</td>
+        <td>{comp.phone}</td>
+        <td>{comp.adress}</td>
+        <td>{comp.cnpj}</td>
+      </tr>
+    ));
   }
 
   render() {
@@ -19,49 +64,61 @@ class ListCompanies extends Component {
       <div>
         <h1 className="text-left">Empresas</h1>
         <div className="container screen text-left">
-          <form className="container search">
-            <div class="form-row">
-              <div class="col-md-3 mb-3">
+          <form onSubmit={this.onSubmit} className="container search">
+            <div className="form-row">
+              <div className="col-md-3 mb-3">
                 <label>Empresas</label>
-                <input
-                  type="text"
-                  class="form-control"
+                <TextFieldGroupSmall
                   placeholder="Nome empresa"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.onChange}
                 />
               </div>
-              <div class="col-md-3 mb-3">
+              <div className="col-md-3 mb-3">
                 <label>Endereço</label>
-                <input
-                  type="text"
-                  class="form-control"
+                <TextFieldGroupSmall
                   placeholder="Endereço"
+                  name="adress"
+                  value={this.state.adress}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
-            <div class="form-row">
-              <div class="col-md-3 mb-3">
+            <div className="form-row">
+              <div className="col-md-3 mb-3">
                 <label>Telefone</label>
-                <input
-                  type="text"
-                  class="form-control"
+                <TextFieldGroupSmall
                   placeholder="Telefone"
+                  name="phone"
+                  value={this.state.phone}
+                  onChange={this.onChange}
                 />
               </div>
-              <div class="col-md-3 mb-3">
+              <div className="col-md-3 mb-3">
                 <label>CNPJ</label>
-                <input type="text" class="form-control" placeholder="CNPJ" />
+                <TextFieldGroupSmall
+                  placeholder="CNPJ"
+                  name="cnpj"
+                  value={this.state.cnpj}
+                  onChange={this.onChange}
+                />
               </div>
               <div className="controls">
-                <button type="submit" class="btn btn-primary mb-1">
+                <button type="submit" className="btn btn-primary mb-1">
                   <i className="fas fa-search" />
                 </button>
               </div>
             </div>
           </form>
 
-          <div class="btn-group mb-4" role="group" style={{ marginBotton: 0 }}>
-            <Link to="/nova/empresa" class="btn btn-light">
-              <i class="fas fa-building " />- Adicionar Empresa
+          <div
+            className="btn-group mb-4"
+            role="group"
+            style={{ marginBotton: 0 }}
+          >
+            <Link to="/nova/empresa" className="btn btn-light">
+              <i className="fas fa-building " />- Adicionar Empresa
             </Link>
           </div>
 
@@ -74,26 +131,7 @@ class ListCompanies extends Component {
                 <th scope="col">CNPJ</th>
               </tr>
             </thead>
-            <tbody>
-              <tr onClick={() => this.redirectEdit(1)}>
-                <td>Empresa 1</td>
-                <td>1532123456</td>
-                <td>Rua: nome, SP</td>
-                <td>789.783.0001-3</td>
-              </tr>
-              <tr>
-                <td>Empresa 2</td>
-                <td>1532123456</td>
-                <td>Rua: nome, SP</td>
-                <td>789.783.0001-3</td>
-              </tr>
-              <tr>
-                <td>Empresa 3</td>
-                <td>1532123456</td>
-                <td>Rua: nome, SP</td>
-                <td>789.783.0001-3</td>
-              </tr>
-            </tbody>
+            <tbody>{this.renderComp()}</tbody>
           </table>
         </div>
       </div>
@@ -102,9 +140,9 @@ class ListCompanies extends Component {
 }
 
 const mapStateToProps = state => ({
-  auth: state.auth
+  companies: state.companies.list
 });
 export default connect(
   mapStateToProps,
-  {}
-)(ListCompanies);
+  { getCompanies }
+)(withRouter(ListCompanies));

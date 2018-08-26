@@ -1,10 +1,10 @@
 import axios from "axios";
-import dotenv from "dotenv";
 
-dotenv.load();
+const apihost = "https://backend-os-goncalves-test.herokuapp.com";
+// const local = "http://localhost:5000";
 
 const api = axios.create({
-  baseURL: 'https://backend-os-goncalves-test.herokuapp.com'
+  baseURL: apihost
 });
 
 export default api;
