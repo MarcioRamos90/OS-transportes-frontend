@@ -40,13 +40,13 @@ class ListCompanies extends Component {
       : (filter.name = "");
     this.state.adress.length > 0
       ? (filter.adress = this.state.adress)
-      : (filter.name = "");
+      : (filter.adress = "");
     this.state.phone.length > 0
       ? (filter.phone = this.state.phone)
-      : (filter.name = "");
+      : (filter.phone = "");
     this.state.cnpj.length > 0
       ? (filter.cnpj = this.state.cnpj)
-      : (filter.name = "");
+      : (filter.cnpj = "");
 
     this.props.getCompanies(filter);
   }
