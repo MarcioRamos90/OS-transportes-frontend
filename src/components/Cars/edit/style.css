@@ -1,0 +1,12 @@
+.controls {
+  display: flex;
+  flex-direction: row;
+}
+
+.controls button {
+  margin-left: 10px;
+}
+
+.controls .btn {
+  margin-left: 10px;
+}
