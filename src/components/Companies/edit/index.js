@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import {
   getCompanieById,
   editComapany
@@ -22,6 +22,7 @@ class EditCompanie extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.cancelClick = this.cancelClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -51,6 +52,10 @@ class EditCompanie extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+  }
+
+  cancelClick() {
+    this.props.history.push("/empresas/");
   }
 
   onSubmit(e) {
@@ -115,7 +120,9 @@ class EditCompanie extends Component {
                 <button type="submit" className="btn btn-primary mb-1">
                   Salvar
                 </button>
-                <button className="btn btn-danger mb-1">Cancelar</button>
+                <Link to="/empresas/" className="btn btn-danger mb-1">
+                  Cancelar
+                </Link>
               </div>
             </div>
           </form>

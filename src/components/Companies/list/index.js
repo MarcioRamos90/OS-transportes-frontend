@@ -35,6 +35,19 @@ class ListCompanies extends Component {
     e.preventDefault();
 
     const filter = {};
+    this.state.name.length > 0
+      ? (filter.name = this.state.name)
+      : (filter.name = "");
+    this.state.adress.length > 0
+      ? (filter.adress = this.state.adress)
+      : (filter.name = "");
+    this.state.phone.length > 0
+      ? (filter.phone = this.state.phone)
+      : (filter.name = "");
+    this.state.cnpj.length > 0
+      ? (filter.cnpj = this.state.cnpj)
+      : (filter.name = "");
+
     this.props.getCompanies(filter);
   }
 

@@ -3,7 +3,7 @@ import api from "../services/Api";
 import { GET_ERRORS, GET_COMPANIES, GET_COMPANIE_BY_ID } from "./types";
 
 export const getCompanies = filter => dispatch => {
-  api.get("/api/companies").then(res => {
+  api.get("/api/companies", { params: filter }).then(res => {
     dispatch({
       type: GET_COMPANIES,
       payload: res.data
