@@ -44,7 +44,6 @@ class EditCompanie extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.match.params.id);
     this.props.getCompanieById(this.props.match.params.id);
   }
 

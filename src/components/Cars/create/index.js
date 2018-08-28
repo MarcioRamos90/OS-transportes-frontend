@@ -1,24 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import { newCompany } from "../../../actions/companiesAction";
+import { withRouter, Link } from "react-router-dom";
+import { newCar } from "../../../actions/carsAction";
 
 import "./style.css";
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 
-class CreateCompanie extends Component {
+class CreateCar extends Component {
   constructor() {
     super();
 
     this.state = {
       name: "",
-      adress: "",
-      phone: "",
-      cnpj: ""
+      renavam: "",
+      yearfab: "",
+      chassi: "",
+      active: true,
+      cars: []
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.checkClick = this.checkClick.bind(this);
   }
 
   onChange(e) {
@@ -30,57 +33,81 @@ class CreateCompanie extends Component {
   onSubmit(e) {
     e.preventDefault();
 
-    const newCompany = {
+    const newCar = {
       name: this.state.name,
-      adress: this.state.adress,
-      phone: this.state.phone,
-      cnpj: this.state.cnpj
+      renavam: this.state.renavam,
+      yearfab: this.state.yearfab,
+      chassi: this.state.chassi,
+      active: this.state.active
     };
-    this.props.newCompany(newCompany, this.props.history);
+    this.props.newCar(newCar, this.props.history);
+    // console.log(newCar);
+  }
+
+  checkClick() {
+    this.setState({
+      active: !this.state.active
+    });
   }
 
   render() {
     return (
       <div>
-        <h1 className="text-left">Adicionar Nova Empresa</h1>
+        <h1 className="text-left">Adicionar Novo Carro</h1>
         <div className="container screen text-left">
           <form onSubmit={this.onSubmit} className="edit">
             <div className="form-row">
               <div className="col-md-3 mb-3">
-                <label>Empresas</label>
+                <label>Carros</label>
                 <TextFieldGroupSmall
-                  placeholder="Nome empresa"
+                  placeholder="Carro/placa"
                   name="name"
                   value={this.state.name}
                   onChange={this.onChange}
                 />
               </div>
               <div className="col-md-3 mb-3">
-                <label>Endereço</label>
+                <label>Renavam</label>
                 <TextFieldGroupSmall
-                  placeholder="Endereço"
-                  name="adress"
-                  value={this.state.adress}
+                  placeholder="Renavam"
+                  name="renavam"
+                  value={this.state.renavam}
                   onChange={this.onChange}
                 />
+              </div>
+              <div className="form-check col-md-3 ml-5 mt-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  name="active"
+                  onChange={this.checkClick}
+                  checked={this.state.active}
+                />
+                <label className="form-check-label">Ativo?</label>
               </div>
             </div>
             <div className="form-row">
               <div className="col-md-3 mb-3">
-                <label>Telefone</label>
-                <TextFieldGroupSmall
-                  placeholder="Telefone"
-                  name="phone"
-                  value={this.state.phone}
+                <label>Ano Fabricação</label>
+
+                <input
+                  className="form-control"
+                  placeholder="Ano"
+                  type="number"
+                  min="1990"
+                  max="2020"
+                  step="1"
+                  name="yearfab"
+                  value={this.state.yearfab}
                   onChange={this.onChange}
                 />
               </div>
               <div className="col-md-3 mb-3">
-                <label>CNPJ</label>
+                <label>Chassi</label>
                 <TextFieldGroupSmall
-                  placeholder="CNPJ"
-                  name="cnpj"
-                  value={this.state.cnpj}
+                  placeholder="Chassi"
+                  name="chassi"
+                  value={this.state.chassi}
                   onChange={this.onChange}
                 />
               </div>
@@ -88,7 +115,9 @@ class CreateCompanie extends Component {
                 <button type="submit" className="btn btn-primary mb-1">
                   Salvar
                 </button>
-                <button className="btn btn-danger mb-1">Cancelar</button>
+                <Link to="/carros" className="btn btn-danger mb-1">
+                  Cancelar
+                </Link>
               </div>
             </div>
           </form>
@@ -103,5 +132,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { newCompany }
-)(withRouter(CreateCompanie));
+  { newCar }
+)(withRouter(CreateCar));

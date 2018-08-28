@@ -17,6 +17,10 @@ import ListCompanies from "./components/Companies/list";
 import EditCompanie from "./components/Companies/edit";
 import CreateCompanie from "./components/Companies/create";
 
+import ListCars from "./components/Cars/list";
+import CreateCar from "./components/Cars/create";
+import EditCar from "./components/Cars/edit";
+
 import store from "./store";
 
 // Check for toke
@@ -66,6 +70,19 @@ class App extends Component {
                 exact
                 path="/editar-empresa/:id/"
                 component={EditCompanie}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/novo/carro/" component={CreateCar} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/carros/" component={ListCars} />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/editar-carro/:id/"
+                component={EditCar}
               />
             </Switch>
             <Footer />

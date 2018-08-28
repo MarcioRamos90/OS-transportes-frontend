@@ -20,12 +20,16 @@ class Menu extends Component {
               <i className="fas fa-building" />
             </div>
           </Link>
-          <div className="card bg-light mb-3" style={{ maxWidth: "18rem" }}>
+          <Link
+            to="/carros"
+            className="card bg-light mb-3"
+            style={{ maxWidth: "18rem" }}
+          >
             <div className="card-body">
               <h5 className="card-title">Carros</h5>
               <i className="fas fa-car" />
             </div>
-          </div>
+          </Link>
           <div className="card bg-light mb-3" style={{ maxWidth: "18rem" }}>
             <div className="card-body">
               <h5 className="card-title">Motoristas</h5>

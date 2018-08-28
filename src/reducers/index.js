@@ -1,12 +1,11 @@
 import { combineReducers } from "redux";
 import authReducer from "./authReducer";
 import errorReducer from "./errorReducer";
-import successReducer from "./successReducer";
 import companiesReducer from "./companiesReducer";
-
+import carsReducer from "./carsReducer";
 export default combineReducers({
   auth: authReducer,
   errors: errorReducer,
-  success: successReducer,
-  companies: companiesReducer
+  companies: companiesReducer,
+  cars: carsReducer
 });
