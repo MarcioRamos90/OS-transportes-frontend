@@ -17,7 +17,8 @@ class EditCompanie extends Component {
       name: "",
       adress: "",
       phone: "",
-      cnpj: ""
+      cnpj: "",
+      active: ""
     };
 
     this.onChange = this.onChange.bind(this);

@@ -61,7 +61,7 @@ class ListCompanies extends Component {
   }
 
   editClick(id) {
-    this.props.history.push("editar-empresa/" + id);
+    this.props.history.push("/editar-empresa/" + id);
   }
 
   checkClick() {

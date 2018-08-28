@@ -100,7 +100,7 @@ class EditCar extends Component {
                   onChange={this.onChange}
                 />
               </div>
-              <div className="form-check col-md-3 ml-5 mt-3">
+              <div className=" col-md-3 ml-5 mt-3">
                 <input
                   className="form-check-input"
                   type="checkbox"
