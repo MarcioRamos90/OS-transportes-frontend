@@ -114,14 +114,8 @@ class EditCar extends Component {
             <div className="form-row">
               <div className="col-md-3 mb-3">
                 <label>Ano Fabricação</label>
-
-                <input
-                  className="form-control"
+                <TextFieldGroupSmall
                   placeholder="Ano"
-                  type="number"
-                  min="1990"
-                  max="2020"
-                  step="1"
                   name="yearfab"
                   value={this.state.yearfab}
                   onChange={this.onChange}
