@@ -16,11 +16,13 @@ class ListCompanies extends Component {
       adress: "",
       phone: "",
       cnpj: "",
+      active: true,
       companies: []
     };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.checkClick = this.checkClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -47,6 +49,7 @@ class ListCompanies extends Component {
     this.state.cnpj.length > 0
       ? (filter.cnpj = this.state.cnpj)
       : (filter.cnpj = "");
+    filter.active = this.state.active ? "true" : "false";
 
     this.props.getCompanies(filter);
   }
@@ -61,6 +64,12 @@ class ListCompanies extends Component {
     this.props.history.push("editar-empresa/" + id);
   }
 
+  checkClick() {
+    this.setState({
+      active: !this.state.active
+    });
+  }
+
   renderComp() {
     return this.state.companies.map(comp => (
       <tr onClick={() => this.editClick(comp._id)} key={comp._id}>
@@ -68,6 +77,7 @@ class ListCompanies extends Component {
         <td>{comp.phone}</td>
         <td>{comp.adress}</td>
         <td>{comp.cnpj}</td>
+        <td>{comp.active ? <p>Sim</p> : <p>Não</p>}</td>
       </tr>
     ));
   }
@@ -96,6 +106,16 @@ class ListCompanies extends Component {
                   value={this.state.adress}
                   onChange={this.onChange}
                 />
+              </div>
+              <div className="form-check col-md-3 ml-5 mt-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  name="active"
+                  checked={this.state.active}
+                  onChange={this.checkClick}
+                />
+                <label className="form-check-label">Ativo?</label>
               </div>
             </div>
             <div className="form-row">
@@ -142,6 +162,7 @@ class ListCompanies extends Component {
                 <th scope="col">Telefone</th>
                 <th scope="col">Endereço</th>
                 <th scope="col">CNPJ</th>
+                <th scope="col">Ativo</th>
               </tr>
             </thead>
             <tbody>{this.renderComp()}</tbody>

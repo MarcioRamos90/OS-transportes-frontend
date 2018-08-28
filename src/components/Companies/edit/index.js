@@ -22,7 +22,7 @@ class EditCompanie extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.cancelClick = this.cancelClick.bind(this);
+    this.checkClick = this.checkClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,14 +33,22 @@ class EditCompanie extends Component {
       const adress = company.adress ? company.adress : "";
       const phone = company.phone ? company.phone : "";
       const cnpj = company.cnpj ? company.cnpj : "";
+      const active = company.active ? company.active : "";
 
       this.setState({
         name: name,
         adress: adress,
         phone: phone,
-        cnpj: cnpj
+        cnpj: cnpj,
+        active: active
       });
     }
+  }
+
+  checkClick() {
+    this.setState({
+      active: !this.state.active
+    });
   }
 
   componentDidMount() {
@@ -53,10 +61,6 @@ class EditCompanie extends Component {
     });
   }
 
-  cancelClick() {
-    this.props.history.push("/empresas/");
-  }
-
   onSubmit(e) {
     e.preventDefault();
 
@@ -65,7 +69,8 @@ class EditCompanie extends Component {
       name: this.state.name,
       adress: this.state.adress,
       phone: this.state.phone,
-      cnpj: this.state.cnpj
+      cnpj: this.state.cnpj,
+      active: this.state.active
     };
     this.props.editComapany(editCompany, this.props.history);
   }
@@ -94,6 +99,16 @@ class EditCompanie extends Component {
                   value={this.state.adress}
                   onChange={this.onChange}
                 />
+              </div>
+              <div className="form-check col-md-3 ml-5 mt-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  name="active"
+                  onChange={this.checkClick}
+                  checked={this.state.active}
+                />
+                <label className="form-check-label">Ativo?</label>
               </div>
             </div>
             <div className="form-row">

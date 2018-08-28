@@ -14,11 +14,13 @@ class CreateCompanie extends Component {
       name: "",
       adress: "",
       phone: "",
-      cnpj: ""
+      cnpj: "",
+      active: true
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.checkClick = this.checkClick.bind(this);
   }
 
   onChange(e) {
@@ -34,9 +36,15 @@ class CreateCompanie extends Component {
       name: this.state.name,
       adress: this.state.adress,
       phone: this.state.phone,
-      cnpj: this.state.cnpj
+      cnpj: this.state.cnpj,
+      active: this.state.active
     };
     this.props.newCompany(newCompany, this.props.history);
+  }
+  checkClick() {
+    this.setState({
+      active: !this.state.active
+    });
   }
 
   render() {
@@ -63,6 +71,16 @@ class CreateCompanie extends Component {
                   value={this.state.adress}
                   onChange={this.onChange}
                 />
+              </div>
+              <div className="form-check col-md-3 ml-5 mt-3">
+                <input
+                  className="form-check-input"
+                  type="checkbox"
+                  name="active"
+                  onChange={this.checkClick}
+                  checked={this.state.active}
+                />
+                <label className="form-check-label">Ativo?</label>
               </div>
             </div>
             <div className="form-row">
@@ -98,10 +116,7 @@ class CreateCompanie extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
 export default connect(
-  mapStateToProps,
+  null,
   { newCompany }
 )(withRouter(CreateCompanie));
