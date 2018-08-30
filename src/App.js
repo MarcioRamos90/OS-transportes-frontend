@@ -21,6 +21,10 @@ import ListCars from "./components/Cars/list";
 import CreateCar from "./components/Cars/create";
 import EditCar from "./components/Cars/edit";
 
+import ListDrivers from "./components/Drivers/list";
+import CreateDriver from "./components/Drivers/create";
+import EditDriver from "./components/Drivers/edit";
+
 import store from "./store";
 
 // Check for toke
@@ -55,6 +59,7 @@ class App extends Component {
             <Switch>
               <PrivateRoute exact path="/menu" component={Menu} />
             </Switch>
+            {/* Empresas */}
             <Switch>
               <PrivateRoute exact path="/empresas" component={ListCompanies} />
             </Switch>
@@ -72,17 +77,36 @@ class App extends Component {
                 component={EditCompanie}
               />
             </Switch>
-            <Switch>
-              <PrivateRoute exact path="/novo/carro/" component={CreateCar} />
-            </Switch>
+            {/* Carros */}
             <Switch>
               <PrivateRoute exact path="/carros/" component={ListCars} />
+            </Switch>
+            <Switch>
+              <PrivateRoute exact path="/novo/carro/" component={CreateCar} />
             </Switch>
             <Switch>
               <PrivateRoute
                 exact
                 path="/editar-carro/:id/"
                 component={EditCar}
+              />
+            </Switch>
+            {/* Motoristas */}
+            <Switch>
+              <PrivateRoute exact path="/motoristas/" component={ListDrivers} />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/novo/motorista/"
+                component={CreateDriver}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/editar-motorista/:id/"
+                component={EditDriver}
               />
             </Switch>
             <Footer />
