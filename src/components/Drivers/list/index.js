@@ -86,7 +86,7 @@ class ListDrivers extends Component {
               <div className="col-md-3 mb-3">
                 <label>Motorista</label>
                 <TextFieldGroupSmall
-                  placeholder="Carro/placa"
+                  placeholder="Nome/Tel"
                   name="name"
                   value={this.state.name}
                   onChange={this.onChange}
@@ -95,7 +95,7 @@ class ListDrivers extends Component {
               <div className="col-md-3 mb-3">
                 <label>CPF</label>
                 <TextFieldGroupSmall
-                  placeholder="cpf"
+                  placeholder="CPF"
                   name="cpf"
                   value={this.state.cpf}
                   onChange={this.onChange}
@@ -118,7 +118,7 @@ class ListDrivers extends Component {
               <div className="col-md-3 mb-3">
                 <label>RG</label>
                 <TextFieldGroupSmall
-                  placeholder="rg"
+                  placeholder="RG"
                   name="rg"
                   value={this.state.rg}
                   onChange={this.onChange}
