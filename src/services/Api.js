@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apihost = "https://backend-os-goncalves-test.herokuapp.com";
-// const local = "http://localhost:5000";
+// const apihost = "http://localhost:5000";
 
 const api = axios.create({
   baseURL: apihost

@@ -25,6 +25,10 @@ import ListDrivers from "./components/Drivers/list";
 import CreateDriver from "./components/Drivers/create";
 import EditDriver from "./components/Drivers/edit";
 
+import ListServices from "./components/Services/list";
+import CreateService from "./components/Services/create";
+// import EditCar from "./components/Cars/edit";
+
 import store from "./store";
 
 // Check for toke
@@ -107,6 +111,18 @@ class App extends Component {
                 exact
                 path="/editar-motorista/:id/"
                 component={EditDriver}
+              />
+            </Switch>
+
+             {/* Servicos */}
+            <Switch>
+              <PrivateRoute exact path="/servicos/" component={ListServices} />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/novo/servico/"
+                component={CreateService}
               />
             </Switch>
             <Footer />
