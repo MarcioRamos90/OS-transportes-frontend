@@ -1,0 +1,39 @@
+.service {
+	font-size: 17px !important;
+	font-weight: 600;
+	border: 1px solid #ccc
+}
+
+.service .title{
+	text-align: center;
+}
+
+.info.header{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.local .destiny-hour {
+	display: flex;
+	flex-direction: row;
+	
+}
+
+.local .destiny-hour .hour {
+	margin-right: 40px	
+}
+
+.footer{
+	font-size: 14px
+}
+
+.footer div{
+	padding: 3px
+}
+
+h5{
+	font-weight: 700 !important;
+	margin-top: 30px !important;
+	margin-bottom: 30px !important;
+}

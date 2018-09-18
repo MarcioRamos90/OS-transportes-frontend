@@ -95,3 +95,12 @@ table td {
 thead tr th {
   padding: 2px !important;
 }
+
+hr {
+  margin: 0 !important
+}
+
+.service p{
+  font-size: 10px,
+
+}

@@ -42,3 +42,11 @@ img {
 .form-control::placeholder {
   color: #bbb !important;
 }
+
+.navbar{
+  height: 70px;
+}
+
+a {
+    margin-bottom: 30px;
+}

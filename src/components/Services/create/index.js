@@ -13,6 +13,7 @@ import {
 } from "../../../actions/servicesActions";
 
 import ServiceDriver from '../serviceDriver';
+import Service from '../Service';
 
 import "../styleServices.css";
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
@@ -28,6 +29,7 @@ class CreateService extends Component {
       requester: "",
       driver:"",
       date: "",
+      hour: "",
       date_init:"",
       car: "",
       observation: "",
@@ -94,7 +96,7 @@ class CreateService extends Component {
       : (newService.observation = "");
     newService.status = this.state.status;
 
-    this.props.newService(newService);
+    // this.props.newService(newService);
     console.log(newService)
 
   }
@@ -125,6 +127,7 @@ class CreateService extends Component {
   delPassenger(passenger){
     this.props.delPassenger(passenger)
   }
+
 
   renderListPassenger() {
     return this.state.passengers.map(pass => (
@@ -240,7 +243,15 @@ class CreateService extends Component {
                   style={{ width:30, borderRadius: 0 }}
                 />
               </div>
-
+              <div className="col-md-3 mb-3">
+                <label>Hora</label>
+                <TextFieldGroupSmall
+                  placeholder="Hora"
+                  name="hour"
+                  value={this.state.hour}
+                  onChange={this.onChange}
+                />
+              </div>
             </div>
             <div className="form-row">
              <div className="col-md-8 mb-4">
@@ -370,9 +381,13 @@ class CreateService extends Component {
 
               
                 <div className="controls">
-                  <button type="submit" className="btn btn-primary mb-1">
-                    Salvar
-                  </button>
+                  <Popup  trigger={<a className="btn btn-primary mb-1" style={{ color: 'white'}}>Confirma</a>} style={{ width: '2000px'}}  modal closeOnDocumentClick>
+                    {close => (
+                      <div>
+                       <Service cancel={close} submit={this.onSubmit} fields={this.state}/>
+                      </div>
+                    )}
+                   </Popup>
                   <Link to="/servicos/" className="cancel btn btn-danger mb-1">
                     <p>Cancelar</p>
                   </Link>
