@@ -6,7 +6,6 @@ import {
   editComapany
 } from "../../../actions/companiesAction";
 
-import "./style.css";
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 
 class EditCompanie extends Component {

@@ -11,6 +11,7 @@ class ListDrivers extends Component {
 
     this.state = {
       name: "",
+      tel:"",
       cpf: "",
       rg: "",
       bilingue: false,
@@ -38,6 +39,9 @@ class ListDrivers extends Component {
     this.state.name.length > 0
       ? (filter.name = this.state.name)
       : (filter.name = "");
+    this.state.tel.length > 0
+      ? (filter.tel = this.state.tel)
+      : (filter.tel = "");
     this.state.cpf.length > 0
       ? (filter.cpf = this.state.cpf)
       : (filter.cpf = "");
@@ -68,6 +72,7 @@ class ListDrivers extends Component {
     return this.state.drivers.map(comp => (
       <tr onClick={() => this.editClick(comp._id)} key={comp._id}>
         <td>{comp.name}</td>
+        <td>{comp.tel}</td>
         <td>{comp.cpf}</td>
         <td>{comp.rg}</td>
         <td>{comp.bilingue ? <p>Sim</p> : <p>Não</p>}</td>
@@ -86,22 +91,22 @@ class ListDrivers extends Component {
               <div className="col-md-3 mb-3">
                 <label>Motorista</label>
                 <TextFieldGroupSmall
-                  placeholder="Nome/Tel"
+                  placeholder="Nome"
                   name="name"
                   value={this.state.name}
                   onChange={this.onChange}
                 />
               </div>
               <div className="col-md-3 mb-3">
-                <label>CPF</label>
+                <label>Telefone</label>
                 <TextFieldGroupSmall
-                  placeholder="CPF"
-                  name="cpf"
-                  value={this.state.cpf}
+                  placeholder="Telefone"
+                  name="tel"
+                  value={this.state.tel}
                   onChange={this.onChange}
                 />
               </div>
-
+              
               <div className="form-check col-md-3 ml-5 mt-3">
                 <input
                   className="form-check-input"
@@ -124,6 +129,16 @@ class ListDrivers extends Component {
                   onChange={this.onChange}
                 />
               </div>
+              <div className="col-md-3 mb-3">
+                <label>CPF</label>
+                <TextFieldGroupSmall
+                  placeholder="CPF"
+                  name="cpf"
+                  value={this.state.cpf}
+                  onChange={this.onChange}
+                />
+              </div>
+
               <div className="form-check col-md-3 ml-5 mt-3">
                 <input
                   className="form-check-input"
@@ -144,12 +159,12 @@ class ListDrivers extends Component {
           </form>
 
           <div
-            className="btn-group mb-4"
+            className="btn-group mt-2"
             role="group"
             style={{ marginBotton: 0 }}
           >
-            <Link to="/novo/motorista" className="btn btn-light">
-              <i className="fab fa-creative-commons-by" />- Adicionar Motorista
+            <Link to="/novo/motorista" className="btn btn-secondary">
+               Adicionar Motorista
             </Link>
           </div>
 
@@ -157,6 +172,7 @@ class ListDrivers extends Component {
             <thead className="thead-dark">
               <tr>
                 <th scope="col">Motoristas</th>
+                <th scope="col">Telefone</th>
                 <th scope="col">CPF</th>
                 <th scope="col">RG</th>
                 <th scope="col">Bilingue</th>

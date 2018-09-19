@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 
 import { getCars } from "../../../actions/carsAction";
 
-import "./style.css";
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 
 class ListCars extends Component {
@@ -150,12 +149,12 @@ class ListCars extends Component {
           </form>
 
           <div
-            className="btn-group mb-4"
+            className="btn-group mt-2"
             role="group"
             style={{ marginBotton: 0 }}
           >
-            <Link to="/novo/carro" className="btn btn-light">
-              <i className="fas fa-car " />- Adicionar Carro
+            <Link to="/novo/carro" className="btn btn-secondary">
+               Adicionar Carro
             </Link>
           </div>
 

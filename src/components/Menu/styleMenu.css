@@ -1,5 +1,4 @@
 .container {
-  color: #333;
   text-align: center;
 }
 
@@ -14,6 +13,14 @@
   height: 200px;
 }
 
+.card-body{
+	padding: 0
+}
 .card:hover {
   border: 3px solid black;
+}
+
+a {
+	text-decoration: none !important;
+
 }

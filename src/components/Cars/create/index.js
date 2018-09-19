@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { newCar } from "../../../actions/carsAction";
 
-import "./style.css";
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 
 class CreateCar extends Component {

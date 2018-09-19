@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { newCompany } from "../../../actions/companiesAction";
 
-import "./style.css";
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 
 class CreateCompanie extends Component {

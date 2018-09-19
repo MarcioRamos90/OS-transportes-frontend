@@ -43,10 +43,71 @@ img {
   color: #bbb !important;
 }
 
-.navbar{
-  height: 70px;
+.controls {
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
+.container.search {
+  text-align: left;
+  border: 1px #ccc solid;
+  border-radius: 5px;
+}
+.container.screen {
+  border-radius: 5px;
+  border: 1px #ccc solid;
+  padding: 40px;
+}
+.search {
+  padding: 20px;
+}
+
+.table {
+  margin-top: 10px;
+}
+.controls {
+  font-size: 20px;
+  width: 90px;
+  margin-top: 30px;
+  margin-left: 60px;
+}
+.controls .btn {
+  height: 50px;
+}
+
+.controls .btn i {
+  font-size: 30px;
+  margin: 0;
+}
+
+tr:hover {
+  background-color: #999;
+}
+
+input {
+  margin: 30px;
+}
+
+h1 {
+  margin: 40px;
+}
+
+.btn {
+  height: 40px;
+  font-size: 20px;
+  padding: 0;
+}
+
+.btn i {
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+}
 a {
-    margin-bottom: 30px;
+  margin-left: 10px
+}
+a p{
+  margin-top: 5px
 }

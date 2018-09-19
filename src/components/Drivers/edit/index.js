@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { getDriverById, editDriver } from "../../../actions/driversActions";
 
-import "./style.css";
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 
 class EditDriver extends Component {
@@ -12,6 +11,7 @@ class EditDriver extends Component {
 
     this.state = {
       name: "",
+      tel: "",
       cpf: "",
       rg: "",
       bilingue: "",
@@ -33,6 +33,7 @@ class EditDriver extends Component {
       const driver = nextProps.driver;
 
       const name = driver.name ? driver.name : "";
+      const tel = driver.tel ? driver.tel : "";
       const cpf = driver.cpf ? driver.cpf : "";
       const rg = driver.rg ? driver.rg : "";
       const bilingue = driver.bilingue ? driver.bilingue : "";
@@ -40,6 +41,7 @@ class EditDriver extends Component {
 
       this.setState({
         name: name,
+        tel: tel,
         cpf: cpf,
         rg: rg,
         bilingue: bilingue,
@@ -54,6 +56,7 @@ class EditDriver extends Component {
     const editDriver = {
       id: this.props.match.params.id,
       name: this.state.name,
+      tel: this.state.tel,
       cpf: this.state.cpf,
       rg: this.state.rg,
       bilingue: this.state.bilingue,
@@ -88,22 +91,22 @@ class EditDriver extends Component {
               <div className="col-md-3 mb-3">
                 <label>Motorista</label>
                 <TextFieldGroupSmall
-                  placeholder="Nome/Tel"
+                  placeholder="Nome"
                   name="name"
                   value={this.state.name}
                   onChange={this.onChange}
                 />
               </div>
               <div className="col-md-3 mb-3">
-                <label>CPF</label>
+                <label>Telefone</label>
                 <TextFieldGroupSmall
-                  placeholder="CPF"
-                  name="cpf"
-                  value={this.state.cpf}
+                  placeholder="Telefone"
+                  name="tel"
+                  value={this.state.tel}
                   onChange={this.onChange}
                 />
               </div>
-
+              
               <div className="form-check col-md-3 ml-5 mt-3">
                 <input
                   className="form-check-input"
@@ -123,6 +126,15 @@ class EditDriver extends Component {
                   placeholder="RG"
                   name="rg"
                   value={this.state.rg}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className="col-md-3 mb-3">
+                <label>CPF</label>
+                <TextFieldGroupSmall
+                  placeholder="CPF"
+                  name="cpf"
+                  value={this.state.cpf}
                   onChange={this.onChange}
                 />
               </div>

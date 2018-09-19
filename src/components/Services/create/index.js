@@ -192,6 +192,17 @@ class CreateService extends Component {
         <div className="container screen text-left">
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
+              <div className="col-md-2 mb-3">
+                <label>Data OS</label>
+                <TextFieldGroupSmall
+                  name="date"
+                  type="date"
+                  className="date"
+                  value={this.state.date}
+                  onChange={this.onChange}
+                  style={{ width:30, borderRadius: 0 }}
+                />
+              </div>
               <div className="col-md-3 mb-3">
                 <label>Empresa</label>
                 <TextFieldGroupSmall
@@ -223,78 +234,38 @@ class CreateService extends Component {
             </div>
 
             <div className="form-row">
-              <div className="col-md-3 mb-3">
-                <label>Carro</label>
-                <TextFieldGroupSmall
-                  placeholder="Carro"
-                  name="car"
-                  value={this.state.car}
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="col-md-2 mb-3">
-                <label>Data OS</label>
-                <TextFieldGroupSmall
-                  name="date"
-                  type="date"
-                  className="date"
-                  value={this.state.date}
-                  onChange={this.onChange}
-                  style={{ width:30, borderRadius: 0 }}
-                />
-              </div>
-              <div className="col-md-3 mb-3">
-                <label>Hora</label>
-                <TextFieldGroupSmall
-                  placeholder="Hora"
-                  name="hour"
-                  value={this.state.hour}
-                  onChange={this.onChange}
-                />
-              </div>
-            </div>
-            <div className="form-row">
-             <div className="col-md-8 mb-4">
-                <label>Observação</label>
-                <TextFieldGroupSmall
-                  placeholder="Observação"
-                  name="observation"
-                  value={this.state.observation}
-                  onChange={this.onChange}
-                />
-              </div>
-            </div>
-              <div className="form-row">
 
-             
-                <Popup trigger={<a className="plus-button"> <i className="fas fa-plus" /></a>} modal>
-                  {close => (
-                    <div>
-                      <div className="col-md-8 mb-1">
-                        <h5 style={{ margin: 0}}>Passageiro</h5>
-                        <TextFieldGroupSmall
-                          name="passenger"
-                          className="passenger"
-                          value={this.state.passenger}
-                          onChange={this.onChange}
-                        />
-                      </div>
-                      <div className="controls">
-                        <button type="button" 
-                        className="btn btn-primary mb-1" 
-                        onClick={() => this.submitPassenger()}>
-                          Adicionar
-                        </button>
-                        <a style={{ color: '#fff'}} className="cancel btn btn-danger mb-1" onClick={() => close()}>
-                          <p>Cancelar</p>
-                        </a>
-                      </div>
-                    </div>
-                  )}
-                </Popup>
-
-
-              <table className="table table-bordered mr-3" style={{ width: '200px'}}>
+            {/* -----------PASSAGEIROS----------- */}
+            <Popup trigger={
+                    <a className="plus-button">
+                      <i className="fas fa-plus"/>
+                    </a>
+                  } modal>
+              {close => (
+                <div>
+                  <div className="col-md-8 mb-1">
+                    <h5 style={{ margin: 0}}>Passageiro</h5>
+                    <TextFieldGroupSmall
+                      name="passenger"
+                      className="passenger"
+                      value={this.state.passenger}
+                      onChange={this.onChange}
+                    />
+                  </div>
+                  <div className="controls">
+                    <button type="button" 
+                    className="btn btn-primary mb-1" 
+                    onClick={() => this.submitPassenger()}>
+                      Adicionar
+                    </button>
+                    <a style={{ color: '#fff'}} className="cancel btn btn-danger mb-1" onClick={() => close()}>
+                      <p>Cancelar</p>
+                    </a>
+                  </div>
+                </div>
+              )}
+            </Popup>
+             <table className="table table-bordered mr-3" style={{ width: '200px'}}>
                 <thead>
                   <tr style={{backgroundColor:'white'}}>
                     <th scope="col">Passageiros</th>
@@ -306,32 +277,21 @@ class CreateService extends Component {
                   
                 </tbody>
               </table>
+            {/* -----------END----------- */}
 
-
-              <Popup  trigger={<a className="plus-button"> <i className="fas fa-search" /></a>} modal closeOnDocumentClick>
-                  {close => (
-                    <div>
-                     <ServiceDriver />
-          
-                    </div>
-                  )}
-              </Popup>
-
-
-              <table className="table table-bordered mr-3" style={{ width: '200px'}}>
-                <thead>
-                  <tr style={{backgroundColor:'white'}}>
-                    <th scope="col">Motorista</th>
-                    <th scope="col">Excluir</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.renderDriver()}
-                  
-                </tbody>
-              </table>
-            </div>
+            </div>  
             <div className="form-row">
+
+              <div className="col-md-3 mb-3">
+                <label>Hora</label>
+                <TextFieldGroupSmall
+                  placeholder="Hora"
+                  name="hour"
+                  value={this.state.hour}
+                  onChange={this.onChange}
+                />
+              </div>
+              {/* -----------LOCAL----------- */}
               <Popup trigger={<a className="plus-button"> <i className="fas fa-plus" /></a>} modal>
                   {close => (
                     <div>
@@ -364,34 +324,95 @@ class CreateService extends Component {
                     </div>
                   )}
                 </Popup>
-
                 <table className="table table-bordered" style={{ width: '500px'}}>
+                  <thead>
+                    <tr style={{backgroundColor:'white'}}>
+                      <th scope="col">Local</th>
+                      <th scope="col">Endereço</th>
+                      <th scope="col">Excluir</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.renderListDestinations()}
+                    
+                  </tbody>
+                </table>
+              {/* -----------END----------- */}
+            </div>
+            <div className="form-row">
+             <div className="col-md-8 mb-4">
+                <label>Observação</label>
+                <TextFieldGroupSmall
+                  placeholder="Observação"
+                  name="observation"
+                  value={this.state.observation}
+                  onChange={this.onChange}
+                />
+              </div>
+            </div>
+              <div className="form-row">
+
+            {/* -----------MOTORISTAS----------- */}
+              <Popup  trigger={
+                        <a className="plus-button">
+                          <i className="fas fa-search" />
+                        </a>} modal closeOnDocumentClick>
+
+                  {close => (
+                    <div>
+                     <ServiceDriver />
+          
+                    </div>
+                  )}
+              </Popup>
+
+              <table className="table table-bordered mr-3" style={{ width: '200px'}}>
                 <thead>
                   <tr style={{backgroundColor:'white'}}>
-                    <th scope="col">Local</th>
-                    <th scope="col">Endereço</th>
+                    <th scope="col">Motorista</th>
                     <th scope="col">Excluir</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {this.renderListDestinations()}
+                  {this.renderDriver()}
                   
                 </tbody>
               </table>
+               <div className="col-md-3 mb-3">
+                <label>Carro</label>
+                <TextFieldGroupSmall
+                  placeholder="Carro"
+                  name="car"
+                  value={this.state.car}
+                  onChange={this.onChange}
+                />
+              </div>
+            </div>
+          {/* -----------END----------- */}
+            <div className="form-row">
+
+          
+              
 
               
                 <div className="controls">
-                  <Popup  trigger={<a className="btn btn-primary mb-1" style={{ color: 'white'}}>Confirma</a>} style={{ width: '2000px'}}  modal closeOnDocumentClick>
-                    {close => (
-                      <div>
-                       <Service cancel={close} submit={this.onSubmit} fields={this.state}/>
-                      </div>
+                  <Popup  
+                    trigger={
+                      <a className="btn btn-primary mb-1" style={{ color: 'white'}}>
+                        <p>Confirma</p>  
+                      </a>} style={{ width: '2000px'}}  modal closeOnDocumentClick>
+                      {close => (
+                        <div>
+                         <Service cancel={close} submit={this.onSubmit} fields={this.state}/>
+                        </div>
                     )}
                    </Popup>
                   <Link to="/servicos/" className="cancel btn btn-danger mb-1">
                     <p>Cancelar</p>
                   </Link>
                 </div>
+
+             
               </div> 
           </form>
         </div>

@@ -175,12 +175,12 @@ class ListServices extends Component {
           </form>
 
           <div
-            className="btn-group mb-4"
+            className="btn-group mt-2"
             role="group"
             style={{ marginBotton: 0 }}
           >
-            <Link to="/novo/servico" className="btn btn-light">
-              <i className="fas fa-wrench " />- Adicionar Serviço
+            <Link to="/novo/servico" className="btn btn-secondary">
+               Adicionar Serviço
             </Link>
           </div>
 

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { newDriver } from "../../../actions/driversActions";
 
-import "./style.css";
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 
 class CreateDriver extends Component {
@@ -12,6 +11,7 @@ class CreateDriver extends Component {
 
     this.state = {
       name: "",
+      tel:"",
       cpf: "",
       rg: "",
       bilingue: false,
@@ -31,6 +31,9 @@ class CreateDriver extends Component {
     this.state.name.length > 0
       ? (newDriver.name = this.state.name)
       : (newDriver.name = "");
+    this.state.tel.length > 0
+      ? (newDriver.tel = this.state.tel)
+      : (newDriver.tel = "");
     this.state.cpf.length > 0
       ? (newDriver.cpf = this.state.cpf)
       : (newDriver.cpf = "");
@@ -69,22 +72,21 @@ class CreateDriver extends Component {
               <div className="col-md-3 mb-3">
                 <label>Motorista</label>
                 <TextFieldGroupSmall
-                  placeholder="Nome/Tel"
+                  placeholder="Nome"
                   name="name"
                   value={this.state.name}
                   onChange={this.onChange}
                 />
               </div>
               <div className="col-md-3 mb-3">
-                <label>CPF</label>
+                <label>Telefone</label>
                 <TextFieldGroupSmall
-                  placeholder="CPF"
-                  name="cpf"
-                  value={this.state.cpf}
+                  placeholder="Telefone"
+                  name="tel"
+                  value={this.state.tel}
                   onChange={this.onChange}
                 />
               </div>
-
               <div className="form-check col-md-3 ml-5 mt-3">
                 <input
                   className="form-check-input"
@@ -107,6 +109,15 @@ class CreateDriver extends Component {
                   onChange={this.onChange}
                 />
               </div>
+              <div className="col-md-3 mb-3">
+                <label>CPF</label>
+                <TextFieldGroupSmall
+                  placeholder="CPF"
+                  name="cpf"
+                  value={this.state.cpf}
+                  onChange={this.onChange}
+                />
+              </div>
               <div className="form-check col-md-3 ml-5 mt-3">
                 <input
                   className="form-check-input"
@@ -122,7 +133,7 @@ class CreateDriver extends Component {
                   Salvar
                 </button>
                 <Link to="/motoristas" className="btn btn-danger mb-1">
-                  Cancelar
+                  <p>Cancelar</p>
                 </Link>
               </div>
             </div>

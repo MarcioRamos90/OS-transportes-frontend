@@ -17,7 +17,7 @@ table {
 }
 
 .controls .btn i {
-  font-size: 30px;
+  font-size: 20px;
   margin: 0;
 }
 
@@ -56,7 +56,7 @@ h1 {
 a {
   cursor: pointer;
   color: white;
-  height: 0
+  /*height: 0*/
 }
 
 a i {
