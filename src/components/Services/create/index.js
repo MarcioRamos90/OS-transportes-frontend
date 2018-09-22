@@ -5,17 +5,18 @@ import Popup from "reactjs-popup";
 
 import { 
   newService, 
-  newPassenger, 
-  delPassenger, 
-  delServiceDriver, 
+  
   newDestiny,
   delDestiny
 } from "../../../actions/servicesActions";
 
-import ServiceDriver from '../serviceDriver';
+import PopupCompany from '../PopupCompany';
+import PopupCar from '../PopupCar';
+import PopupDriver from '../PopupDriver';
 import Service from '../Service';
+import PopupPassenger from '../PopupPassenger'
 
-import "../styleServices.css";
+
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 
 class CreateService extends Component {
@@ -30,11 +31,11 @@ class CreateService extends Component {
       driver:"",
       date: "",
       hour: "",
-      date_init:"",
       car: "",
       observation: "",
       destiny:"",
       adress:"",
+      reserve:"",
       status: true,
       services: [],
       passengers: [],
@@ -44,8 +45,6 @@ class CreateService extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.checkClick = this.checkClick.bind(this);
-    this.submitPassenger = this.submitPassenger.bind(this);
-    this.renderDriver = this.renderDriver.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
@@ -70,42 +69,20 @@ class CreateService extends Component {
     e.preventDefault();
 
     const newService = {};
-    this.state.company.length > 0
-      ? (newService.company = this.state.company)
-      : (newService.company = "");
-    this.state.passengers.length > 0
-      ? (newService.passengers = this.state.passengers)
-      : (newService.passengers = "");
-    this.state.requester.length > 0
-      ? (newService.requester = this.state.requester)
-      : (newService.requester = "");
-    this.state.driver.length > 0
-      ? (newService.driver = this.state.driver)
-      : (newService.driver = "");
-    this.state.date.length 
-      ? (newService.date = this.state.date)
-      : (newService.date = "");
-    this.state.car.length > 0
-      ? (newService.car = this.state.car)
-      : (newService.car = "");
-    this.state.local.length > 0
-      ? (newService.local = this.state.local)
-      : (newService.local = "");
-    this.state.observation.length > 0
-      ? (newService.observation = this.state.observation)
-      : (newService.observation = "");
+    newService.company = this.state.company 
+    newService.passengers = this.state.passengers 
+    newService.requester = this.state.requester 
+    newService.reserve = this.state.reserve 
+    newService.driver = this.state.driver 
+    newService.date = this.state.date 
+    newService.car = this.state.car
+    newService.local = this.state.local
+    newService.observation = this.state.observation
     newService.status = this.state.status;
 
-    // this.props.newService(newService);
+    // this.props.newService(newService, this.props.history);
     console.log(newService)
 
-  }
-
-  submitPassenger(){
-    this.props.newPassenger(this.state.passenger)
-    this.setState({
-      passenger: ''
-    })
   }
 
   onChange(e) {
@@ -124,21 +101,6 @@ class CreateService extends Component {
     });
   }
 
-  delPassenger(passenger){
-    this.props.delPassenger(passenger)
-  }
-
-
-  renderListPassenger() {
-    return this.state.passengers.map(pass => (
-      <tr style={{backgroundColor:'white'}} key={pass}>
-        <td>{pass}</td>
-        <td className="trash-td">
-          <a onClick={() => this.delPassenger(pass)}><i className="fas fa-trash" style={{ fontSize:'20px'}}/></a>
-        </td>
-      </tr>
-    ));
-  }
 
   submitLocal(){
     const newDestiny ={ destiny:this.state.destiny , adress:this.state.adress}
@@ -161,28 +123,13 @@ class CreateService extends Component {
         <td>{Destiny.destiny}</td>
         <td>{Destiny.adress}</td>
         <td className="trash-td">
-          <a onClick={() => this.delDestiny(Destiny)}><i className="fas fa-trash" style={{ fontSize:'20px'}}/></a>
+          <a onClick={() => this.delDestiny(Destiny)}>
+            <i className="fas fa-trash" style={{ fontSize:'20px'}}/>
+          </a>
         </td>
       </tr>
     ));
   }
-  }
-
-  delDriver(){
-    this.props.delServiceDriver()
-  }
-
-  renderDriver() {
-    const { driver } = this.state
-    if (driver){
-      return (
-        <tr style={{backgroundColor:'white'}} >
-          <td>{driver}</td>
-          <td className="trash-td">
-            <a onClick={() => this.delDriver()}><i className="fas fa-trash" style={{ fontSize:'20px'}}/></a>
-          </td>
-        </tr>)
-      }
   }
 
   render() {
@@ -191,8 +138,8 @@ class CreateService extends Component {
         <h1 className="text-left">Serviços</h1>
         <div className="container screen text-left">
           <form onSubmit={this.onSubmit} className="container search">
-            <div className="form-row">
-              <div className="col-md-2 mb-3">
+            <div className="form-row mb-3">
+              <div className="col-md-2 ">
                 <label>Data OS</label>
                 <TextFieldGroupSmall
                   name="date"
@@ -203,16 +150,11 @@ class CreateService extends Component {
                   style={{ width:30, borderRadius: 0 }}
                 />
               </div>
-              <div className="col-md-3 mb-3">
-                <label>Empresa</label>
-                <TextFieldGroupSmall
-                  placeholder="Empresa"
-                  name="company"
-                  value={this.state.company}
-                  onChange={this.onChange}
-                />
-              </div>
-               <div className="col-md-3 mb-3">
+              {/*---------- Empresa ----------*/}
+              <PopupCompany />
+              {/*---------- Fim - Empresa ----------*/}
+
+              <div className="col-md-2">
                 <label>Solicitante</label>
                 <TextFieldGroupSmall
                   placeholder="Solicitante"
@@ -221,68 +163,25 @@ class CreateService extends Component {
                   onChange={this.onChange}
                 />
               </div>
-              <div className="form-check col-md-3 ml-5 mt-3">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  name="status"
-                  checked={this.state.status}
-                  onChange={this.checkClick}
+              <div className="col-md-2">
+                <label>Reserva</label>
+                <TextFieldGroupSmall
+                  placeholder="Nº Reserva"
+                  name="reserve"
+                  value={this.state.reserve}
+                  onChange={this.onChange}
                 />
-                <label className="form-check-label">Ativo?</label>
               </div>
             </div>
 
-            <div className="form-row">
+            <div className="form-row mb-3">
 
-            {/* -----------PASSAGEIROS----------- */}
-            <Popup trigger={
-                    <a className="plus-button">
-                      <i className="fas fa-plus"/>
-                    </a>
-                  } modal>
-              {close => (
-                <div>
-                  <div className="col-md-8 mb-1">
-                    <h5 style={{ margin: 0}}>Passageiro</h5>
-                    <TextFieldGroupSmall
-                      name="passenger"
-                      className="passenger"
-                      value={this.state.passenger}
-                      onChange={this.onChange}
-                    />
-                  </div>
-                  <div className="controls">
-                    <button type="button" 
-                    className="btn btn-primary mb-1" 
-                    onClick={() => this.submitPassenger()}>
-                      Adicionar
-                    </button>
-                    <a style={{ color: '#fff'}} className="cancel btn btn-danger mb-1" onClick={() => close()}>
-                      <p>Cancelar</p>
-                    </a>
-                  </div>
-                </div>
-              )}
-            </Popup>
-             <table className="table table-bordered mr-3" style={{ width: '200px'}}>
-                <thead>
-                  <tr style={{backgroundColor:'white'}}>
-                    <th scope="col">Passageiros</th>
-                    <th scope="col">Excluir</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.renderListPassenger()}
-                  
-                </tbody>
-              </table>
-            {/* -----------END----------- */}
+            <PopupPassenger />
 
             </div>  
-            <div className="form-row">
+            <div className="form-row mb-3">
 
-              <div className="col-md-3 mb-3">
+              <div className="col-md-2">
                 <label>Hora</label>
                 <TextFieldGroupSmall
                   placeholder="Hora"
@@ -295,7 +194,7 @@ class CreateService extends Component {
               <Popup trigger={<a className="plus-button"> <i className="fas fa-plus" /></a>} modal>
                   {close => (
                     <div>
-                      <div className="col-md-8 mb-1">
+                      <div className="col-md-4">
                         <h5 style={{ margin: 0}}>Nome Local</h5>
                         <TextFieldGroupSmall
                           name="destiny"
@@ -303,7 +202,7 @@ class CreateService extends Component {
                           onChange={this.onChange}
                         />
                       </div>
-                      <div className="col-md-8 mb-1">
+                      <div className="col-md-4">
                         <h5 style={{ margin: 0}}>Endereço</h5>
                         <TextFieldGroupSmall
                           name="adress"
@@ -313,7 +212,7 @@ class CreateService extends Component {
                       </div>
                       <div className="controls">
                         <button type="button" 
-                        className="btn btn-primary mb-1" 
+                        className="btn btn-primary" 
                         onClick={() => this.submitLocal()}>
                           Adicionar
                         </button>
@@ -350,50 +249,15 @@ class CreateService extends Component {
                 />
               </div>
             </div>
-              <div className="form-row">
+              <div className="form-row mb-3">
 
             {/* -----------MOTORISTAS----------- */}
-              <Popup  trigger={
-                        <a className="plus-button">
-                          <i className="fas fa-search" />
-                        </a>} modal closeOnDocumentClick>
-
-                  {close => (
-                    <div>
-                     <ServiceDriver />
-          
-                    </div>
-                  )}
-              </Popup>
-
-              <table className="table table-bordered mr-3" style={{ width: '200px'}}>
-                <thead>
-                  <tr style={{backgroundColor:'white'}}>
-                    <th scope="col">Motorista</th>
-                    <th scope="col">Excluir</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {this.renderDriver()}
-                  
-                </tbody>
-              </table>
-               <div className="col-md-3 mb-3">
-                <label>Carro</label>
-                <TextFieldGroupSmall
-                  placeholder="Carro"
-                  name="car"
-                  value={this.state.car}
-                  onChange={this.onChange}
-                />
-              </div>
+              <PopupDriver />
+            {/* -----------  CARROS ------------ */}
+              <PopupCar />
             </div>
           {/* -----------END----------- */}
             <div className="form-row">
-
-          
-              
-
               
                 <div className="controls">
                   <Popup  
@@ -429,5 +293,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { newService, newPassenger, delPassenger, delServiceDriver, newDestiny, delDestiny }
+  { newService, newDestiny, delDestiny }
 )(withRouter(CreateService));

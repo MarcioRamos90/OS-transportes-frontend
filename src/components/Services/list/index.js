@@ -5,7 +5,6 @@ import moment from 'moment'
 
 import { getServices } from "../../../actions/servicesActions";
 
-import "../styleServices.css";
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 
 class ListServices extends Component {
@@ -21,6 +20,7 @@ class ListServices extends Component {
       date_finish:"",
       car: "",
       status: true,
+      reserve:"",
       services: []
     };
 
@@ -49,6 +49,9 @@ class ListServices extends Component {
     this.state.company.length > 0
       ? (filter.company = this.state.company)
       : (filter.company = "");
+    this.state.reserve.length > 0
+      ? (filter.reserve = this.state.reserve)
+      : (filter.reserve = "");
     this.state.passenger.length > 0
       ? (filter.passenger = this.state.passenger)
       : (filter.passenger = "");
@@ -122,15 +125,14 @@ class ListServices extends Component {
                 />
               </div>
 
-              <div className="form-check col-md-3 ml-5 mt-3">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  name="status"
-                  checked={this.state.status}
-                  onChange={this.checkClick}
+              <div className="col-md-3 mb-3">
+                <label>Reserva</label>
+                <TextFieldGroupSmall
+                  placeholder="Nº Reserva"
+                  name="reserve"
+                  value={this.state.reserve}
+                  onChange={this.onChange}
                 />
-                <label className="form-check-label">Ativo?</label>
               </div>
             </div>
 

@@ -1,0 +1,1044 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"wid",
+				"width\t = '' Style CSS"
+			],
+			[
+				"mar",
+				"marginLeft\t = '' Style CSS"
+			],
+			[
+				"dis",
+				"display\t = 'table-row-group' Style CSS"
+			],
+			[
+				"como",
+				"common"
+			],
+			[
+				"style",
+				"styled"
+			],
+			[
+				"Pop",
+				"PopupPassenger"
+			],
+			[
+				"E",
+				"Exception\texception"
+			],
+			[
+				"Exc",
+				"except\tkeyword"
+			],
+			[
+				"random_",
+				"random_generator"
+			],
+			[
+				"bot",
+				"bottom\t Style CSS"
+			],
+			[
+				"paddingB",
+				"paddingBottom\t Style CSS"
+			],
+			[
+				"pad",
+				"padding\t Style CSS"
+			],
+			[
+				"marb",
+				"marginBottom\t Style CSS"
+			],
+			[
+				"sty",
+				"style\t Style CSS"
+			],
+			[
+				"ma",
+				"margin-left"
+			],
+			[
+				"marg",
+				"margin-right"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"s",
+				"space-between"
+			],
+			[
+				"flex",
+				"flex-wrap"
+			],
+			[
+				"fle",
+				"flex-direction"
+			],
+			[
+				"margi",
+				"margin-left"
+			],
+			[
+				"lo",
+				"local"
+			],
+			[
+				"defa",
+				"default"
+			],
+			[
+				"pro",
+				"props"
+			],
+			[
+				"wi",
+				"width\t = 'initial' Style CSS"
+			],
+			[
+				"a",
+				"auto"
+			],
+			[
+				"sc",
+				"scrollbars\t: BarProp Window"
+			],
+			[
+				"he",
+				"height\t Style CSS"
+			],
+			[
+				"Se",
+				"ServiceDriver"
+			],
+			[
+				"pass",
+				"passengers"
+			],
+			[
+				"next",
+				"nextProps"
+			],
+			[
+				"colo",
+				"console_log"
+			],
+			[
+				"act",
+				"action"
+			],
+			[
+				"passe",
+				"passenger"
+			],
+			[
+				"sub",
+				"submitPassenger"
+			],
+			[
+				"passeger",
+				"passengers"
+			],
+			[
+				"render",
+				"renderListPassenger"
+			],
+			[
+				"mab",
+				"marginBottom\t Style CSS"
+			],
+			[
+				"cla",
+				"className\t: DOMString Element"
+			],
+			[
+				"fons",
+				"fontSize\t = 'xx-large' Style CSS"
+			],
+			[
+				"syt",
+				"style\t Style CSS"
+			],
+			[
+				"coso",
+				"console_log"
+			],
+			[
+				"cono",
+				"console_log"
+			],
+			[
+				"conso",
+				"console_log"
+			],
+			[
+				"Ob",
+				"ObjectId"
+			],
+			[
+				"conos",
+				"console_log"
+			],
+			[
+				"new",
+				"newService"
+			],
+			[
+				"pars",
+				"parseInt\t( s: string, radix: int ): int Global"
+			],
+			[
+				"exp",
+				"express"
+			],
+			[
+				"cons",
+				"console_log"
+			],
+			[
+				"usr",
+				"user"
+			],
+			[
+				"conf",
+				"confimation"
+			],
+			[
+				"confirma",
+				"confirmationToken"
+			],
+			[
+				"send",
+				"sendConfirmationEmail"
+			],
+			[
+				"user",
+				"userRecord"
+			],
+			[
+				"uni",
+				"uniqueValidator"
+			],
+			[
+				"u",
+				"uniqueValidator"
+			],
+			[
+				"pa",
+				"passwordHash"
+			],
+			[
+				"err",
+				"errors"
+			],
+			[
+				"r",
+				"rcc\tReact: component skeleton"
+			],
+			[
+				"sign",
+				"SignupForm"
+			],
+			[
+				"po",
+				"props\tReact: this.props."
+			],
+			[
+				"rc",
+				"rcc\tReact: component skeleton"
+			],
+			[
+				"rcc",
+				"rcc\tReact: Stateless Functional Component"
+			],
+			[
+				"is",
+				"isRequired"
+			],
+			[
+				"i",
+				"ism\tReact: isMounted()"
+			],
+			[
+				"prop",
+				"prop\tfull property …"
+			],
+			[
+				"sr",
+				"srcX"
+			],
+			[
+				"up",
+				"UP"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"src",
+				"srcY"
+			],
+			[
+				"bl",
+				"blockY"
+			],
+			[
+				"pos",
+				"posY"
+			],
+			[
+				"blo",
+				"blockY"
+			],
+			[
+				"fil",
+				"fillRect"
+			],
+			[
+				"keyu",
+				"keyupHandler"
+			],
+			[
+				"mv",
+				"mvRIGHT"
+			],
+			[
+				"pr",
+				"pointer"
+			],
+			[
+				"p",
+				"progress"
+			],
+			[
+				"bo",
+				"border"
+			],
+			[
+				"ali",
+				"align-content"
+			],
+			[
+				"tex",
+				"text-right"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"te",
+				"text"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"no",
+				"no-repeat"
+			],
+			[
+				"in",
+				"inline"
+			],
+			[
+				"fonts",
+				"font-size"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"grid-t",
+				"grid-template-columns"
+			],
+			[
+				"si",
+				"font-size"
+			],
+			[
+				"col",
+				"color"
+			],
+			[
+				"tes",
+				"text-align-last"
+			],
+			[
+				"gri",
+				"grid-column"
+			],
+			[
+				"met",
+				"meta\tTag"
+			],
+			[
+				"grid-atu",
+				"grid-auto-rows"
+			],
+			[
+				"gred",
+				"grid-area"
+			],
+			[
+				"gr",
+				"grid-area"
+			],
+			[
+				"grid-a",
+				"grid-template-areas"
+			],
+			[
+				"grid",
+				"grid-area"
+			],
+			[
+				"it",
+				"item"
+			],
+			[
+				"ite",
+				"item_point"
+			],
+			[
+				"al",
+				"text-align"
+			],
+			[
+				"l",
+				"lang\tAttr"
+			],
+			[
+				"v",
+				"valor_total"
+			],
+			[
+				"Pr",
+				"Produto"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"ul",
+				"uluru"
+			],
+			[
+				"m",
+				"maps"
+			],
+			[
+				"go",
+				"google"
+			],
+			[
+				"st",
+				"style\tTag"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"b",
+				"border-color"
+			],
+			[
+				"dec",
+				"text-decoration"
+			],
+			[
+				"li",
+				"list-style"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
+				"co",
+				"color"
+			],
+			[
+				"background-c",
+				"background-color"
+			],
+			[
+				"im",
+				"background-image"
+			],
+			[
+				"me",
+				"meta\tTag"
+			],
+			[
+				"t",
+				"td\tTag"
+			],
+			[
+				"f",
+				"find"
+			],
+			[
+				"cl",
+				"class_"
+			],
+			[
+				"id",
+				"id_"
+			],
+			[
+				"lin",
+				"link3"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "components/Services/create/index.js",
+			"settings":
+			{
+				"buffer_size": 9190,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "components/Services/PopupPassenger.js",
+			"settings":
+			{
+				"buffer_size": 3315,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "components/Services/PopupDriver.js",
+			"settings":
+			{
+				"buffer_size": 5280,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "components/Services/PopupCar.js",
+			"settings":
+			{
+				"buffer_size": 0,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "components/Drivers/list/index.js",
+			"settings":
+			{
+				"buffer_size": 5593,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 124.0,
+		"last_filter": "instll",
+		"selected_items":
+		[
+			[
+				"instll",
+				"Package Control: Install Package"
+			],
+			[
+				"them",
+				"UI: Select Theme"
+			],
+			[
+				"instaa",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Prototype"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 533.0
+	},
+	"console":
+	{
+		"height": 280.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"4+4",
+			"import random",
+			"ls",
+			"python"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/mramos/clientes/OS-Goncalves",
+		"/home/mramos/clientes/OS-Goncalves/front",
+		"/home/mramos/clientes/OS-Goncalves/front/src",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Drivers",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Drivers/list",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services",
+		"/home/mramos/clientes/OS-Goncalves/front/src/validation"
+	],
+	"file_history":
+	[
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/commonStyles/PopupStyles.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/serviceDriver/PopupDriver.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/create/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/store.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/PopupPassenger.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/list/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/serviceDriver/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/styleServices.css",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/commomStyles/PopupStyles.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/Service.js",
+		"/home/mramos/.config/sublime-text-3/Packages/Babel/Babel.sublime-settings",
+		"/home/mramos/.config/sublime-text-3/Packages/User/Babel.sublime-settings",
+		"/home/mramos/exercism/python/robot-name/robot_name.py",
+		"/home/mramos/exercism/python/robot-name/robot_name_test.py",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Drivers/create/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Menu/styleMenu.css",
+		"/home/mramos/clientes/OS-Goncalves/front/src/index.css",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/layout/Landing.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Drivers/list/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Cars/list/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Companies/list/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Menu/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Auth/Login/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Cars/edit/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/services/Api.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Companies/create/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Companies/edit/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Drivers/edit/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Cars/create/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Companies/list/style.css",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Drivers/create/style.css",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Drivers/edit/style.css",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/styleServiceConfirm.css",
+		"/home/mramos/clientes/OS-Goncalves/front/src/actions/types.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/actions/servicesActions.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/reducers/servicesReducer.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/servceDriver/index.js",
+		"/home/mramos/Documentos/NodeJS/uri/test.py",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/edit/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/style.css",
+		"/home/mramos/clientes/OS-Goncalves/front/src/actions/authActions.js",
+		"/home/mramos/Documentos/NodeJS/testes_geral/package.json",
+		"/home/mramos/clientes/OS-Goncalves/back-end/routes/api/companies.js",
+		"/home/mramos/clientes/OS-Goncalves/back-end/routes/api/services.js",
+		"/home/mramos/clientes/OS-Goncalves/back-end/models/Code_Service.js",
+		"/home/mramos/clientes/OS-Goncalves/back-end/models/Service.js",
+		"/home/mramos/clientes/OS-Goncalves/back-end/routes/api/drivers.js",
+		"/home/mramos/clientes/OS-Goncalves/back-end/routes/api/cars.js",
+		"/home/mramos/clientes/OS-Goncalves/back-end/server.js",
+		"/home/mramos/protótipos/bookworm/bookworm-api/src/routes/users.js",
+		"/home/mramos/protótipos/bookworm/bookworm-api/src/utils/parserErrors.js",
+		"/home/mramos/.config/sublime-text-3/Packages/User/ReactIDE.sublime-settings",
+		"/home/mramos/.config/sublime-text-3/Packages/sublime-react-ide/ReactIDE.sublime-settings",
+		"/home/mramos/protótipos/bookworm/bookworm-react/src/actions/users.js",
+		"/home/mramos/protótipos/bookworm/bookworm-react/src/api.js",
+		"/home/mramos/protótipos/bookworm/bookworm-react/src/components/pages/HomePage.js",
+		"/home/mramos/protótipos/bookworm/bookworm-react/src/components/messages/ConfirmEmailMessages.js",
+		"/home/mramos/protótipos/bookworm/bookworm-react/src/components/pages/DashboardPage.js",
+		"/home/mramos/protótipos/bookworm/bookworm-react/src/components/routes/GuestRoute.js",
+		"/home/mramos/protótipos/bookworm/bookworm-react/src/components/routes/UserRoute.js",
+		"/home/mramos/protótipos/bookworm/bookworm-react/src/index.js",
+		"/home/mramos/protótipos/bookworm/bookworm-react/src/components/pages/LoginPage.js",
+		"/home/mramos/protótipos/bookworm/bookworm-react/src/types.js",
+		"/home/mramos/protótipos/bookworm/bookworm-react/src/reducers/user.js",
+		"/home/mramos/protótipos/bookworm/bookworm-react/src/actions/auth.js",
+		"/home/mramos/Documentos/JavaScript/canvas/animação canvas/anima.html",
+		"/home/mramos/Documentos/JavaScript/canvas/animação canvas/js/script.js",
+		"/home/mramos/Documentos/JavaScript/canvas/animação canvas/js/sprite.js",
+		"/home/mramos/Documentos/JavaScript/canvas/colisao/test_colisao.html",
+		"/home/mramos/Documentos/JavaScript/canvas/colisao/scripts.js",
+		"/home/mramos/Documentos/JavaScript/canvas/colisao/script.js",
+		"/home/mramos/protótipos/movies/style.css",
+		"/home/mramos/.config/sublime-text-3/Packages/JsPrettier/JsPrettier.sublime-settings",
+		"/home/mramos/protótipos/movies/index.html",
+		"/home/mramos/protótipos/movies/main.js",
+		"/home/mramos/protótipos/movies/movie.html",
+		"/home/mramos/Documentos/basico/programadorbr/style.css",
+		"/home/mramos/Documentos/basico/programadorbr/index.html",
+		"/home/mramos/Documentos/front/experimentos/Acme Web Design/services.html",
+		"/home/mramos/Documentos/front/experimentos/Acme Web Design/css/style.css",
+		"/home/mramos/Documentos/front/experimentos/Acme Web Design/about.html",
+		"/home/mramos/Documentos/front/experimentos/Acme Web Design/index.html",
+		"/home/mramos/Documentos/front/experimentos/Acme Web Design/img/services.html",
+		"/home/mramos/Documentos/front/experimentos/Acme Web Design/css/reset1.css",
+		"/home/mramos/Documentos/front/experimentos/welcome to the beach/index.html",
+		"/home/mramos/Documentos/front/experimentos/welcome to the beach/css/style.css",
+		"/home/mramos/Área de Trabalho/sist_venda.py",
+		"/home/mramos/Área de Trabalho/sistema_de_vendas",
+		"/home/mramos/Documentos/front/personal_site/index.html",
+		"/home/mramos/Documentos/front/personal_site/style.css",
+		"/home/mramos/Documentos/front/personal_site/img/background.jpg",
+		"/home/mramos/Documentos/Python/udemy/web scraping/first_beautifulsoup/beautifulSoup-examples.py",
+		"/home/mramos/Documentos/Python/udemy/web scraping/first_beautifulsoup/beautifulSoup-examples2.py",
+		"/home/mramos/Documentos/Python/udemy/web scraping/first_beautifulsoup/sample.html"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"props.driver",
+			"driver.",
+			"Driver",
+			"driver",
+			"selectClick",
+			"renderListDriver",
+			"renderDriver",
+			"renderListDriver",
+			"class=",
+			"local",
+			"car",
+			"requester",
+			"driver",
+			"requester",
+			"passengers"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"className-"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "components/Services/create/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9190,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								296,
+								296
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "components/Services/PopupPassenger.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3315,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								945,
+								934
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "components/Services/PopupDriver.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5280,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2623,
+								2623
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1709.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "components/Services/PopupCar.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "components/Drivers/list/index.js",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 5593,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1834,
+								1815
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1134.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 40.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.doc":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 188.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "front.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 275.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

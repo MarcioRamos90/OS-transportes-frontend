@@ -8,7 +8,9 @@ import {
   DEL_PASSENGER, 
   NEW_DRIVER,
   NEW_DESTINY,
-  DEL_DESTINY
+  DEL_DESTINY,
+  NEW_SERVICE_CAR,
+  NEW_SERVICE_COMPANY
 } 
 from "./types";
 
@@ -72,6 +74,36 @@ export const newServiceDriver = (data) => dispatch => {
 export const delServiceDriver = () => dispatch => {
   dispatch({
   type: NEW_DRIVER,
+  payload: {}
+  });
+}
+
+// Carro
+export const newServiceCar = (data) => dispatch => {
+  dispatch({
+  type: NEW_SERVICE_CAR,
+  payload: data
+  });
+}
+
+export const delServiceCar = () => dispatch => {
+  dispatch({
+  type: NEW_SERVICE_CAR,
+  payload: {}
+  });
+}
+
+// Empresa
+export const newServiceCompany = (data) => dispatch => {
+  dispatch({
+  type: NEW_SERVICE_COMPANY,
+  payload: data
+  });
+}
+
+export const delServiceCompany = () => dispatch => {
+  dispatch({
+  type: NEW_SERVICE_COMPANY,
   payload: {}
   });
 }

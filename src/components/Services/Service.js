@@ -1,6 +1,6 @@
 import React , {Component} from 'react'
 import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 import './styleServiceConfirm.css'
 
@@ -63,11 +63,11 @@ class ServiceConfirm extends Component {
 						{this.renderDestiny()}
 					</div>
 					<hr/>
-					<br/>
-					<hr/>
-					<div><h5>{this.props.fields.observation}</h5></div>
-					<hr/>
-					<br/>
+
+					<div>
+						<h5>{this.props.fields.observation}</h5>
+					</div>
+
 					<hr/>
 					<div>
 						{this.renderAdress()}

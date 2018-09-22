@@ -37,18 +37,10 @@ class ListCars extends Component {
     e.preventDefault();
 
     const filter = {};
-    this.state.name.length > 0
-      ? (filter.name = this.state.name)
-      : (filter.name = "");
-    this.state.renavam.length > 0
-      ? (filter.renavam = this.state.renavam)
-      : (filter.renavam = "");
-    this.state.yearfab.length > 0
-      ? (filter.yearfab = this.state.yearfab)
-      : (filter.yearfab = "");
-    this.state.chassi.length > 0
-      ? (filter.chassi = this.state.chassi)
-      : (filter.chassi = "");
+    filter.name = this.state.name
+    filter.renavam = this.state.renavam
+    filter.yearfab = this.state.yearfab
+    filter.chassi = this.state.chassi
     filter.active = this.state.active ? "true" : "false";
 
     this.props.getCars(filter);

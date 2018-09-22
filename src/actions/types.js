@@ -18,3 +18,5 @@ export const DEL_PASSENGER = "DEL_PASSENGER";
 export const NEW_DRIVER = "NEW_DRIVER";
 export const NEW_DESTINY = "NEW_DESTINY";
 export const DEL_DESTINY = "DEL_DESTINY";
+export const NEW_SERVICE_CAR = "NEW_SERVICE_CAR";
+export const NEW_SERVICE_COMPANY = "NEW_SERVICE_COMPANY"

@@ -5,7 +5,9 @@ import {
   DEL_PASSENGER, 
   NEW_DRIVER,
   NEW_DESTINY,
-  DEL_DESTINY
+  DEL_DESTINY,
+  NEW_SERVICE_CAR,
+  NEW_SERVICE_COMPANY
 } 
 from "../actions/types";
 
@@ -57,6 +59,22 @@ export default (state = INITIAL_STATE, action) => {
         service: { 
           ...state.service, 
           driver: action.payload
+        }
+      };
+    case NEW_SERVICE_CAR:
+      return {
+        ...state,
+        service: { 
+          ...state.service, 
+          car: action.payload
+        }
+      };
+    case NEW_SERVICE_COMPANY:
+      return {
+        ...state,
+        service: { 
+          ...state.service, 
+          company: action.payload
         }
       };
     case NEW_DESTINY:
