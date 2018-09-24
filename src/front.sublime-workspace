@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"min",
+				"minWidth\t = 'initial' Style CSS"
+			],
+			[
+				"widt",
+				"width"
+			],
+			[
+				"hei",
+				"height"
+			],
+			[
+				"isE",
+				"isEmpty"
+			],
+			[
+				"Pop",
+				"PopupLocal"
+			],
+			[
 				"wid",
 				"width\t = '' Style CSS"
 			],
@@ -22,10 +42,6 @@
 			[
 				"style",
 				"styled"
-			],
-			[
-				"Pop",
-				"PopupPassenger"
 			],
 			[
 				"E",
@@ -498,68 +514,25 @@
 			[
 				"t",
 				"td\tTag"
-			],
-			[
-				"f",
-				"find"
-			],
-			[
-				"cl",
-				"class_"
-			],
-			[
-				"id",
-				"id_"
-			],
-			[
-				"lin",
-				"link3"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "components/Services/create/index.js",
+			"file": "components/Services/PopupLocal.js",
 			"settings":
 			{
-				"buffer_size": 9190,
+				"buffer_size": 3383,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "components/Services/PopupPassenger.js",
+			"file": "components/commonStyles/PopupStyles.js",
 			"settings":
 			{
-				"buffer_size": 3315,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "components/Services/PopupDriver.js",
-			"settings":
-			{
-				"buffer_size": 5280,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "components/Services/PopupCar.js",
-			"settings":
-			{
-				"buffer_size": 0,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "components/Drivers/list/index.js",
-			"settings":
-			{
-				"buffer_size": 5593,
+				"buffer_size": 1083,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -646,18 +619,29 @@
 		"/home/mramos/clientes/OS-Goncalves/front",
 		"/home/mramos/clientes/OS-Goncalves/front/src",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components",
-		"/home/mramos/clientes/OS-Goncalves/front/src/components/Drivers",
-		"/home/mramos/clientes/OS-Goncalves/front/src/components/Drivers/list",
+		"/home/mramos/clientes/OS-Goncalves/front/src",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services",
-		"/home/mramos/clientes/OS-Goncalves/front/src/validation"
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/create",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/commonStyles"
 	],
 	"file_history":
 	[
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/create/index.js",
+		"/home/mramos/clientes/OS-Goncalves/back-end/routes/api/local.js",
+		"/home/mramos/clientes/OS-Goncalves/back-end/server.js",
+		"/home/mramos/clientes/OS-Goncalves/back-end/models/Local.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/reducers/servicesReducer.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/actions/types.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/actions/servicesActions.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/PopupCompany.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/PopupDriver.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Cars/list/index.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/PopupCar.js",
+		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/PopupPassenger.js",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/commonStyles/PopupStyles.js",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/serviceDriver/PopupDriver.js",
-		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/create/index.js",
 		"/home/mramos/clientes/OS-Goncalves/front/src/store.js",
-		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/PopupPassenger.js",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/list/index.js",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/serviceDriver/index.js",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/styleServices.css",
@@ -672,7 +656,6 @@
 		"/home/mramos/clientes/OS-Goncalves/front/src/index.css",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/layout/Landing.js",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Drivers/list/index.js",
-		"/home/mramos/clientes/OS-Goncalves/front/src/components/Cars/list/index.js",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Companies/list/index.js",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Menu/index.js",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Auth/Login/index.js",
@@ -686,9 +669,6 @@
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Drivers/create/style.css",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Drivers/edit/style.css",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/styleServiceConfirm.css",
-		"/home/mramos/clientes/OS-Goncalves/front/src/actions/types.js",
-		"/home/mramos/clientes/OS-Goncalves/front/src/actions/servicesActions.js",
-		"/home/mramos/clientes/OS-Goncalves/front/src/reducers/servicesReducer.js",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/servceDriver/index.js",
 		"/home/mramos/Documentos/NodeJS/uri/test.py",
 		"/home/mramos/clientes/OS-Goncalves/front/src/components/Services/edit/index.js",
@@ -701,7 +681,6 @@
 		"/home/mramos/clientes/OS-Goncalves/back-end/models/Service.js",
 		"/home/mramos/clientes/OS-Goncalves/back-end/routes/api/drivers.js",
 		"/home/mramos/clientes/OS-Goncalves/back-end/routes/api/cars.js",
-		"/home/mramos/clientes/OS-Goncalves/back-end/server.js",
 		"/home/mramos/protótipos/bookworm/bookworm-api/src/routes/users.js",
 		"/home/mramos/protótipos/bookworm/bookworm-api/src/utils/parserErrors.js",
 		"/home/mramos/.config/sublime-text-3/Packages/User/ReactIDE.sublime-settings",
@@ -764,6 +743,56 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"important",
+			" =",
+			"= ",
+			"fff",
+			"background",
+			"Container",
+			"PopupCompany",
+			"newDriver",
+			"name",
+			"driver",
+			"Driver",
+			"driver",
+			"Driver",
+			"driver",
+			"Driver",
+			"name",
+			"drivers",
+			"----------*/}",
+			"company",
+			"PopupCar",
+			"car",
+			"company",
+			"CAR",
+			"Car",
+			"car",
+			"cars",
+			"name",
+			"renderSearchCars",
+			"car",
+			"renderListCar",
+			"delItem",
+			"delCompany",
+			"delCar",
+			"comapany",
+			"car",
+			"cars",
+			"renderListCar",
+			"PopupCar",
+			"ServiceCar",
+			"getCars",
+			"driver",
+			"DEL_DESTINY",
+			"NEW_CAR",
+			"Drive",
+			"PopupCarr",
+			"form",
+			"o",
+			"driver",
+			"PopupDriver",
+			"Driver",
 			"props.driver",
 			"driver.",
 			"Driver",
@@ -797,155 +826,64 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "components/Services/create/index.js",
+					"file": "components/Services/PopupLocal.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9190,
+						"buffer_size": 3383,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								296,
-								296
+								1656,
+								1656
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "components/Services/PopupPassenger.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3315,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								945,
-								934
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "components/Services/PopupDriver.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5280,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2623,
-								2623
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Babel/JavaScript (Babel).sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1709.0,
+						"translation.y": 756.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
-					"file": "components/Services/PopupCar.js",
+					"buffer": 1,
+					"file": "components/commonStyles/PopupStyles.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 0,
+						"buffer_size": 1083,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "components/Drivers/list/index.js",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 5593,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1834,
-								1815
+								420,
+								420
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1134.0,
+						"translation.y": 432.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]

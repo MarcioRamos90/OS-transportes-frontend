@@ -19,3 +19,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+src/front.sublime-
+src/front.sublime-project
+src/front.sublime-workspace
+front.sublime-*

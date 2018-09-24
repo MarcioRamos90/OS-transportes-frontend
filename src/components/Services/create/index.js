@@ -10,6 +10,7 @@ import {
   delDestiny
 } from "../../../actions/servicesActions";
 
+import PopupLocal from '../PopupLocal';
 import PopupCompany from '../PopupCompany';
 import PopupCar from '../PopupCar';
 import PopupDriver from '../PopupDriver';
@@ -101,37 +102,6 @@ class CreateService extends Component {
     });
   }
 
-
-  submitLocal(){
-    const newDestiny ={ destiny:this.state.destiny , adress:this.state.adress}
-    this.props.newDestiny(newDestiny)
-    this.setState({
-      destiny: "",
-      adress: ""
-    })
-  }
-
-  delDestiny(destiny){
-    this.props.delDestiny(destiny)
-  }
-
-  renderListDestinations() {
-    const { local } = this.state
-    if (local){
-    return local.map(Destiny => (
-      <tr style={{backgroundColor:'white'}} key={Destiny.destiny}>
-        <td>{Destiny.destiny}</td>
-        <td>{Destiny.adress}</td>
-        <td className="trash-td">
-          <a onClick={() => this.delDestiny(Destiny)}>
-            <i className="fas fa-trash" style={{ fontSize:'20px'}}/>
-          </a>
-        </td>
-      </tr>
-    ));
-  }
-  }
-
   render() {
     return (
       <div>
@@ -191,51 +161,7 @@ class CreateService extends Component {
                 />
               </div>
               {/* -----------LOCAL----------- */}
-              <Popup trigger={<a className="plus-button"> <i className="fas fa-plus" /></a>} modal>
-                  {close => (
-                    <div>
-                      <div className="col-md-4">
-                        <h5 style={{ margin: 0}}>Nome Local</h5>
-                        <TextFieldGroupSmall
-                          name="destiny"
-                          value={this.state.destiny}
-                          onChange={this.onChange}
-                        />
-                      </div>
-                      <div className="col-md-4">
-                        <h5 style={{ margin: 0}}>Endereço</h5>
-                        <TextFieldGroupSmall
-                          name="adress"
-                          value={this.state.adress}
-                          onChange={this.onChange}
-                        />
-                      </div>
-                      <div className="controls">
-                        <button type="button" 
-                        className="btn btn-primary" 
-                        onClick={() => this.submitLocal()}>
-                          Adicionar
-                        </button>
-                        <a style={{ color: '#fff'}} className="cancel btn btn-danger mb-1" onClick={() => close()}>
-                          <p>Cancelar</p>
-                        </a>
-                      </div>
-                    </div>
-                  )}
-                </Popup>
-                <table className="table table-bordered" style={{ width: '500px'}}>
-                  <thead>
-                    <tr style={{backgroundColor:'white'}}>
-                      <th scope="col">Local</th>
-                      <th scope="col">Endereço</th>
-                      <th scope="col">Excluir</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {this.renderListDestinations()}
-                    
-                  </tbody>
-                </table>
+              <PopupLocal />
               {/* -----------END----------- */}
             </div>
             <div className="form-row">
