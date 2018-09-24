@@ -161,13 +161,13 @@ class PopupCompany extends Component {
       <Container>
         <label>Empresa</label>
         <div className='content'>
-          <Popup  trigger={
+          <Popup trigger={
             <a className="plus-button">
               <i className="fas fa-search" />
             </a>} modal closeOnDocumentClick>
             {close => (
               <div>
-               {this.renderSearchCompany(close)}
+                {this.renderSearchCompany(close)}
               </div>
             )}
           </Popup>

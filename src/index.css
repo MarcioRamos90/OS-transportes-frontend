@@ -50,6 +50,10 @@ img {
   justify-content: space-around;
 }
 
+.controls button {
+  margin-right: 10px;
+}
+
 .container.search {
   text-align: left;
   border: 1px #ccc solid;

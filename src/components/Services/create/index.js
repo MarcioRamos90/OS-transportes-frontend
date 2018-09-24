@@ -5,7 +5,6 @@ import Popup from "reactjs-popup";
 
 import { 
   newService, 
-  
   newDestiny,
   delDestiny
 } from "../../../actions/servicesActions";
@@ -16,7 +15,6 @@ import PopupCar from '../PopupCar';
 import PopupDriver from '../PopupDriver';
 import Service from '../Service';
 import PopupPassenger from '../PopupPassenger'
-
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 

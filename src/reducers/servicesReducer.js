@@ -92,7 +92,7 @@ export default (state = INITIAL_STATE, action) => {
         service: { 
           ...state.service, 
           local: [ 
-             ...deleteItemDest(listaDes , action.payload.adress)
+             ...deleteItemDest(listaDes , action.payload.local)
           ]
         }
       }
@@ -108,8 +108,9 @@ function deleteItem(lista, item){
   return list
 }
 
-function deleteItemDest(lista, adress){
-  const list = lista;
-  list.splice( local =>  local.adress === ({adress}), 1 );
-  return list
+function deleteItemDest(lista, local){
+  const index = lista.findIndex(lista => lista.local === local);
+  lista.splice( index, 1 );
+
+  return lista
 }

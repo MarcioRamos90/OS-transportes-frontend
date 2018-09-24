@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 	.content a i {
 		margin: 5px;
-		margin-right:10px;
+		margin-right:0px;
 		font-size: 25px !important;
 
 		&:hover{
@@ -23,6 +23,7 @@ export const Container = styled.div`
 
 export const Listul = styled.ul`
 	-webkit-padding-start: 0px;
+	padding-left: 10px;
 
 	.empty{
 		color: #bbbfd0 !important;
@@ -42,13 +43,16 @@ export const Listul = styled.ul`
 				color: red;
 			}
 	}
+	.list-edit{
+		diplay:flex
+	}
 `
 
 export const Table = styled.table`
 	
 	height:40px;
 	margin-top: 0 !important;
-	padding: 0 !important;
+	margin-left: 10px !important;
 
 	tr { 
 		background-color: #fff !important;		
@@ -61,7 +65,7 @@ export const Table = styled.table`
 	td {
 		vertical-align: middle !important;
 		padding: 0 !important;
-		padding-rigth: 10px !important;
+		padding-rigth: 0px !important;
 		padding-left: 10px !important;
 		min-width: 50px !important;
 				

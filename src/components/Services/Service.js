@@ -1,6 +1,7 @@
 import React , {Component} from 'react'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
+import moment from 'moment'
 
 import './styleServiceConfirm.css'
 
@@ -19,9 +20,10 @@ class ServiceConfirm extends Component {
   }
 
   renderDestiny() {
+  	console.log(this.props.fields.local)
   	 return this.props.fields.local.map(local => (
-      <div style={{backgroundColor:'white'}} key={local.destiny}>
-       <div className='destiny'>{local.destiny} /</div>
+      <div style={{backgroundColor:'white'}} key={local.local}>
+       <div className='destiny'> {local.local} /</div>
       </div>
     ));
   }
@@ -34,16 +36,20 @@ class ServiceConfirm extends Component {
     ));
   }
 
+  renderDate(){
+  	return moment(this.props.fields.date).format('DD/MM/YYYY')
+  }
+
 	render(){
 		return (
 			<div >
 			<div className="service">
 				<div className="title">
-					Ordem de Serviço
+					Ordem de Serviço: {this.props.fields.reserve}
 				</div>
 				<hr/>
 				<div className="info header">
-					<div className='info'>Data: {this.props.fields.date}</div>
+					<div className='info'>Data: {this.renderDate()}</div>
 					<div className='info'>Empresa: {this.props.fields.company}</div>
 					<div className='info'>Solicitante: {this.props.fields.requester}</div>
 				</div>
@@ -62,16 +68,17 @@ class ServiceConfirm extends Component {
 						
 						{this.renderDestiny()}
 					</div>
+						<hr/>
+					<div>
+						{this.renderAdress()}
+					</div>
 					<hr/>
 
 					<div>
 						<h5>{this.props.fields.observation}</h5>
 					</div>
 
-					<hr/>
-					<div>
-						{this.renderAdress()}
-					</div>
+				
 				</div>
 				
 				<hr/>
