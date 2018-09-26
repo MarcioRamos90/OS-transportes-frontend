@@ -10,8 +10,8 @@ class ServiceConfirm extends Component {
 	renderListPassenger() {
 		if(this.props.fields.passengers.length > 0){
 	    return this.props.fields.passengers.map(pass => (
-	      <div style={{backgroundColor:'white'}} key={pass}>
-	        <div>Passageiro: {pass}</div>
+	      <div style={{backgroundColor:'white'}} key={pass.name}>
+	        <div>Passageiro: {pass.name}</div>
 	      </div>
 	    ));
   	}else{
@@ -41,6 +41,7 @@ class ServiceConfirm extends Component {
   }
 
 	render(){
+		const company = this.props.service.company.name
 		return (
 			<div >
 			<div className="service">
@@ -50,7 +51,7 @@ class ServiceConfirm extends Component {
 				<hr/>
 				<div className="info header">
 					<div className='info'>Data: {this.renderDate()}</div>
-					<div className='info'>Empresa: {this.props.fields.company}</div>
+					<div className='info'>Empresa: {company ? company : ""}</div>
 					<div className='info'>Solicitante: {this.props.fields.requester}</div>
 				</div>
 				<hr/>
@@ -74,9 +75,10 @@ class ServiceConfirm extends Component {
 					</div>
 					<hr/>
 
-					<div>
-						<h5>{this.props.fields.observation}</h5>
-					</div>
+					{this.props.fields.observation && 
+						<div>
+							<h5>{this.props.fields.observation}</h5>
+						</div>}
 
 				
 				</div>

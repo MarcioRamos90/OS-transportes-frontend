@@ -24,6 +24,7 @@ export const Container = styled.div`
 export const Listul = styled.ul`
 	-webkit-padding-start: 0px;
 	padding-left: 10px;
+	margin-left:10px;
 
 	.empty{
 		color: #bbbfd0 !important;

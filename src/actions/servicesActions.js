@@ -10,7 +10,9 @@ import {
   NEW_DESTINY,
   DEL_DESTINY,
   NEW_SERVICE_CAR,
-  NEW_SERVICE_COMPANY
+  NEW_SERVICE_COMPANY,
+  NEW_SERVICE_REQUESTER,
+  DEL_SERVICE_REQUESTER
 } 
 from "./types";
 
@@ -137,3 +139,34 @@ export const editService = (data, history) => dispatch => {
       });
     });
 };
+
+// Passageiros
+export const newServicePassenger = (data) => dispatch => {
+  dispatch({
+  type: NEW_PASSENGER,
+  payload: data
+  });
+}
+
+export const delServicePassenger = (data) => dispatch => {
+  dispatch({
+  type: DEL_PASSENGER,
+  payload: data
+  });
+}
+
+// Solicitantes
+export const newServiceRequester = (data) => dispatch => {
+  dispatch({
+  type: NEW_SERVICE_REQUESTER,
+  payload: data
+  });
+}
+
+export const delServiceRequester = (data) => dispatch => {
+  dispatch({
+  type: DEL_SERVICE_REQUESTER,
+  payload: data
+  });
+}
+

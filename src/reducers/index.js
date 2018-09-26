@@ -4,6 +4,8 @@ import errorReducer from "./errorReducer";
 import companiesReducer from "./companiesReducer";
 import carsReducer from "./carsReducer";
 import localReducer from "./localReducer";
+import passengerReducer from "./passengerReducer";
+import requesterReducer from "./requesterReducer";
 import servicesReducer from "./servicesReducer";
 import driversReducer from "./driversReducer";
 
@@ -14,5 +16,7 @@ export default combineReducers({
   cars: carsReducer,
   drivers: driversReducer,
   services: servicesReducer,
-  local: localReducer
+  local: localReducer,
+  passenger: passengerReducer,
+  requester: requesterReducer
 });

@@ -7,7 +7,9 @@ import {
   NEW_DESTINY,
   DEL_DESTINY,
   NEW_SERVICE_CAR,
-  NEW_SERVICE_COMPANY
+  NEW_SERVICE_COMPANY,
+  NEW_SERVICE_REQUESTER,
+  DEL_SERVICE_REQUESTER
 } 
 from "../actions/types";
 
@@ -16,7 +18,8 @@ const INITIAL_STATE = {
   service: {
     passengers:[],
     local:[],
-    driver: ""
+    driver: "",
+    requesters:[]
   }
 };
 
@@ -96,6 +99,27 @@ export default (state = INITIAL_STATE, action) => {
           ]
         }
       }
+    case NEW_SERVICE_REQUESTER:
+
+      return {
+        ...state,
+        service: { 
+          ...state.service, 
+          requesters: [ ...state.service.requesters, action.payload]
+        }
+      };
+
+    case DEL_SERVICE_REQUESTER:
+      const lista_Requester = [...state.service.requesters]
+      return {
+        ...state,
+        service: { 
+          ...state.service, 
+          requesters: [ 
+             ...deleteItem(lista_Requester , action.payload)
+          ]
+        }
+      };
     default:
       return state;
   }

@@ -16,7 +16,7 @@ class PopupCompany extends Component {
     this.state = {
       name: "",
       adress: "",
-      phone: "",
+      tel: "",
       cnpj: "",
       active: true,
       companies: []
@@ -105,7 +105,6 @@ class PopupCompany extends Component {
         <td>{comp.phone}</td>
         <td>{comp.adress}</td>
         <td>{comp.cnpj}</td>
-        <td>{comp.active ? <p>Sim</p> : <p>Não</p>}</td>
       </tr>
     ));
   }
@@ -148,7 +147,6 @@ class PopupCompany extends Component {
                 <th scope="col">Telefone</th>
                 <th scope="col">Endereço</th>
                 <th scope="col">CNPJ</th>
-                <th scope="col">Ativo</th>
               </tr>
             </thead>
             <tbody>{this.renderComp(close)}</tbody>

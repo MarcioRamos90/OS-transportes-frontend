@@ -122,9 +122,9 @@ class PopupLocal extends Component {
               />
             </div>
             <div className="col-md-3">
-              <label>Adress</label>
+              <label>Endereço</label>
               <TextFieldGroupSmall
-                placeholder="adress"
+                placeholder="Endereço"
                 name="adress"
                 value={this.state.adress}
                 onChange={this.onChange}
@@ -223,5 +223,12 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { newDestiny, delDestiny, getLocal, getLocalById, newLocal, editLocal }
+  { 
+    newDestiny, 
+    delDestiny, 
+    getLocal, 
+    getLocalById, 
+    newLocal, 
+    editLocal 
+  }
 )(PopupLocal)

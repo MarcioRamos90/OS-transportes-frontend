@@ -15,6 +15,7 @@ import PopupCar from '../PopupCar';
 import PopupDriver from '../PopupDriver';
 import Service from '../Service';
 import PopupPassenger from '../PopupPassenger'
+import PopupRequester from '../PopupRequester'
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 
@@ -107,6 +108,17 @@ class CreateService extends Component {
         <div className="container screen text-left">
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row mb-3">
+            <div className="col-md-2">
+                <label>Reserva</label>
+                <TextFieldGroupSmall
+                  placeholder="Nº Reserva"
+                  name="reserve"
+                  value={this.state.reserve}
+                  onChange={this.onChange}
+                />
+              </div>
+            </div>
+            <div className="form-row mb-3">
               <div className="col-md-2 ">
                 <label>Data OS</label>
                 <TextFieldGroupSmall
@@ -122,30 +134,16 @@ class CreateService extends Component {
               <PopupCompany />
               {/*---------- Fim - Empresa ----------*/}
 
-              <div className="col-md-2">
-                <label>Solicitante</label>
-                <TextFieldGroupSmall
-                  placeholder="Solicitante"
-                  name="requester"
-                  value={this.state.requester}
-                  onChange={this.onChange}
-                />
-              </div>
-              <div className="col-md-2">
-                <label>Reserva</label>
-                <TextFieldGroupSmall
-                  placeholder="Nº Reserva"
-                  name="reserve"
-                  value={this.state.reserve}
-                  onChange={this.onChange}
-                />
-              </div>
+              {/*---------- SOLICITANTE ----------*/}
+              <PopupRequester />
+              {/*---------- Fim ----------*/}
+              
             </div>
 
             <div className="form-row mb-3">
-
+          {/* -----------PASSAGEIROS----------- */}
             <PopupPassenger />
-
+          {/* -----------END----------- */}
             </div>  
             <div className="form-row mb-3">
 

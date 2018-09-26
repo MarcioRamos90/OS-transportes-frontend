@@ -4,49 +4,48 @@ import { connect } from "react-redux";
 
 import 
 { 
-  getPassenger, 
-  getPassengerById, 
+  getRequester, 
+  getRequesterById, 
 } 
-from "../../actions/passengerActions";
+from "../../actions/requesterActions";
 
-import EditPassenger from '../Passenger/EditPassenger'
-import CreatePassenger from '../Passenger/CreatePassenger'
+import EditRequester from '../Requesters/EditRequester'
+import CreateRequester from '../Requesters/CreateRequester'
 import { 
-  newServicePassenger,
-  delServicePassenger
-} 
-  from "../../actions/servicesActions";
-
+  newServiceRequester,
+  delServiceRequester
+} from "../../actions/servicesActions";
 import TextFieldGroupSmall from "../common/TextFieldGroupSmall";
 import isEmpty from "../../validation/is-empty";
 import { Container, Table } from "../commonStyles/PopupStyles";
 
-class PopupPassenger extends Component {
+
+class PopupRequester extends Component {
     constructor(props) {
     super(props);
 
     this.state = {
       name:"",
-      passenger:[],
-      passenger_searched:[],
+      requester:[],
+      requester_searched:[],
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.delPassenger = this.delPassenger.bind(this)
-    this.renderListPassengerSearched = this.renderListPassengerSearched.bind(this)
-    this.renderSearchPassenger = this.renderSearchPassenger.bind(this)
-    this.renderListPassenger = this.renderListPassenger.bind(this)
+    this.deleteItem = this.deleteItem.bind(this)
+    this.renderListItensSearched = this.renderListItensSearched.bind(this)
+    this.renderSearchFieldsPassenger = this.renderSearchFieldsPassenger.bind(this)
+    this.renderListItensonService = this.renderListItensonService.bind(this)
   }
 
-  componentWillReceiveProps(nextProps){
-    if(nextProps.passenger_searched){
+	componentWillReceiveProps(nextProps){
+    if(nextProps.requester_searched){
       this.setState({
-        passenger_searched: nextProps.passenger_searched
+        requester_searched: nextProps.requester_searched
       })
     }
-    if(nextProps.passenger){
+    if(nextProps.requester){
       this.setState({
-        passenger: nextProps.passenger
+        requester: nextProps.requester
       })
     }
   }
@@ -57,8 +56,8 @@ class PopupPassenger extends Component {
     });
   }
 
-  delPassenger(passenger){
-    this.props.delPassenger(passenger)
+	deleteItem(requester) {
+    this.props.delServiceRequester(requester)
   }
 
   onSubmit(e) {
@@ -68,31 +67,31 @@ class PopupPassenger extends Component {
     filter.name = this.state.name || ""
     
     // console.log(filter)
-    this.props.getPassenger(filter);
-
+    this.props.getRequester(filter);
   }
 
-  selectClick(passenger){
-    this.props.newServicePassenger(passenger)
+  selectClick(requester){
+    this.props.newServiceRequester(requester)
   }
 
 
-  renderListPassengerSearched(close) {
-    return this.state.passenger_searched.map(passenger => (
-        <tr key={passenger.name}>
+  renderListItensSearched(close) {
+    // console.log(this.props.requester_searched)
+    return this.state.requester_searched.map(item => (
+        <tr key={item.name}>
           <td>
-            <a onClick={() => {this.selectClick(passenger); close()}}>
+            <a onClick={() => {this.selectClick(item); close()}}>
               <i className="fas fa-hand-pointer"></i>
             </a>
           </td>
-          <td>{passenger.name}</td>
+          <td>{item.name}</td>
           <td>
             <Popup trigger={
               <a className="plus-button">
                 <i className="fas fa-pen"></i>
               </a>} modal closeOnDocumentClick>
               {close => (
-                <EditPassenger id={passenger._id} close={close}/>
+                <EditRequester id={item._id} close={close}/>
               )}
             </Popup>
           </td>
@@ -100,13 +99,13 @@ class PopupPassenger extends Component {
     ));
   }
 
-  renderSearchPassenger(close){
+  renderSearchFieldsPassenger(close){
     return (
       <div>
         <div className="container search">            
           <div className="form-row">
             <div className="col-md-3">
-              <label>Passageiro</label>
+              <label>Solicitante</label>
               <TextFieldGroupSmall
                 placeholder="Nome"
                 name="name"
@@ -126,7 +125,7 @@ class PopupPassenger extends Component {
                 Adicionar
               </button>} modal closeOnDocumentClick>
               {close => (
-                <CreatePassenger close={close}/>
+                <CreateRequester close={close}/>
               )}
             </Popup>
             
@@ -137,24 +136,24 @@ class PopupPassenger extends Component {
           <thead className="thead-dark">
             <tr>
               <th scope="col">*</th>
-              <th scope="col">Passageiro</th>
+              <th scope="col">Solicitante</th>
               <th scope="col">Editar</th>
             </tr>
           </thead>
-          <tbody>{this.renderListPassengerSearched(close)}</tbody>
+          <tbody>{this.renderListItensSearched(close)}</tbody>
         </table>
     </div>)
   }
 
-  renderListPassenger() {
-    const { passenger } = this.state
-    if (!isEmpty(passenger)){
-      return passenger.map(passenger => (
-        <Fragment key={passenger.name}>
+  renderListItensonService() {
+    const { requester } = this.state
+    if (!isEmpty(requester)){
+      return requester.map(item => (
+        <Fragment key={item.name}>
           <tr >
-            <td>{passenger.name}</td>
+            <td>{item.name}</td>
             <td>
-              <a onClick={() => this.props.delServicePassenger(passenger)}>
+              <a onClick={() => this.props.delServiceRequester(item)}>
                 <i className="fas fa-trash text-center"/>
               </a>
             </td>
@@ -164,7 +163,7 @@ class PopupPassenger extends Component {
       else{
         return (
         <tr className='empty'>
-          <td>Passageiro</td>
+          <td>Solicitante</td>
         </tr>
         )
     }
@@ -173,7 +172,7 @@ class PopupPassenger extends Component {
   render() {
     return (
       <Container>
-        <label>Passageiro</label>
+        <label>Solicitante</label>
         <div className='content'>
           <Popup trigger={
             <a className="plus-button">
@@ -181,13 +180,13 @@ class PopupPassenger extends Component {
             </a>} modal closeOnDocumentClick>
             {close => (
               <div>
-                {this.renderSearchPassenger(close)}
+                {this.renderSearchFieldsPassenger(close)}
               </div>
             )}
           </Popup>
           <Table className="table table-bordered" >
             <tbody>
-              {this.renderListPassenger()}
+              {this.renderListItensonService()}
               
             </tbody>
           </Table>
@@ -197,18 +196,17 @@ class PopupPassenger extends Component {
   }
 }
 
-
 const mapStateToProps = state => ({
-  passenger_searched: state.passenger.list,
-  passenger: state.services.service.passengers,
+  requester_searched: state.requester.list,
+  requester: state.services.service.requesters,
 })
 
 export default connect(
   mapStateToProps,
   { 
-    newServicePassenger, 
-    delServicePassenger, 
-    getPassenger, 
-    getPassengerById, 
+    newServiceRequester, 
+    delServiceRequester, 
+    getRequester, 
+    getRequesterById, 
   }
-)(PopupPassenger)
+)(PopupRequester)
