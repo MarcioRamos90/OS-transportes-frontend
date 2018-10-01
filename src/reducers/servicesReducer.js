@@ -14,10 +14,10 @@ import {
 from "../actions/types";
 
 const INITIAL_STATE = {
-  list: {},
+  list: [],
   service: {
     passengers:[],
-    local:[],
+    destinys:[],
     driver: "",
     requesters:[]
   }
@@ -25,6 +25,23 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
+    case "CLEAN_SERVICE":
+      return INITIAL_STATE
+    case 'CHANGE_STATE':
+      return {
+        ...state,
+        service: { 
+          ...state.service,
+          [action.payload.target.name]: action.payload.target.value
+
+        }
+      }
+    case 'DEFAULT':
+      return { 
+        ...state,
+        service: {...state.service}
+        }
+
     case GET_SERVICES:
       return {
         ...state,
@@ -85,16 +102,16 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         service: { 
           ...state.service, 
-          local: [ ...state.service.local, action.payload]
+          destinys: [ ...state.service.destinys, action.payload]
         }
       };
     case DEL_DESTINY:
-      const listaDes = [...state.service.local]
+      const listaDes = [...state.service.destinys]
       return {
         ...state,
         service: { 
           ...state.service, 
-          local: [ 
+          destinys: [ 
              ...deleteItemDest(listaDes , action.payload.local)
           ]
         }
@@ -124,7 +141,6 @@ export default (state = INITIAL_STATE, action) => {
       return state;
   }
 };
-
 
 function deleteItem(lista, item){
   const list = lista;

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getCars } from "../../actions/carsAction";
 import { newServiceCar, delServiceCar } from "../../actions/servicesActions";
@@ -24,7 +23,6 @@ class PopupCar extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.checkClick = this.checkClick.bind(this);
     this.renderListCar = this.renderListCar.bind(this);
   }
 
@@ -35,19 +33,19 @@ class PopupCar extends Component {
       });
     }
     if(nextProps.car){
-      this.setState({
-        car: nextProps.car.name
-      })
+      if(nextProps.car.length){
+            this.setState({car: nextProps.car[0]})
+      }else{
+        this.setState({car: nextProps.car})
+      }
     }
   }
 
   onSubmit(e) {
     e.preventDefault();
-
     const filter = {};
     filter.name = this.state.name
     filter.active = true
-    
     this.props.getCars(filter);
   }
 
@@ -61,18 +59,12 @@ class PopupCar extends Component {
     this.props.newServiceCar(car)
   }
 
-  checkClick(e) {
-    this.setState({
-      [e.target.name]: !this.state[e.target.name]
-    });
-  }
-
   delCar(){
     this.props.delServiceCar()
   }
 
   renderListCar() {
-    const { car } = this.props
+    const { car } = this.state
     if (!isEmpty(car)){
       return (
         <div className="li-trash">
@@ -181,4 +173,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getCars, newServiceCar, delServiceCar }
-)(withRouter(PopupCar));
+)(PopupCar);

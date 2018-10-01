@@ -19,7 +19,8 @@ class PopupCompany extends Component {
       tel: "",
       cnpj: "",
       active: true,
-      companies: []
+      companies: [],
+      company:{}
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -34,9 +35,13 @@ class PopupCompany extends Component {
         companies: nextProps.companies
       });
     }
-    if(nextProps.company){
+    if(nextProps.company && nextProps.company.length){
       this.setState({
-        company: nextProps.company.name
+        company: nextProps.company[0]
+      })
+    }else{
+      this.setState({
+        company: nextProps.company
       })
     }
   }
@@ -72,7 +77,7 @@ class PopupCompany extends Component {
   }
 
   renderListCompany() {
-    const { company } = this.props
+    const { company } = this.state
     if (!isEmpty(company)){
       return (
         <div className="li-trash">
@@ -99,14 +104,18 @@ class PopupCompany extends Component {
   }
 
   renderComp(close) {
-    return this.state.companies.map(comp => (
-      <tr onClick={() => {this.selectClick(comp); close()}}  key={comp._id}>
-        <td>{comp.name}</td>
-        <td>{comp.phone}</td>
-        <td>{comp.adress}</td>
-        <td>{comp.cnpj}</td>
-      </tr>
-    ));
+    
+    console.log(this.state.companies)
+    if(this.state.companies){
+      return this.state.companies.map(comp => (
+        <tr onClick={() => {this.selectClick(comp); close()}}  key={comp._id}>
+          <td>{comp.name}</td>
+          <td>{comp.phone}</td>
+          <td>{comp.adress}</td>
+          <td>{comp.cnpj}</td>
+        </tr>
+      ))
+    };
   }
 
   renderSearchCompany(close){

@@ -27,7 +27,7 @@ import EditDriver from "./components/Drivers/edit";
 
 import ListServices from "./components/Services/list";
 import CreateService from "./components/Services/create";
-// import EditCar from "./components/Cars/edit";
+import EditService from "./components/Services/edit";
 
 import store from "./store";
 
@@ -123,6 +123,13 @@ class App extends Component {
                 exact
                 path="/novo/servico/"
                 component={CreateService}
+              />
+            </Switch>
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/editar-servico/:id"
+                component={EditService}
               />
             </Switch>
             <Footer />

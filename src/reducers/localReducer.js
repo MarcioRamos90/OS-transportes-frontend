@@ -1,7 +1,7 @@
 import { GET_LOCAL, GET_LOCAL_BY_ID } from "../actions/types";
 
 const INITIAL_STATE = {
-  list: {},
+  list: [],
   local: {}
 };
 

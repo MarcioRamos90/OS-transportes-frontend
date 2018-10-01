@@ -42,7 +42,7 @@ class PopupLocal extends Component {
     }
     if(nextProps.local){
       this.setState({
-        local: nextProps.local
+        local: nextProps.local || nextProps.destiny
       })
     }
   }
@@ -84,28 +84,29 @@ class PopupLocal extends Component {
 
 
   renderListLocal(close) {
-    return this.state.local_searched.map(destiny => (
-	      <tr key={destiny.local}>
-	      	<td>
-	      		<a onClick={() => {this.selectClick(destiny); close()}}>
-	      			<i className="fas fa-hand-pointer"></i>
-	      		</a>
-	      	</td>
-	        <td>{destiny.local}</td>
-	        <td>{destiny.adress}</td>
-	        <td>
-	        	<Popup trigger={
-			        <a className="plus-button">
-			          <i className="fas fa-pen"></i>
-			        </a>} modal closeOnDocumentClick>
-			        {close => (
-			  				<EditLocal id={destiny._id} close={close}/>
-			  			)}
-			      </Popup>
-	        </td>
-	      </tr>
-    ));
-  }
+    if(this.state.local_searched){
+        return this.state.local_searched.map(destiny => (
+            <tr key={destiny.local}>
+              <td>
+                <a onClick={() => {this.selectClick(destiny); close()}}>
+                  <i className="fas fa-hand-pointer"></i>
+                </a>
+              </td>
+              <td>{destiny.local}</td>
+              <td>{destiny.adress}</td>
+              <td>
+                <Popup trigger={
+                  <a className="plus-button">
+                    <i className="fas fa-pen"></i>
+                  </a>} modal closeOnDocumentClick>
+                  {close => (
+                    <EditLocal id={destiny._id} close={close}/>
+                  )}
+                </Popup>
+              </td>
+            </tr>
+        ))} 
+    }
 
   renderSearchLocal(close){
     return (
@@ -218,7 +219,7 @@ class PopupLocal extends Component {
 
 const mapStateToProps = state => ({
   local_searched: state.local.list,
-  local: state.services.service.local,
+  local: state.services.service.destinys,
 })
 
 export default connect(

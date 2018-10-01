@@ -3,13 +3,69 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import moment from 'moment'
 
+import { 
+  defaultAction
+} from "../../actions/default";
+
 import './styleServiceConfirm.css'
 
 class ServiceConfirm extends Component {
+	constructor(props){
+		super(props)
+
+    this.state = {
+      code: "",
+      reserve:"",
+      company: "",
+      passenger: "",
+      driver:"",
+      date: "",
+      hour: "",
+      car: "",
+      observation: "",
+      destiny:"",
+      adress:"",
+      passengers: [],
+      local:[],
+      requester: [],
+      loading:false
+    };
+
+	}
+
+	onDocumentLoadSuccess(numPages){
+    this.setState({ loading:false });
+  }
+
+	componentWillReceiveProps(nextProps){
+    if(nextProps.service){
+      this.setState({
+        company: nextProps.service.company ? nextProps.service.company.name : "",
+        reserve:nextProps.service.reserve,
+        driver:nextProps.service.driver ? nextProps.service.driver.name : "",
+        date:nextProps.service.date,
+        hour:nextProps.service.hour,
+        car:nextProps.service.car ? nextProps.service.car.name : "",
+        observation:nextProps.service.observation,
+        destiny:nextProps.service.destiny,
+        adress:nextProps.service.adress,
+        services:nextProps.service.services,
+        passengers:nextProps.service.passengers,
+        local:nextProps.service.local,
+        requester:nextProps.service.requesters.length > 0  ? nextProps.service.requesters[0].name : "",
+      })
+    }
+  }
+
+  componentDidMount(){
+  	this.props.defaultAction()
+
+  }
+  
 	
 	renderListPassenger() {
-		if(this.props.fields.passengers.length > 0){
-	    return this.props.fields.passengers.map(pass => (
+		if(this.state.passengers.length > 0){
+	    return this.state.passengers.map(pass => (
 	      <div style={{backgroundColor:'white'}} key={pass.name}>
 	        <div>Passageiro: {pass.name}</div>
 	      </div>
@@ -20,8 +76,7 @@ class ServiceConfirm extends Component {
   }
 
   renderDestiny() {
-  	console.log(this.props.fields.local)
-  	 return this.props.fields.local.map(local => (
+  	 return this.state.local.map(local => (
       <div style={{backgroundColor:'white'}} key={local.local}>
        <div className='destiny'> {local.local} /</div>
       </div>
@@ -29,77 +84,65 @@ class ServiceConfirm extends Component {
   }
 
   renderAdress() {
-  	 return this.props.fields.local.map(local => (
-      <div style={{backgroundColor:'white'}} key={local.adress}>
+  	 return this.state.local.map(local => (
+      <div style={{backgroundColor:'white'}} key={local._id}>
        <div className='adress'>{local.adress}</div>
       </div>
     ));
   }
 
   renderDate(){
-  	return moment(this.props.fields.date).format('DD/MM/YYYY')
+  	return moment(this.state.date || this.props.fields.date).format('DD/MM/YYYY')
   }
 
 	render(){
-		const company = this.props.service.company.name
 		return (
 			<div >
-			<div className="service">
-				<div className="title">
-					Ordem de Serviço: {this.props.fields.reserve}
-				</div>
-				<hr/>
-				<div className="info header">
-					<div className='info'>Data: {this.renderDate()}</div>
-					<div className='info'>Empresa: {company ? company : ""}</div>
-					<div className='info'>Solicitante: {this.props.fields.requester}</div>
-				</div>
-				<hr/>
-					<br/>
-				<hr/>
-				<div>
-					{this.renderListPassenger()}
-				</div>	
-				<hr/>
-					<br/>
-				<hr/>
-				<div className="local">
-					<div className="destiny-hour">
-						<div className='hour'>Hora: {this.props.fields.hour}</div>
-						
-						{this.renderDestiny()}
-					</div>
-						<hr/>
-					<div>
-						{this.renderAdress()}
+
+				<div className="service">
+					<div className="title">
+						Ordem de Serviço: {this.state.reserve  || this.props.fields.reserve}
 					</div>
 					<hr/>
-
-					{this.props.fields.observation && 
-						<div>
-							<h5>{this.props.fields.observation}</h5>
-						</div>}
-
-				
-				</div>
-				
-				<hr/>
-					<br/>
-				<hr/>
-				<div className="footer">
-					<div>
-						<div>Motorista: {this.props.fields.driver}</div>
-						<div>Carro: {this.props.fields.car}</div>
+					<div className="info header">
+						<div className='info'>Data: {this.renderDate()}</div>
+						<div className='info'>Empresa: {this.state.company}</div>
+						<div className='info'>Solicitante: {this.state.requester}</div>
 					</div>
-				</div>
-						
-			</div>
+					<hr/>
+					<div>
+						{this.renderListPassenger()}
+					</div>	
+					<hr/>
+					<div className="local">
+						<div className="destiny-hour">
+							<div className='hour'>Hora: {this.state.hour || this.props.fields.hour}</div>
+							
+							{this.renderDestiny()}
+						</div>
+							<hr/>
+						<div>
+							{this.renderAdress()}
+						</div>
 
-				
-				<button onClick={this.props.submit} type="submit" className="btn btn-primary mb-1">
+						{(this.state.observation || this.props.fields.observation) && 
+							<div>
+								<h5>{this.state.observation || this.props.fields.observation}</h5>
+							</div>}
+						<hr/>
+					</div>
+					<div className="footer">
+						<div>
+							<div>Motorista: {this.state.driver}</div>
+							<div>Carro: {this.state.car}</div>
+						</div>
+					</div>
+							
+				</div>				
+				<button onClick={this.state.submit} type="submit" className="btn btn-primary mb-1">
           Salvar
         </button>
-				<a onClick={() => this.props.cancel()} className="cancel btn btn-danger mb-1">Cancel</a>
+				<button onClick={() => this.props.close()} className="cancel btn btn-danger mb-1">Cancel</button>
 			</div>
 			)
 	}
@@ -111,5 +154,5 @@ const mapStateToProps = state => ({
 })
 export default connect(
   mapStateToProps,
-  {}
+  {defaultAction}
 )(withRouter(ServiceConfirm));

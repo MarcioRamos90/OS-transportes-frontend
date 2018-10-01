@@ -1,7 +1,7 @@
 import { GET_REQUESTER, GET_REQUESTER_BY_ID } from "../actions/types";
 
 const INITIAL_STATE = {
-  list: {},
+  list: [],
   requester: {}
 };
 

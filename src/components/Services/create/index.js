@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import Popup from "reactjs-popup";
 
 import { 
   newService, 
@@ -13,7 +12,6 @@ import PopupLocal from '../PopupLocal';
 import PopupCompany from '../PopupCompany';
 import PopupCar from '../PopupCar';
 import PopupDriver from '../PopupDriver';
-import Service from '../Service';
 import PopupPassenger from '../PopupPassenger'
 import PopupRequester from '../PopupRequester'
 
@@ -39,12 +37,12 @@ class CreateService extends Component {
       status: true,
       services: [],
       passengers: [],
+      requesters:[],
       local:[],
     };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.checkClick = this.checkClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps){
@@ -55,12 +53,19 @@ class CreateService extends Component {
     }
     if(nextProps.driver){
       this.setState({
-        driver: nextProps.driver.name
+        driver: nextProps.driver
       })
     }
     if(nextProps.local){
       this.setState({
         local: nextProps.local
+      })
+    }
+    if(nextProps.service){
+      this.setState({
+        company: nextProps.service.company ? nextProps.service.company : "",
+        car:nextProps.service.car ? nextProps.service.car : "",
+        requester:nextProps.service.requesters,
       })
     }
   }
@@ -70,19 +75,18 @@ class CreateService extends Component {
 
     const newService = {};
     newService.company = this.state.company 
-    newService.passengers = this.state.passengers 
-    newService.requester = this.state.requester 
+    newService.passenger = this.state.passengers
+    newService.requester = this.state.requester
     newService.reserve = this.state.reserve 
     newService.driver = this.state.driver 
     newService.date = this.state.date 
     newService.car = this.state.car
-    newService.local = this.state.local
+    newService.destiny = this.state.local
+    newService.hour = this.state.hour
     newService.observation = this.state.observation
     newService.status = this.state.status;
 
-    // this.props.newService(newService, this.props.history);
-    console.log(newService)
-
+    this.props.newService(newService, this.props.history);
   }
 
   onChange(e) {
@@ -95,10 +99,8 @@ class CreateService extends Component {
     this.props.history.push("editar-carro/" + id);
   }
 
-  checkClick() {
-    this.setState({
-      status: !this.state.status
-    });
+  pdfPrint(){
+    return 
   }
 
   render() {
@@ -182,23 +184,17 @@ class CreateService extends Component {
             <div className="form-row">
               
                 <div className="controls">
-                  <Popup  
-                    trigger={
-                      <a className="btn btn-primary mb-1" style={{ color: 'white'}}>
-                        <p>Confirma</p>  
-                      </a>} style={{ width: '2000px'}}  modal closeOnDocumentClick>
-                      {close => (
-                        <div>
-                         <Service cancel={close} submit={this.onSubmit} fields={this.state}/>
-                        </div>
-                    )}
-                   </Popup>
+                  <a 
+                    className="btn btn-primary mb-1" 
+                    style={{ color: 'white'}}
+                    onClick={this.onSubmit}
+                    >
+                    Confirma
+                  </a>
                   <Link to="/servicos/" className="cancel btn btn-danger mb-1">
                     <p>Cancelar</p>
                   </Link>
-                </div>
-
-             
+                </div>             
               </div> 
           </form>
         </div>
@@ -210,7 +206,8 @@ class CreateService extends Component {
 const mapStateToProps = state => ({
   passengers: state.services.service.passengers,
   driver: state.services.service.driver,
-  local: state.services.service.local,
+  local: state.services.service.destinys,
+  service: state.services.service
 })
 
 export default connect(

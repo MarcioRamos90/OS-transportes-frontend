@@ -53,7 +53,7 @@ export const Table = styled.table`
 	
 	height:40px;
 	margin-top: 0 !important;
-	margin-left: 10px !important;
+	margin-left: 0px !important;
 
 	tr { 
 		background-color: #fff !important;		
@@ -76,6 +76,17 @@ export const Table = styled.table`
 			margin-right: 15px !important;
 			&:hover{
 				color: red !important;
+			}
+		}
+		a .fas.fa-hand-pointer{
+			&:hover{
+				color: blue !important;
+			}
+		}
+
+		a .fas.fa-pen{
+			&:hover{
+				color: blue !important;
 			}
 		}
 	}

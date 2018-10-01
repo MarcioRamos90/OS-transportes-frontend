@@ -2,10 +2,14 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import moment from 'moment'
+import Popup from "reactjs-popup";
 
 import { getServices } from "../../../actions/servicesActions";
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
+import { Container, Table } from "../../commonStyles/PopupStyles";
+import PopupCancel from '../PopupCancel';
+
 
 class ListServices extends Component {
   constructor(props) {
@@ -19,14 +23,17 @@ class ListServices extends Component {
       date_init:"",
       date_finish:"",
       car: "",
+      driver:"",
       status: true,
       reserve:"",
+      requester:"",
+      hour:"",
       services: []
     };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.renderCar = this.renderCar.bind(this);
+    this.renderOS = this.renderOS.bind(this);
     this.checkClick = this.checkClick.bind(this);
   }
 
@@ -52,9 +59,18 @@ class ListServices extends Component {
     this.state.reserve.length > 0
       ? (filter.reserve = this.state.reserve)
       : (filter.reserve = "");
+    this.state.requester.length > 0
+      ? (filter.requester = this.state.requester)
+      : (filter.requester = "");
     this.state.passenger.length > 0
       ? (filter.passenger = this.state.passenger)
       : (filter.passenger = "");
+    this.state.hour.length > 0
+      ? (filter.hour = this.state.hour)
+      : (filter.hour = "");
+    this.state.driver.length > 0
+      ? (filter.driver = this.state.driver)
+      : (filter.driver = "");
     this.state.date_init.length 
       ? (filter.start = this.state.date_init)
       : (filter.start = "");
@@ -67,7 +83,6 @@ class ListServices extends Component {
     filter.status = this.state.status;
 
     this.props.getServices(filter);
-    console.log(filter);
   }
 
   onChange(e) {
@@ -77,7 +92,11 @@ class ListServices extends Component {
   }
 
   editClick(id) {
-    this.props.history.push("editar-carro/" + id);
+    this.props.history.push("/editar-servico/" + id);
+  }
+
+  cancelClick(id){
+    return 
   }
 
   checkClick() {
@@ -86,27 +105,42 @@ class ListServices extends Component {
     });
   }
 
-  renderCar() {
+  renderOS() {
+    if(this.state.services){
     return this.state.services.map(os => (
-      <tr onClick={() => this.editClick(os._id)} key={os._id}>
+      <tr key={os._id}>
+        <td>
+          <a onClick={() => this.editClick(os._id)}>
+            <i className="fas fa-pen"></i>
+          </a>
+        </td>
         <td>{os.id}</td>
-        <td>{os.company}</td>
-        <td>{moment(os.os_date).format('DD/MM/YYYY')}</td>
-        <td>{os.car}</td>
-        <td>{os.status ? <p>Sim</p> : <p>Não</p>}</td>
-        {console.log(os)}
+        <td>{os.company.length > 0 && os.company[0].name}</td>
+        <td>{moment(os.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
+        <td>{os.car.length > 0 && os.car[0].name}</td>
+        <td>
+          <Popup trigger={
+            <a onClick={() => this.cancelClick(os._id)} >
+              <i className="fas fa-ban"></i>
+            </a>
+          }  modal closeOnDocumentClick>
+            {close => (
+              <PopupCancel os={os} close={close}/>
+            )}
+          </Popup>
+        </td>
       </tr>
-    ));
+    ))}
   }
 
   render() {
     return (
-      <div>
+      <Container>
         <h1 className="text-left">Serviços</h1>
         <div className="container screen text-left">
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
-              <div className="col-md-1 mb-3">
+              <div className="col-md-2 mb-3">
                 <label>Código</label>
                 <TextFieldGroupSmall
                   placeholder="Código"
@@ -115,7 +149,7 @@ class ListServices extends Component {
                   onChange={this.onChange}
                 />
               </div>
-              <div className="col-md-3 mb-3">
+              <div className="col-md-2 mb-3">
                 <label>Empresa</label>
                 <TextFieldGroupSmall
                   placeholder="Empresa"
@@ -125,7 +159,7 @@ class ListServices extends Component {
                 />
               </div>
 
-              <div className="col-md-3 mb-3">
+              <div className="col-md-2 mb-3">
                 <label>Reserva</label>
                 <TextFieldGroupSmall
                   placeholder="Nº Reserva"
@@ -134,15 +168,51 @@ class ListServices extends Component {
                   onChange={this.onChange}
                 />
               </div>
+              <div className="col-md-2 mb-3">
+                <label>Solicitante</label>
+                <TextFieldGroupSmall
+                  placeholder="Solicitante"
+                  name="requester"
+                  value={this.state.requester}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className="col-md-2 mb-3">
+                <label>Hora</label>
+                <TextFieldGroupSmall
+                  placeholder="Hora"
+                  name="hour"
+                  value={this.state.hour}
+                  onChange={this.onChange}
+                />
+              </div>
             </div>
 
             <div className="form-row">
-              <div className="col-md-3 mb-3">
+              <div className="col-md-2 mb-3">
+                <label>Passageiro</label>
+                <TextFieldGroupSmall
+                  placeholder="Passageiro"
+                  name="passenger"
+                  value={this.state.passenger}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className="col-md-2 mb-3">
                 <label>Carro</label>
                 <TextFieldGroupSmall
                   placeholder="Carro"
                   name="car"
                   value={this.state.car}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className="col-md-2 mb-3">
+                <label>Motorista</label>
+                <TextFieldGroupSmall
+                  placeholder="Motorista"
+                  name="driver"
+                  value={this.state.driver}
                   onChange={this.onChange}
                 />
               </div>
@@ -181,25 +251,28 @@ class ListServices extends Component {
             role="group"
             style={{ marginBotton: 0 }}
           >
-            <Link to="/novo/servico" className="btn btn-secondary">
+            <Link to="/novo/servico" className="btn btn-secondary" style={{marginBottom:10}}>
                Adicionar Serviço
             </Link>
           </div>
 
-          <table className="table">
+          <Table className="table">
             <thead className="thead-dark">
               <tr>
+
+                <th scope="col">*</th>
                 <th scope="col">Código</th>
                 <th scope="col">Empresa</th>
                 <th scope="col">Data</th>
                 <th scope="col">Car</th>
-                <th scope="col">Ativo</th>
+                <th scope="col">cancelar</th>
+
               </tr>
             </thead>
-            <tbody>{this.renderCar()}</tbody>
-          </table>
+            <tbody>{this.renderOS()}</tbody>
+          </Table>
         </div>
-      </div>
+      </Container>
     );
   }
 }

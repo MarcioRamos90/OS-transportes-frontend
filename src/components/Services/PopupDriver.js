@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { getDrivers } from "../../actions/driversActions";
 import { newServiceDriver, delServiceDriver } from "../../actions/servicesActions";
@@ -34,10 +33,10 @@ class PopupDriver extends Component {
         drivers: nextProps.drivers
       });
     }
-    if(nextProps.driver){
-      this.setState({
-        driver: nextProps.driver.name
-      })
+    if(nextProps.driver.length){
+      this.setState({driver: nextProps.driver[0]})
+    }else{
+      this.setState({driver: nextProps.driver})
     }
   }
 
@@ -76,7 +75,7 @@ class PopupDriver extends Component {
   }
 
   renderListDriver() {
-    const { driver } = this.props
+    const { driver } = this.state
     if (!isEmpty(driver)){
       return (
         <div className="li-trash">
@@ -203,4 +202,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getDrivers, newServiceDriver, delServiceDriver }
-)(withRouter(PopupDriver));
+)(PopupDriver);

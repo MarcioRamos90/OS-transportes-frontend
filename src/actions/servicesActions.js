@@ -16,6 +16,13 @@ import {
 } 
 from "./types";
 
+export const cleanService = () => {
+  return {
+    type: "CLEAN_SERVICE",
+    payload: {}
+  }
+}
+
 export const getServices = filter => dispatch => {
   api.get("/api/services", { params: filter }).then(res => {
     dispatch({
@@ -39,13 +46,28 @@ export const newService = (data, history) => dispatch => {
     .post("/api/services", data)
     .then(res => {
       history.push("/servicos");
-      console.log('foi')
+      dispatch(cleanService())
     })
     .catch(err => {
       console.log(err)
       dispatch({
         type: GET_ERRORS,
         payload: 'error'
+      });
+    });
+};
+
+export const editService = (data, history) => dispatch => {
+  api
+    .put("/api/services/edit", data)
+    .then(res => {
+      history.push("/servicos");
+      dispatch(cleanService())
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
       });
     });
 };
@@ -125,20 +147,6 @@ export const delPassenger = (data) => dispatch => {
   payload: data
   });
 }
-
-export const editService = (data, history) => dispatch => {
-  api
-    .put("/api/services/", data)
-    .then(res => {
-      history.push("/servicos");
-    })
-    .catch(err => {
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      });
-    });
-};
 
 // Passageiros
 export const newServicePassenger = (data) => dispatch => {
