@@ -29,11 +29,7 @@ import ListServices from "./components/Services/list";
 import CreateService from "./components/Services/create";
 import EditService from "./components/Services/edit";
 
-import ServiceListReport from './components/Reports/services/serviceListReport'
-
 import store from "./store";
-
-import OS_Pdf from "./components/Reports/pdf/report_os";
 
 // Check for token
 if (localStorage.jwtToken) {
@@ -135,16 +131,7 @@ class App extends Component {
                 path="/editar-servico/:id"
                 component={EditService}
               />
-            </Switch>
-
-            <Switch>
-              <PrivateRoute
-                exact
-                path="/relatorio"
-                component={OS_Pdf}
-              />
-            </Switch>
-         
+            </Switch>         
             <Footer />
           </div>
         </Router>

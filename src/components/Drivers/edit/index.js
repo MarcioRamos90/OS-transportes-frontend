@@ -153,7 +153,7 @@ class EditDriver extends Component {
                   Salvar
                 </button>
                 <Link to="/motoristas" className="btn btn-danger mb-1">
-                  Cancelar
+                  <p>Cancelar</p>
                 </Link>
               </div>
             </div>

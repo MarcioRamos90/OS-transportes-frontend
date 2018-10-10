@@ -139,9 +139,9 @@ class PopupLocal extends Component {
           </div>
           <div className="form-row">
             <Popup trigger={
-              <button className="btn btn-secondary">
+              <a className="btn btn-secondary">
                 Adicionar
-              </button>} modal closeOnDocumentClick>
+              </a>} modal closeOnDocumentClick>
               {close => (
                 <CreateLocal close={close}/>
               )}

@@ -189,7 +189,7 @@ class CreateService extends Component {
                     style={{ color: 'white'}}
                     onClick={this.onSubmit}
                     >
-                    Confirma
+                    <p>Confirma</p>
                   </a>
                   <Link to="/servicos/" className="cancel btn btn-danger mb-1">
                     <p>Cancelar</p>

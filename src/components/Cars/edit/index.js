@@ -134,7 +134,7 @@ class EditCar extends Component {
                   Salvar
                 </button>
                 <Link to="/carros" className="btn btn-danger mb-1">
-                  Cancelar
+                  <p>Cancelar</p>
                 </Link>
               </div>
             </div>

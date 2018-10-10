@@ -55,7 +55,10 @@ class CreateCar extends Component {
           />
         </div>
         <div className="controls">
-          <button onClick={() => {this.onSubmit()}} className="btn btn-primary mb-1">
+          <button 
+            onClick={() => {this.onSubmit()}}
+            className="btn btn-primary mb-1"
+            >
             Salvar
           </button>
           <button onClick={() => {this.props.close()}}

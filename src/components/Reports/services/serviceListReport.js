@@ -236,13 +236,11 @@ class ServiceListReport extends Component{
           <Table className="table">
             <thead className="thead-dark">
               <tr>
-
                 <th scope="col">*</th>
                 <th scope="col">Código</th>
                 <th scope="col">Empresa</th>
                 <th scope="col">Data</th>
                 <th scope="col">Car</th>
-
               </tr>
             </thead>
             <tbody>{this.renderOS()}</tbody>

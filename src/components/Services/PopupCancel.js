@@ -6,7 +6,6 @@ import TextFieldGroupSmall from "../common/TextFieldGroupSmall";
 import { 
   editService, 
 } from "../../actions/servicesActions";
-import { Table } from "../commonStyles/PopupStyles";
 
 class PopupCancel extends Component{
 	constructor(props){

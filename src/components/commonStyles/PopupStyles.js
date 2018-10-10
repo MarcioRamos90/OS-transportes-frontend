@@ -23,8 +23,8 @@ export const Container = styled.div`
 
 export const Listul = styled.ul`
 	-webkit-padding-start: 0px;
-	padding-left: 10px;
-	margin-left:10px;
+	padding-left: 0px;
+	margin-left:0px;
 
 	.empty{
 		color: #bbbfd0 !important;
@@ -71,7 +71,6 @@ export const Table = styled.table`
 		min-width: 50px !important;
 				
 		a i{
-			padding-left: 20px !important;
 			font-size: 20px !important;
 			margin-right: 15px !important;
 			&:hover{
@@ -82,6 +81,11 @@ export const Table = styled.table`
 			&:hover{
 				color: blue !important;
 			}
+		}
+
+		.fas.fa-search{
+			color:red;
+			margin-right: 10px !important;
 		}
 
 		a .fas.fa-pen{

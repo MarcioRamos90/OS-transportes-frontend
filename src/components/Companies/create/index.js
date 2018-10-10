@@ -106,7 +106,7 @@ class CreateCompanie extends Component {
                   Salvar
                 </button>
                 <Link to="/empresas/" className="btn btn-danger mb-1">
-                  Cancelar
+                  <p>Cancelar</p>
                 </Link>
               </div>
             </div>
