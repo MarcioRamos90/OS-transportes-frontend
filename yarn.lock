@@ -29,15 +29,15 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@react-pdf/png-js/-/png-js-1.0.0.tgz#00fcb969dca4ce82a0a7673413ade039e47b361e"
 
-"@react-pdf/renderer@^1.0.0-alpha.17":
-  version "1.0.0-alpha.17"
-  resolved "https://registry.yarnpkg.com/@react-pdf/renderer/-/renderer-1.0.0-alpha.17.tgz#0ac465bf2218e4fd336e4bcef25eb04ee9dd2225"
+"@react-pdf/renderer@^1.0.0-alpha.18":
+  version "1.0.0-alpha.18"
+  resolved "https://registry.yarnpkg.com/@react-pdf/renderer/-/renderer-1.0.0-alpha.18.tgz#0486557ea197adae3630c81bb335ce73d88dee45"
   dependencies:
     "@react-pdf/fontkit" "^1.11.0"
     "@react-pdf/pdfkit" "^1.2.0"
     "@react-pdf/png-js" "^1.0.0"
     "@react-pdf/script-itemizer" "^0.1.11"
-    "@react-pdf/textkit-core" "^0.1.20"
+    "@react-pdf/textkit-core" "^0.1.21"
     "@textkit/justification-engine" "^0.1.9"
     "@textkit/line-fragment-generator" "^0.1.9"
     "@textkit/linebreaker" "^0.1.9"
@@ -71,7 +71,13 @@
   dependencies:
     "@react-pdf/unicode-properties" "^2.2.0"
 
-"@react-pdf/textkit-core@^0.1.20":
+"@react-pdf/styled-components@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@react-pdf/styled-components/-/styled-components-1.2.0.tgz#488f514e51583616499b9c45cf5ecfa7636ffa06"
+  dependencies:
+    styled-components "^3.3.3"
+
+"@react-pdf/textkit-core@^0.1.21":
   version "0.1.21"
   resolved "https://registry.yarnpkg.com/@react-pdf/textkit-core/-/textkit-core-0.1.21.tgz#1697571d3543a31ffb19fc63c13c7e9754ebbb66"
   dependencies:
@@ -7012,6 +7018,20 @@ style-loader@0.19.0:
   dependencies:
     loader-utils "^1.0.2"
     schema-utils "^0.3.0"
+
+styled-components@^3.3.3:
+  version "3.4.10"
+  resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-3.4.10.tgz#9a654c50ea2b516c36ade57ddcfa296bf85c96e1"
+  dependencies:
+    buffer "^5.0.3"
+    css-to-react-native "^2.0.3"
+    fbjs "^0.8.16"
+    hoist-non-react-statics "^2.5.0"
+    prop-types "^15.5.4"
+    react-is "^16.3.1"
+    stylis "^3.5.0"
+    stylis-rule-sheet "^0.0.10"
+    supports-color "^3.2.3"
 
 styled-components@^3.4.9:
   version "3.4.9"

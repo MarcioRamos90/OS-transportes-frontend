@@ -1,20 +1,17 @@
-import React, { Component } from "react";
-import { Link, withRouter } from "react-router-dom";
-import { connect } from "react-redux";
+import React, {Component} from 'react'
 import moment from 'moment'
+import { connect } from "react-redux";
 import Popup from "reactjs-popup";
 
 import { getServices } from "../../../actions/servicesActions";
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 import { Container, Table } from "../../commonStyles/PopupStyles";
-import PopupCancel from '../PopupCancel';
 
-import Os_pdf from '../../Reports/pdf/report_os'
 
-class ListServices extends Component {
-  constructor(props) {
-    super(props);
+class ServiceListReport extends Component{
+	constructor(props) {
+		super(props)
 
     this.state = {
       code: "",
@@ -35,15 +32,22 @@ class ListServices extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.renderOS = this.renderOS.bind(this);
-    this.checkClick = this.checkClick.bind(this);
+    // this.checkClick = this.checkClick.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
+  	console.log(nextProps)
     if (nextProps.services) {
       this.setState({
         services: nextProps.services
       });
     }
+  }
+
+  onChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   onSubmit(e) {
@@ -86,83 +90,40 @@ class ListServices extends Component {
     this.props.getServices(filter);
   }
 
-  onChange(e) {
-    this.setState({
-      [e.target.name]: e.target.value
-    });
-  }
-
-  editClick(id) {
-    this.props.history.push("/editar-servico/" + id);
-  }
-
-  printPdfClick(id) {
-    return (
-      <Popup trigger={
-        <a>
-          <i className="fas fa-ban"></i>
-        </a>
-      }  modal closeOnDocumentClick>
-        {close => (
-          <h1>eita</h1>
-        )}
-      </Popup>
-    )
-  }
-
-  cancelClick(id){
-    return 
-  }
-
-  checkClick() {
-    this.setState({
-      status: !this.state.status
-    });
-  }
-
   renderOS() {
+  	console.log(this.state)
     if(this.state.services){
     return this.state.services.map(os => (
       <tr key={os._id}>
         <td>
           <Popup trigger={
-              <a>
-                <i className="fas fa-file-pdf"></i>
-              </a>
-            }  modal closeOnDocumentClick>
-              {close => (
-                <Os_pdf os={os}/>
-              )}
-            </Popup>
-        </td>
-        <td>
-          <a onClick={() => this.editClick(os._id)}>
-            <i className="fas fa-pen"></i>
-          </a>
+            <a onClick={() => this.addBills(os._id)} >
+              <i className="fas fa-pen"></i>
+            </a>
+          }  modal closeOnDocumentClick>
+            {close => (
+              <div>
+              	<h1>Recebimentos</h1>
+              	<input type="text"/>
+              	<h1>Pagamentos</h1>
+              	<input type="text"/>
+
+              </div>
+            )}
+          </Popup>
         </td>
         <td>{os.id}</td>
         <td>{os.company.length > 0 && os.company[0].name}</td>
         <td>{moment(os.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
         <td>{os.car.length > 0 && os.car[0].name}</td>
-        <td>
-          <Popup trigger={
-            <a onClick={() => this.cancelClick(os._id)} >
-              <i className="fas fa-ban"></i>
-            </a>
-          }  modal closeOnDocumentClick>
-            {close => (
-              <PopupCancel os={os} close={close}/>
-            )}
-          </Popup>
-        </td>
       </tr>
     ))}
   }
 
-  render() {
+	render() {
     return (
       <Container>
-        <h1 className="text-left">Serviços</h1>
+        <h1 className="text-left">Receber e Pagar</h1>
         <div className="container screen text-left">
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
@@ -272,27 +233,15 @@ class ListServices extends Component {
             </div>
           </form>
 
-          <div
-            className="btn-group mt-2"
-            role="group"
-            style={{ marginBotton: 0 }}
-          >
-            <Link to="/novo/servico" className="btn btn-secondary" style={{marginBottom:10}}>
-               Adicionar Serviço
-            </Link>
-          </div>
-
           <Table className="table">
             <thead className="thead-dark">
               <tr>
 
-                <th scope="col">PDF</th>
-                <th scope="col">Edit</th>
+                <th scope="col">*</th>
                 <th scope="col">Código</th>
                 <th scope="col">Empresa</th>
                 <th scope="col">Data</th>
                 <th scope="col">Car</th>
-                <th scope="col">cancelar</th>
 
               </tr>
             </thead>
@@ -307,7 +256,6 @@ class ListServices extends Component {
 const mapStateToProps = state => ({
   services: state.services.list
 });
-export default connect(
-  mapStateToProps,
-  { getServices }
-)(withRouter(ListServices));
+export default connect
+	(mapStateToProps, {getServices})
+	(ServiceListReport)

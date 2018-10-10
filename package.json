@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@react-pdf/renderer": "^1.0.0-alpha.17",
+    "@react-pdf/renderer": "^1.0.0-alpha.18",
+    "@react-pdf/styled-components": "^1.2.0",
     "axios": "^0.18.0",
     "bootstrap-css-only": "^4.1.1",
     "classnames": "^2.2.6",
