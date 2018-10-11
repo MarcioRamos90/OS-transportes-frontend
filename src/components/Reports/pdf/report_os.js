@@ -74,7 +74,7 @@ class MyDocument extends Component {
       <View style={styles.destiny}>
         <Text style={styles.hour}>{hour}</Text>
         {destinys.map(destiny =>(
-          <Text key={destiny._id}>{destiny.local} /</Text>
+          <Text key={destiny._id}>{destiny.local.length > 0 && destiny.local} /</Text>
           ))}
       </View>
     )
@@ -84,7 +84,7 @@ class MyDocument extends Component {
     return(
       <View style={styles.passengers}>
         {destinys.map(destiny =>(
-          <Text key={destiny._id}>{destiny.adress}</Text>
+          <Text key={destiny._id}>{destiny.adress.length > 0 && destiny.adress}</Text>
           ))}
       </View>
     )
@@ -96,9 +96,9 @@ class MyDocument extends Component {
         <Document>
           <Page size="A4">
             <View style={styles.heading}>
-              <Text>Data: {moment(this.props.os.os_date).add(1, 'day').format('DD/MM/YYYY')}</Text>
-              <Text>Empresa: {this.props.os.company[0].name}</Text>
-              <Text>Solicitante: {this.props.os.requesters[0].name}</Text>
+              <Text>Data: {this.props.os.os_date && moment(this.props.os.os_date).add(1, 'day').format('DD/MM/YYYY')}</Text>
+              <Text>Empresa: {this.props.os.company[0].name && this.props.os.company[0].name}</Text>
+              <Text>Solicitante: {this.props.os.requesters[0].name && this.props.os.requesters[0].name}</Text>
             </View>
             <View>
               {this.props.os.passengers.length > 0 && this.passengers(this.props.os.passengers)}
@@ -124,8 +124,8 @@ class MyDocument extends Component {
                 <Text>Valores das despesas:</Text>
               </View>
               <View>
-                <Text>Motorista: {this.props.os.driver[0].name}</Text>
-                <Text>Carro: {this.props.os.car[0].name}</Text>
+                <Text>Motorista: {this.props.os.driver.length > 0 && this.props.os.driver[0].name}</Text>
+                <Text>Carro: {this.props.os.car.length > 0 && this.props.os.car[0].name}</Text>
                 {this.props.os.driver[0].bilingue && <Text>Biligue: Sim</Text>}
               </View>
             </View>

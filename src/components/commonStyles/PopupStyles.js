@@ -55,6 +55,12 @@ export const Table = styled.table`
 	margin-top: 0 !important;
 	margin-left: 0px !important;
 
+	p{
+		margin-top: 0 !important;
+		margin-bottom: 0 !important;
+		padding: 0 !important;
+	}
+
 	tr { 
 		background-color: #fff !important;		
 	}

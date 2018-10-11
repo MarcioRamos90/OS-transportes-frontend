@@ -96,20 +96,6 @@ class ListServices extends Component {
     this.props.history.push("/editar-servico/" + id);
   }
 
-  printPdfClick(id) {
-    return (
-      <Popup trigger={
-        <a>
-          <i className="fas fa-ban"></i>
-        </a>
-      }  modal closeOnDocumentClick>
-        {close => (
-          <h1>eita</h1>
-        )}
-      </Popup>
-    )
-  }
-
   cancelClick(id){
     return 
   }
@@ -140,9 +126,16 @@ class ListServices extends Component {
             <i className="fas fa-pen"></i>
           </a>
         </td>
-        <td>{os.id}</td>
-        <td>{os.company.length > 0 && os.company[0].name}</td>
         <td>{moment(os.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
+        <td>{os.hour}</td>
+        <td>{os.company.length > 0 && os.company[0].name}</td>
+        <td style={{padding:'30px !important'}}>{os.passengers.length > 0 
+          && os.passengers.map(pass => (
+            <p className='list-td'>{pass.name}</p>))}</td>
+
+        <td className='list-td'>{os.destinys.length > 0 
+          && os.destinys.map(dest => ( <p>{dest.local}</p> ))}</td>
+
         <td>{os.car.length > 0 && os.car[0].name}</td>
         <td>
           <Popup trigger={
@@ -288,10 +281,12 @@ class ListServices extends Component {
 
                 <th scope="col">PDF</th>
                 <th scope="col">Edit</th>
-                <th scope="col">Código</th>
-                <th scope="col">Empresa</th>
                 <th scope="col">Data</th>
-                <th scope="col">Car</th>
+                <th scope="col">HR</th>
+                <th scope="col">Empresa</th>
+                <th scope="col">Passageiros</th>
+                <th scope="col">Destinos</th>
+                <th scope="col">Carro</th>
                 <th scope="col">cancelar</th>
 
               </tr>
