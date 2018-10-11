@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { Page, Text, View, Document, StyleSheet, PDFViewer } from '@react-pdf/renderer';
 import moment from 'moment'
+import isEmpty from '../../../validation/is-empty'
 // Create styles
 
 // Create styles
@@ -76,9 +77,10 @@ class MyDocument extends Component {
   passengers(passengers){
     return(
       <View style={styles.passengers}>
-        {passengers.map(passenger => (
-          <Text key={passenger._id}>Passageiro(a): {passenger.name}</Text>
-        ))}
+        {passengers.map(passenger => 
+         
+          (<View>{!isEmpty(passenger)&& <Text key={passenger._id}>Passageiro(a): {passenger.name}</Text>}</View>)
+        )}
       </View>
     )
   }
@@ -86,9 +88,9 @@ class MyDocument extends Component {
   destiny(hour, destinys){
     return(
       <View style={styles.destiny}>
-        <Text style={styles.hour}>{hour}</Text>
+        <Text style={styles.hour}>{!isEmpty(hour) && hour}</Text>
         {destinys.map(destiny =>(
-          <Text key={destiny._id}>{destiny.local.length > 0 && destiny.local} /</Text>
+          <View>{!isEmpty(destiny.local) && <Text key={destiny._id}>{destiny.local} /</Text>}</View>
           ))}
       </View>
     )
@@ -98,7 +100,7 @@ class MyDocument extends Component {
     return(
       <View style={styles.passengers}>
         {destinys.map(destiny =>
-          (<View>{destiny.adress.length > 0 && <Text style={styles.list} key={destiny._id}>{destiny.adress}</Text>}</View>)
+          (<View>{!isEmpty(destiny.adress) && <Text style={styles.list} key={destiny._id}>{destiny.adress}</Text>}</View>)
           )}
       </View>
     )
@@ -110,7 +112,7 @@ class MyDocument extends Component {
         <Document>
           <Page size="A4">
             <View style={styles.title}>
-              <Text>Ordem de Serviço:{this.props.os.reserve}</Text> 
+              <Text>Ordem de Serviço:{!isEmpty(this.props.os.reserve) && this.props.os.reserve}</Text> 
             </View>
             <View style={styles.heading}>
               <Text>Data: {this.props.os.os_date && moment(this.props.os.os_date).add(1, 'day').format('DD/MM/YYYY')}</Text>
@@ -118,16 +120,16 @@ class MyDocument extends Component {
               <Text>Solicitante: {this.props.os.requesters.length > 0 && this.props.os.requesters[0].name}</Text>
             </View>
             <View>
-              {this.props.os.passengers.length > 0 && this.passengers(this.props.os.passengers)}
+              {!isEmpty(this.props.os.passengers) && this.passengers(this.props.os.passengers)}
             </View>
             <View>
-              {this.props.os.destinys.length > 0 && this.destiny(this.props.os.hour, this.props.os.destinys)}
+              {!isEmpty(this.props.os.destinys) && this.destiny(this.props.os.hour, this.props.os.destinys)}
             </View>
             <View>
               {this.props.os.destinys.length > 0 && this.adress(this.props.os.destinys)}
             </View>
             <View>
-              <Text style={styles.observation} >{this.props.os.observation}</Text>
+              <Text style={styles.observation} >{!isEmpty(this.props.os.observation) && this.props.os.observation}</Text>
             </View>
             <View style={styles.footer}>
               <View>
