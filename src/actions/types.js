@@ -20,6 +20,9 @@ export const GET_PASSENGER_BY_ID = "GET_PASSENGER_BY_ID"
 export const GET_REQUESTER = "GET_REQUESTER";
 export const GET_REQUESTER_BY_ID = "GET_REQUESTER_BY_ID"
 
+export const GET_BILLS = "GET_BILLS";
+export const GET_BILL_BY_ID = "GET_BILL_BY_ID"
+
 // SERVICES
 export const GET_SERVICES = "GET_SERVICES";
 export const GET_SERVICE_BY_ID = "GET_SERVICE_BY_ID";

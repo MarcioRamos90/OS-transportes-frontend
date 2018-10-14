@@ -10,7 +10,7 @@ import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 import { Container, Table } from "../../commonStyles/PopupStyles";
 import PopupCancel from '../PopupCancel';
 
-import Os_pdf from '../../Reports/pdf/report_os'
+import OsPdf from '../../Reports/pdf/report_os'
 
 class ListServices extends Component {
   constructor(props) {
@@ -117,7 +117,7 @@ class ListServices extends Component {
               </a>
             }  modal closeOnDocumentClick>
               {close => (
-                <Os_pdf os={os}/>
+                <OsPdf os={os}/>
               )}
             </Popup>
         </td>

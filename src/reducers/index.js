@@ -8,6 +8,7 @@ import passengerReducer from "./passengerReducer";
 import requesterReducer from "./requesterReducer";
 import servicesReducer from "./servicesReducer";
 import driversReducer from "./driversReducer";
+import billsReducer from "./billsReducer";
 
 export default combineReducers({
   auth: authReducer,
@@ -18,5 +19,6 @@ export default combineReducers({
   services: servicesReducer,
   local: localReducer,
   passenger: passengerReducer,
-  requester: requesterReducer
+  requester: requesterReducer,
+  bills: billsReducer
 });

@@ -29,6 +29,8 @@ import ListServices from "./components/Services/list";
 import CreateService from "./components/Services/create";
 import EditService from "./components/Services/edit";
 
+import ListBills from "./components/Bills/list";
+
 import store from "./store";
 
 // Check for token
@@ -131,7 +133,16 @@ class App extends Component {
                 path="/editar-servico/:id"
                 component={EditService}
               />
-            </Switch>         
+            </Switch>
+
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/contas"
+                component={ListBills}
+              />
+            </Switch>
+                
             <Footer />
           </div>
         </Router>
