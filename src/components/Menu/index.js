@@ -62,18 +62,16 @@ class Menu extends Component {
         </div>
         <h1 className="text-left">Controles</h1>
         <div className="row">
-          <div className="card bg-light mb-3" style={{ maxWidth: "18rem" }}>
+          <Link t
+            to="/contas"
+            className="card bg-light mb-3"
+            style={{ maxWidth: "18rem" }}
+            >
             <div className="card-body">
-              <h5 className="card-title">Recebimento</h5>
-              <i className="far fa-money-bill-alt" />
+              <h5 className="card-title">Contas</h5>
+              <i className="fas fa-money-bill-alt" />
             </div>
-          </div>
-          <div className="card bg-light mb-3" style={{ maxWidth: "18rem" }}>
-            <div className="card-body">
-              <h5 className="card-title">Pagamentos</h5>
-              <i className="fas fa-credit-card" />
-            </div>
-          </div>
+          </Link>
         </div>
       </div>
     );

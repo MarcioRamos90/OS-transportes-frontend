@@ -51,6 +51,7 @@ class PopupCompany extends Component {
 
     const filter = {};
     filter.name = this.state.name
+    filter.adress = this.state.adress
     filter.active = true
     
     this.props.getCompanies(filter);
@@ -133,11 +134,11 @@ class PopupCompany extends Component {
               />
             </div>
             <div className="col-md-3">
-              <label>Telefone</label>
+              <label>Endereço</label>
               <TextFieldGroupSmall
-                placeholder="Telefone"
-                name="tel"
-                value={this.state.tel}
+                placeholder="Endereço"
+                name="adress"
+                value={this.state.adress}
                 onChange={this.onChange}
               />
             </div>

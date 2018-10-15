@@ -21,7 +21,8 @@ class ListBills extends Component {
       typeInput: "",
       statusInput:"",
       value: "",
-      bills: []
+      bills: [],
+      selected: {}
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -59,10 +60,9 @@ class ListBills extends Component {
     });
   }
 
-  checkClick() {
-    this.setState({
-      active: !this.state.active
-    });
+  checkClick(e) {
+
+    console.log('fui chacado')
   }
 
   popuEditValue(){
@@ -80,6 +80,17 @@ class ListBills extends Component {
   renderBills() {
     return this.state.bills.map(bill => (
       <tr key={bill._id}>
+        <td>
+          <div className="form-check">
+          <input 
+            className="form-check-input" 
+            type="checkbox"
+            name="checked"
+            onChange={() => this.checkClick()}
+            checked={bill.checked}
+            />
+          </div>
+        </td>
         <td>{bill.type}</td>
         <td>{bill.os_code}</td>
         <td>{bill.name}</td>
@@ -101,6 +112,12 @@ class ListBills extends Component {
     ));
   }
 
+  checkClick() {
+    this.setState({
+      active: !this.state.active
+    });
+  }
+
   render() {
     return (
       <div>
@@ -108,7 +125,7 @@ class ListBills extends Component {
         <div className="container screen text-left">
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
-              <div className="col-md-3 mb-3">
+              <div className="col-md-2 mb-3">
                 <label>Contas</label>
                 <TextFieldGroupSmall
                   placeholder="Código os"
@@ -117,17 +134,6 @@ class ListBills extends Component {
                   onChange={this.onChange}
                 />
               </div>
-              <div className="col-md-3 mb-3">
-                <label>Status</label>
-                <TextFieldGroupSmall
-                  placeholder="Aberto/Fechado"
-                  name="status"
-                  value={this.state.status}
-                  onChange={this.onChange}
-                />
-              </div>
-            </div>
-            <div className="form-row">
               <div className="form-group col-md-2">
                 <label htmlFor="inputStatus">Status</label>
                 <select onChange={this.onChange} name="statusInput" id="inputStatus" className="form-control">
@@ -136,7 +142,8 @@ class ListBills extends Component {
                   <option value='close'>Fechados</option>
                 </select>
               </div>
-
+            </div>
+            <div className="form-row">
               <div className="form-group col-md-2">
                 <label htmlFor="inputType">Tipo</label>
                 <select onChange={this.onChange} name="typeInput" id="inputType" className="form-control">
@@ -178,6 +185,7 @@ class ListBills extends Component {
           <table className="table">
             <thead className="thead-dark">
               <tr>
+                <th scope="col">*</th>
                 <th scope="col">Tipo</th>
                 <th scope="col">OS</th>
                 <th scope="col">Nome</th>
