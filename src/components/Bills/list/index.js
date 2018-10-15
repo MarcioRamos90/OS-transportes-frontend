@@ -121,7 +121,7 @@ class ListBills extends Component {
   render() {
     return (
       <div>
-        <h1 className="text-left">Carros</h1>
+        <h1 className="text-left">Contas</h1>
         <div className="container screen text-left">
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
