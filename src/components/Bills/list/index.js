@@ -61,20 +61,19 @@ class ListBills extends Component {
   }
 
   checkClick(e) {
-
     console.log('fui chacado')
   }
 
   popuEditValue(){
-      return (<Popup trigger={
-                  <a className="plus-button">
-                    <i className="fas fa-search" />
-                  </a>} modal closeOnDocumentClick>
-                  {close => (
-                     <PopupEdit bill={this.state} cancel={close}/>
-                  )}
-                </Popup>)
-    
+      return (
+        <Popup trigger={
+          <a className="plus-button">
+            <i className="fas fa-search" />
+          </a>} modal closeOnDocumentClick>
+          {close => (
+             <PopupEdit bill={this.state} cancel={close}/>
+          )}
+        </Popup>)
   }
 
   renderBills() {
@@ -82,13 +81,13 @@ class ListBills extends Component {
       <tr key={bill._id}>
         <td>
           <div className="form-check">
-          <input 
-            className="form-check-input" 
-            type="checkbox"
-            name="checked"
-            onChange={() => this.checkClick()}
-            checked={bill.checked}
-            />
+            <input 
+              className="form-check-input" 
+              type="checkbox"
+              name="checked"
+              onChange={() => this.checkClick()}
+              checked={bill.checked}
+              />
           </div>
         </td>
         <td>{bill.type}</td>
@@ -100,22 +99,22 @@ class ListBills extends Component {
          <td>
           <Popup trigger={
             <a>
-              <i style={{ fontSize:'30px', marginTop: 0, hover:{color:'blue'}}} className="fas fa-pen"></i>
+              <i 
+                style={{ fontSize:'30px', marginTop: 0, hover:{color:'blue'}}} 
+                className="fas fa-pen">
+              </i>
             </a>
           }  modal closeOnDocumentClick>
             {close => (
-              <PopupEdit bill={bill} cancel={close}/>
+              <PopupEdit 
+                bill={bill} 
+                cancel={close}
+              />
             )}
           </Popup>
         </td>
       </tr>
     ));
-  }
-
-  checkClick() {
-    this.setState({
-      active: !this.state.active
-    });
   }
 
   render() {
@@ -152,29 +151,28 @@ class ListBills extends Component {
                   <option value='receive'>Recebimetos</option>
                 </select>
               </div>
-
-                <div className="col-md-2 mb-3">
-                  <label>Data inicial</label>
-                  <TextFieldGroupSmall
-                    name="date_init"
-                    type="date"
-                    className="date"
-                    value={this.state.date_init}
-                    onChange={this.onChange}
-                    style={{ width:30, borderRadius: 0 }}
-                  />
-                </div>
-                 <div className="col-md-2 mb-3">
-                  <label>Data final</label>
-                  <TextFieldGroupSmall
-                    name="date_finish"
-                    type="date"
-                    className="date"
-                    value={this.state.date_finish}
-                    onChange={this.onChange}
-                    style={{ width:30, borderRadius: 0 }}
-                  />
-            </div>
+              <div className="col-md-2 mb-3">
+                <label>Data inicial</label>
+                <TextFieldGroupSmall
+                  name="date_init"
+                  type="date"
+                  className="date"
+                  value={this.state.date_init}
+                  onChange={this.onChange}
+                  style={{ width:30, borderRadius: 0 }}
+                />
+              </div>
+              <div className="col-md-2 mb-3">
+                <label>Data final</label>
+                <TextFieldGroupSmall
+                  name="date_finish"
+                  type="date"
+                  className="date"
+                  value={this.state.date_finish}
+                  onChange={this.onChange}
+                  style={{ width:30, borderRadius: 0 }}
+                />
+              </div>
               <div className="controls">
                 <button type="submit" className="btn btn-primary mb-1">
                   <i className="fas fa-search" />

@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     marginTop:5,
     paddingBottom: 10,
-    borderTop: '1px solid black',
     borderBottom: '1px solid black'
   },
   list:{
@@ -63,8 +62,14 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginTop: 5,
     padding:5,
-    border: '1px solid black'
-
+    border: '1px solid black',
+    
+  },
+  blankLine:{
+    height:20,
+    marginLeft: 5,
+    marginRight: 5,
+    borderBottom: '1px solid black'
   }
 });
 
@@ -112,7 +117,7 @@ class MyDocument extends Component {
         <Document>
           <Page size="A4">
             <View style={styles.title}>
-              <Text>Ordem de Serviço:{!isEmpty(this.props.os.reserve) && this.props.os.reserve}</Text> 
+              <Text>Nº: {this.props.os.id} / Ordem de Serviço:{!isEmpty(this.props.os.reserve) && this.props.os.reserve}</Text> 
             </View>
             <View style={styles.heading}>
               <Text>Data: {this.props.os.os_date && moment(this.props.os.os_date).add(1, 'day').format('DD/MM/YYYY')}</Text>
@@ -122,12 +127,21 @@ class MyDocument extends Component {
             <View>
               {!isEmpty(this.props.os.passengers) && this.passengers(this.props.os.passengers)}
             </View>
+
+            <View style={styles.blankLine}></View>
+            
             <View>
               {!isEmpty(this.props.os.destinys) && this.destiny(this.props.os.hour, this.props.os.destinys)}
             </View>
+
+            <View style={styles.blankLine}></View>
+            
             <View>
               {this.props.os.destinys.length > 0 && this.adress(this.props.os.destinys)}
             </View>
+
+            <View style={styles.blankLine}></View>
+
             <View>
               <Text style={styles.observation} >{!isEmpty(this.props.os.observation) && this.props.os.observation}</Text>
             </View>

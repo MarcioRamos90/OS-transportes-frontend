@@ -106,31 +106,31 @@ class ListBills extends Component {
               
             </div>
             <div className="form-row">
-
-                
-                <div className="col-md-3 mb-3">
-                  <label>Data</label>
-                  <TextFieldGroupSmall
-                    name="os_date"
-                    value={this.state.os_date}
-                    onChange={this.onChange}
-                    disabled='true'
-                    />
-                </div>
-
-                <div className="col-md-3 mb-3">
-                <label>Valor</label>
+              <div className="col-md-3 mb-3">
+                <label>Data</label>
                 <TextFieldGroupSmall
-                  placeholder="Aberto/Fechado"
-                  name="value"
-                  value={this.state.value}
+                  name="os_date"
+                  value={this.state.os_date}
                   onChange={this.onChange}
-                />
+                  disabled='true'
+                  />
               </div>
-              
 
+              <div className="col-md-3 mb-3">
+              <label>Valor</label>
+              <TextFieldGroupSmall
+                placeholder="Aberto/Fechado"
+                name="value"
+                value={this.state.value}
+                onChange={this.onChange}
+              />
+              </div>
               <div className="controls">
-                <a type="submit" onClick={() => {this.onSubmit(); this.props.cancel()}} className="btn btn-primary mb-1">
+                <a 
+                  type="submit" 
+                  onClick={() => {this.onSubmit(); this.props.cancel()}} 
+                  className="btn btn-primary mb-1"
+                  >
                   <p>Confirmar</p>
                 </a>
                 <a onClick={() => this.props.cancel()} className="btn btn-danger mb-1">

@@ -136,6 +136,7 @@ class ListServices extends Component {
         <td className='list-td'>{os.destinys.length > 0 
           && os.destinys.map(dest => ( <p>{dest.local}</p> ))}</td>
 
+        <td>{os.driver.length > 0 && os.driver[0].name}</td>
         <td>{os.car.length > 0 && os.car[0].name}</td>
         <td>
           <Popup trigger={
@@ -286,6 +287,7 @@ class ListServices extends Component {
                 <th scope="col">Empresa</th>
                 <th scope="col">Passageiros</th>
                 <th scope="col">Destinos</th>
+                <th scope="col">Motoristas</th>
                 <th scope="col">Carro</th>
                 <th scope="col">cancelar</th>
 
