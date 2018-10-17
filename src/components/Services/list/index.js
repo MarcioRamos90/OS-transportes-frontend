@@ -4,12 +4,12 @@ import { connect } from "react-redux";
 import moment from 'moment'
 import Popup from "reactjs-popup";
 
-import { getServices } from "../../../actions/servicesActions";
+import { getServices, finishOS } from "../../../actions/servicesActions";
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 import { Container, Table } from "../../commonStyles/PopupStyles";
 import PopupCancel from '../PopupCancel';
-
+import isEmpyt from  '../../../validation/is-empty'
 import OsPdf from '../../Reports/pdf/report_os'
 
 class ListServices extends Component {
@@ -36,6 +36,7 @@ class ListServices extends Component {
     this.onChange = this.onChange.bind(this);
     this.renderOS = this.renderOS.bind(this);
     this.checkClick = this.checkClick.bind(this);
+    this.handleError = this.handleError.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -106,6 +107,52 @@ class ListServices extends Component {
     });
   }
 
+  finishOS(os){
+    var errorFinish = this.validateFinish(os)
+
+    if(isEmpyt(errorFinish)){
+      this.handleError(null)
+      this.props.finishOS(os._id)
+    }else{
+      this.handleError(errorFinish)
+    }
+  }
+
+  validateFinish(os){
+    var errorFinish = ""
+
+    if(isEmpyt(os.driver)) errorFinish = "Sem Motorista a ordem de serviço não pode ser finalizada"
+    if(isEmpyt(os.car)) errorFinish = "Sem Carro a ordem de serviço não pode ser finalizada"
+    if(isEmpyt(os.passengers)) errorFinish = "Sem Passageiro a ordem de serviço não pode ser finalizada"
+    if(isEmpyt(os.requesters)) errorFinish = "Sem Solicitante a ordem de serviço não pode ser finalizada"
+    if(isEmpyt(os.company)) errorFinish = "Sem Empresa a ordem de serviço não pode ser finalizada"
+    if(isEmpyt(os.hour)) errorFinish = "Sem hora a ordem de serviço não pode ser finalizada"
+    if(isEmpyt(os.os_date)) errorFinish = "Sem data a ordem de serviço não pode ser finalizada"
+    if(isEmpyt(os.destinys)) errorFinish = "Sem destinos a ordem de serviço não pode ser finalizada"
+    
+
+    return errorFinish
+  }
+
+  handleError(error){
+    this.setState({
+      errorMessage: error
+    })
+    
+    setTimeout(
+      function() {
+          this.setState({errorMessage: null});
+      }
+      .bind(this),
+      5000
+      );
+    
+  }
+
+  retuntOS(os){
+    this.handleError('Desfazer finalização ainda não implementado')
+  }
+
   renderOS() {
     if(this.state.services){
     return this.state.services.map(os => (
@@ -131,13 +178,25 @@ class ListServices extends Component {
         <td>{os.company.length > 0 && os.company[0].name}</td>
         <td style={{padding:'30px !important'}}>{os.passengers.length > 0 
           && os.passengers.map(pass => (
-            <p className='list-td'>{pass.name}</p>))}</td>
+            <p className='list-td' key={pass._id}>{pass.name}</p>))}</td>
 
         <td className='list-td'>{os.destinys.length > 0 
-          && os.destinys.map(dest => ( <p>{dest.local}</p> ))}</td>
+          && os.destinys.map(dest => ( <p key={dest._id}>{dest.local}</p> ))}</td>
 
         <td>{os.driver.length > 0 && os.driver[0].name}</td>
         <td>{os.car.length > 0 && os.car[0].name}</td>
+        <td>
+          {os.finalized ? 
+            <a onClick={() => this.retuntOS(os)} >
+              <i className="fas fa-undo"></i>
+            </a>
+            :
+            <a onClick={() => this.finishOS(os)} >
+              <i className="fas fa-check"></i>
+            </a>
+          }
+          
+        </td>
         <td>
           <Popup trigger={
             <a onClick={() => this.cancelClick(os._id)} >
@@ -156,6 +215,12 @@ class ListServices extends Component {
   render() {
     return (
       <Container>
+      {this.state.errorMessage && 
+        <div class="alert alert-danger" style={{ position:'fixed', top:30, right:30, zIndex: 5}} role="alert">
+          {this.state.errorMessage}
+        </div>
+      }
+
         <h1 className="text-left">Serviços</h1>
         <div className="container screen text-left">
           <form onSubmit={this.onSubmit} className="container search">
@@ -289,7 +354,8 @@ class ListServices extends Component {
                 <th scope="col">Destinos</th>
                 <th scope="col">Motoristas</th>
                 <th scope="col">Carro</th>
-                <th scope="col">cancelar</th>
+                <th scope="col">Finalizar</th>
+                <th scope="col">Cancelar</th>
 
               </tr>
             </thead>
@@ -306,5 +372,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getServices }
+  { getServices, finishOS }
 )(withRouter(ListServices));

@@ -20,7 +20,7 @@ class PopupCompany extends Component {
       cnpj: "",
       active: true,
       companies: [],
-      company:{}
+      company:""
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -35,7 +35,7 @@ class PopupCompany extends Component {
         companies: nextProps.companies
       });
     }
-    if(nextProps.company && nextProps.company.length){
+    if(nextProps.company && nextProps.company.length > 0){
       this.setState({
         company: nextProps.company[0]
       })

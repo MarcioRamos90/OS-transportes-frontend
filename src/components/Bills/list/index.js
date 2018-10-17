@@ -33,6 +33,7 @@ class ListBills extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.bills) {
+      console.log(nextProps.bills)
       this.setState({
         bills: nextProps.bills
       });

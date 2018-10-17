@@ -16,6 +16,13 @@ import {
 } 
 from "./types";
 
+export const finishOS = id => dispatch => {
+  api.post('api/services/finish/'+ id)
+    .then(res => {
+      dispatch(cleanService())
+    })
+}
+
 export const cleanService = () => {
   return {
     type: "CLEAN_SERVICE",
@@ -128,7 +135,7 @@ export const newServiceCompany = (data) => dispatch => {
 export const delServiceCompany = () => dispatch => {
   dispatch({
   type: NEW_SERVICE_COMPANY,
-  payload: {}
+  payload: []
   });
 }
 
