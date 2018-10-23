@@ -11,6 +11,7 @@ import { Container, Table } from "../../commonStyles/PopupStyles";
 import PopupCancel from '../PopupCancel';
 import isEmpyt from  '../../../validation/is-empty'
 import OsPdf from '../../Reports/pdf/report_os'
+import ReportPdf from '../../Reports/pdf/reportAll'
 
 class ListServices extends Component {
   constructor(props) {
@@ -271,6 +272,15 @@ class ListServices extends Component {
                   onChange={this.onChange}
                 />
               </div>
+              <Popup trigger={
+                <a className="btn btn-success" style={{ color: 'white'}}>
+                  Geral
+                </a>
+              } modal closeOnDocumentClick>
+                {close => (
+                  <ReportPdf services={this.props.services}/>
+                )}
+            </Popup>
             </div>
 
             <div className="form-row">

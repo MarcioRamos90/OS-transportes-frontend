@@ -83,7 +83,6 @@ class MyDocument extends Component {
     return(
       <View style={styles.passengers}>
         {passengers.map(passenger => 
-         
           (<View>{!isEmpty(passenger)&& <Text key={passenger._id}>Passageiro(a): {passenger.name}</Text>}</View>)
         )}
       </View>
