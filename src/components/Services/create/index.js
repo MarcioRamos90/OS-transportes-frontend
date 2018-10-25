@@ -33,6 +33,7 @@ class CreateService extends Component {
       observation: "",
       destiny:"",
       adress:"",
+      custCenter: "",
       reserve:"",
       status: true,
       services: [],
@@ -83,6 +84,7 @@ class CreateService extends Component {
     newService.car = this.state.car
     newService.destiny = this.state.local
     newService.hour = this.state.hour
+    newService.custCenter = this.state.custCenter
     newService.observation = this.state.observation
     newService.status = this.state.status;
 
@@ -179,6 +181,15 @@ class CreateService extends Component {
               <PopupDriver />
             {/* -----------  CARROS ------------ */}
               <PopupCar />
+              <div className="col-md-3 ml-4">
+                <label>Centro de custo</label>
+                <TextFieldGroupSmall
+                  placeholder="Centrode custo"
+                  name="custCenter"
+                  value={this.state.custCenter}
+                  onChange={this.onChange}
+                />
+              </div>
             </div>
           {/* -----------END----------- */}
             <div className="form-row">

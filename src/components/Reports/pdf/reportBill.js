@@ -31,13 +31,13 @@ const styles = StyleSheet.create({
   },
   collunmPassengers: {
     flexGrow: 1,
-    width: 100,
+    width: 80,
     borderRight: '1px solid black',
     padding: padding,
   },
   collunmDestinys: {
       flexGrow: 1,
-      width: 90,
+      width: 80,
       borderRight: '1px solid black',
       padding: padding,
     },
@@ -48,8 +48,13 @@ const styles = StyleSheet.create({
     padding: padding,
   },
 
+  collunmName: {
+    width: 60,
+    borderRight: '1px solid black',
+    padding: padding,
+  },
   collunmCompany: {
-    width: 90,
+    width: 60,
     borderRight: '1px solid black',
     padding: padding,
   },
@@ -73,7 +78,13 @@ const styles = StyleSheet.create({
     borderBottom: '1px solid black',
     position: 'relative',
     textAlign: 'right'
-  }
+  },
+  collunmObservation: {
+      width: 90,
+      borderRight: '1px solid black',
+      minHeight:20,
+      padding: padding,
+    },
 
 })
 
@@ -116,9 +127,15 @@ class MyDocument extends Component {
                   {bill.os_date && moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}
                 </Text>
               </View>
-              <View style={styles.collunmCompany}>
+              <View style={styles.collunmName}>
                 <Text>{bill.name}</Text>
               </View>
+
+              {!isEmpty(bill.company) && this.props.type === 'payment' && 
+                <View style={styles.collunmCompany}>
+                  <Text>{bill.company}</Text> 
+                </View>
+              }
               <View style={styles.collunmPassengers}>
                 {!isEmpty(bill.passengers) && this.passengers(bill.passengers)}
               </View>
@@ -131,12 +148,16 @@ class MyDocument extends Component {
               <View style={styles.collunmValue}>
                 <Text>R$ {bill.value ? bill.value : 0}</Text>
               </View>
+              <View style={styles.collunmObservation}>
+              </View>
             </View>
+            
           ))
         }
         <View style={styles.total}>
           <Text>Total: R$ {this.props.total ? this.props.total : 0}</Text>
         </View>
+       
       </View>)
       
   }
@@ -152,11 +173,15 @@ class MyDocument extends Component {
               </View>
               <View style={styles.row}>
                 <Text  style={styles.collunmDate}>Data</Text>
-                <Text  style={styles.collunmCompany}>Nome</Text>
+                <Text  style={styles.collunmName}>Nome</Text>
+
+                {this.props.type === 'payment' && <Text  style={styles.collunmCompany}>Empresa</Text>}
+                
                 <Text  style={styles.collunmPassengers}>Passgeiros</Text>
                 <Text  style={styles.collunmDestinys}>Destinos</Text>
                 <Text  style={styles.collunmCar}>Carro</Text>
                 <Text  style={styles.collunmValue}>Valor</Text>
+                <Text  style={styles.collunmObservation}>Observação</Text>
 
               </View>
               {this.renderBill()}

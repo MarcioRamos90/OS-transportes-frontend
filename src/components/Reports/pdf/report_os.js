@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     marginRight: 5,
     marginTop: 10,
     flexDirection: 'row',
+    fontSize: 15,
     justifyContent: 'space-around',
     borderBottom: '1px solid black'
   },
@@ -148,7 +149,7 @@ class MyDocument extends Component {
               <View>
                 <Text>Horário inicial:</Text>
                 <Text>Horário final:</Text>
-                <Text>Centro de custo:</Text>
+                <Text>Centro de custo: {!isEmpty(this.props.os.custCenter) && this.props.os.custCenter}</Text>
               </View>
               <View>
                 <Text>Km inicial:</Text>

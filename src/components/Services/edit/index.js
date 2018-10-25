@@ -36,10 +36,12 @@ class EditService extends Component {
       destiny:"",
       adress:"",
       reserve:"",
+      custCenter: "",
       status: true,
       services: [],
       passengers: [],
       requesters:[],
+
       local:[],
     };
 
@@ -74,6 +76,7 @@ class EditService extends Component {
         driver: nextProps.service.driver,
         observation: nextProps.service.observation,
         passengers: nextProps.service.passengers,
+        custCenter: nextProps.service.custCenter || '',
         hour: nextProps.service.hour || '',
         id: nextProps.service.id.toString(),
       })
@@ -112,6 +115,9 @@ class EditService extends Component {
 
     this.state.hour ? 
       editService.hour = this.state.hour : editService.hour = ""
+
+    this.state.custCenter ? 
+      editService.custCenter = this.state.custCenter : editService.custCenter = ""
 
     this.state.observation ? 
       editService.observation = this.state.observation : editService.observation = ""
@@ -216,7 +222,15 @@ class EditService extends Component {
 
               {/* -----------  CARROS ------------ */}
               <PopupCar />
-
+              <div className="col-md-3 ml-4">
+                <label>Centro de custo</label>
+                <TextFieldGroupSmall
+                  placeholder="Centrode custo"
+                  name="custCenter"
+                  value={this.state.custCenter}
+                  onChange={this.onChange}
+                />
+              </div>
             </div>
             <div className="form-row">
               <div className="controls">

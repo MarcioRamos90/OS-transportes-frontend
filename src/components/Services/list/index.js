@@ -222,6 +222,15 @@ class ListServices extends Component {
       }
 
         <h1 className="text-left">Serviços</h1>
+        <Popup trigger={
+          <a className="btn btn-success" style={{ color: 'white', position: 'absolute', right: 30, top:90}}>
+            Ralatório Geral
+          </a>
+        } modal closeOnDocumentClick>
+          {close => (
+            <ReportPdf services={this.props.services}/>
+          )}
+        </Popup>
         <div className="container screen text-left">
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
@@ -271,15 +280,7 @@ class ListServices extends Component {
                   onChange={this.onChange}
                 />
               </div>
-              <Popup trigger={
-                  <a className="btn btn-success" style={{ color: 'white'}}>
-                    Geral
-                  </a>
-                } modal closeOnDocumentClick>
-                  {close => (
-                    <ReportPdf services={this.props.services}/>
-                  )}
-              </Popup>
+              
             </div>
 
             <div className="form-row">
