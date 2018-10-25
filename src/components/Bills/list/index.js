@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Popup from "reactjs-popup";
 import moment from 'moment'
-import { getBills } from "../../../actions/billsActions";
+import { getBills, editBill } from "../../../actions/billsActions";
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 import PopupEdit from '../popupEdit'
+import isEmpyt from  '../../../validation/is-empty'
+import ReportBill from '../../Reports/pdf/reportBill'
+
 class ListBills extends Component {
   constructor(props) {
     super(props);
@@ -18,25 +21,40 @@ class ListBills extends Component {
       date_init: "",
       date_finish: "",
       status: "",
-      typeInput: "",
+      typeInput: "receive",
       statusInput:"",
       value: "",
+      errorMessage: "",
       bills: [],
-      selected: {}
+      total: 0,
     };
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
     this.renderBills = this.renderBills.bind(this);
-    this.checkClick = this.checkClick.bind(this);
+    this.handleError = this.handleError.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  async componentWillReceiveProps(nextProps) {
+
     if (nextProps.bills) {
-      console.log(nextProps.bills)
-      this.setState({
-        bills: nextProps.bills
+      await this.setState({
+        bills: nextProps.bills,
+        total: nextProps.bills.reduce( function(prev, cur){
+                  if(cur.type === 'receive')
+                    return cur.value == null ? prev : prev + cur.value;
+                  if(cur.type === 'payment')
+                    return cur.value == null ? prev : prev - cur.value;
+                  return 0;
+                }, 0)
       });
+    }
+    
+    if(this.state.typeInput === "payment"){
+      console.log(this.state.total)
+      this.setState({
+        total: Math.abs(this.state.total)
+      })
     }
   }
 
@@ -61,41 +79,97 @@ class ListBills extends Component {
     });
   }
 
-  checkClick(e) {
-    console.log('fui chacado')
+  popuEditValue(){
+    return (
+      <Popup trigger={
+        <a className="plus-button">
+          <i className="fas fa-search" />
+        </a>} modal closeOnDocumentClick>
+        {close => (
+           <PopupEdit bill={this.state} cancel={close}/>
+        )}
+      </Popup>)
+}
+
+  async filter(status) {
+    const filter = {};
+    filter.name = this.state.name
+    filter.os_code = this.state.os_code
+    filter.start = this.state.date_init
+    filter.end = this.state.date_finish
+    filter.status = status
+    filter.type = this.state.typeInput
+
+    this.props.getBills(filter);
   }
 
-  popuEditValue(){
-      return (
-        <Popup trigger={
-          <a className="plus-button">
-            <i className="fas fa-search" />
-          </a>} modal closeOnDocumentClick>
-          {close => (
-             <PopupEdit bill={this.state} cancel={close}/>
-          )}
-        </Popup>)
+  async finishBill(bill, status){
+
+    var error = this.validateFinish(bill, status);
+
+    if(!error){ 
+      const data = {};
+      data.id = bill._id
+      data.name = bill.name
+      data.os_code = bill.os_code
+      data.date = bill.os_date
+      data.status = status
+      data.type = bill.type
+      data.value = bill.value
+      this.handleError('')
+       try {
+         await this.props.editBill(data)
+         await this.filter(status)
+       }catch (error){
+         console.log(error)
+       }
+    }else{
+      this.handleError(error)
+    }
+    
+  }
+
+  handleError(error){
+    this.setState({
+      errorMessage: error
+    })    
+  }
+
+  validateFinish(bill, status){
+    var errorFinish = ""
+
+    if(status === "close"){
+      if(isEmpyt(bill.value)) errorFinish = "Conta sem valor não pode ser fechada"
+    }
+
+    return errorFinish
   }
 
   renderBills() {
     return this.state.bills.map(bill => (
       <tr key={bill._id}>
-        <td>
-          <div className="form-check">
-            <input 
-              className="form-check-input" 
-              type="checkbox"
-              name="checked"
-              onChange={() => this.checkClick()}
-              checked={bill.checked}
-              />
-          </div>
+        <td >
+          {bill.status === 'close' ? 
+            <a 
+              onClick={() => this.finishBill(bill, "open")} >
+              <i 
+                style={{ fontSize:'30px', marginTop: 0, hover:{color:'blue'}}} 
+                className="fas fa-undo"></i>
+            </a>
+            :
+            <a 
+              onClick={() => this.finishBill(bill, "close")} >
+              <i 
+                style={{ fontSize:'30px', marginTop: 0, hover:{color:'blue'}}} 
+                className="fas fa-check"></i>
+            </a>
+          }  
         </td>
-        <td>{bill.type}</td>
+        <td>{bill.type === 'receive'? "Recebimento" : "Pagamento"}</td>
         <td>{bill.os_code}</td>
         <td>{bill.name}</td>
         <td>{moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
-        <td>{bill.status}</td>
+        <td>{bill.status === 'open'? "Aberta" : "Fechada" }</td>
         <td>{bill.value}</td>
          <td>
           <Popup trigger={
@@ -106,12 +180,13 @@ class ListBills extends Component {
               </i>
             </a>
           }  modal closeOnDocumentClick>
-            {close => (
-              <PopupEdit 
+            {close => 
+             
+              (<PopupEdit 
                 bill={bill} 
                 cancel={close}
-              />
-            )}
+              />)
+            }
           </Popup>
         </td>
       </tr>
@@ -121,8 +196,27 @@ class ListBills extends Component {
   render() {
     return (
       <div>
+        {this.state.errorMessage && 
+          <div 
+            class="alert alert-danger" 
+            style={{ position:'fixed', top:30, right:30, zIndex: 5}} 
+            role="alert"
+            >
+            {this.state.errorMessage}
+          </div>
+        }
         <h1 className="text-left">Contas</h1>
+        <Popup trigger={
+            <a className="btn btn-success" style={{ color: 'white', position: 'absolute', right: 30, top:90}}>
+              Relatório de Contas
+            </a>
+          } modal closeOnDocumentClick>
+            {close => (
+              <ReportBill bills={this.state.bills} total={this.state.total} type={this.state.typeInput}/>
+            )}
+        </Popup>
         <div className="container screen text-left">
+          <h4 style={{ textAlign:'right' }}>Total: {this.state.total}</h4>
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
               <div className="col-md-2 mb-3">
@@ -147,9 +241,8 @@ class ListBills extends Component {
               <div className="form-group col-md-2">
                 <label htmlFor="inputType">Tipo</label>
                 <select onChange={this.onChange} name="typeInput" id="inputType" className="form-control">
-                  <option value='' defaultValue>Todos</option>
-                  <option value='payment'>Pagamentos</option>
-                  <option value='receive'>Recebimetos</option>
+                  <option value='receive' defaultValue>Empresas</option>
+                  <option value='payment'>Motoristas</option>
                 </select>
               </div>
               <div className="col-md-2 mb-3">
@@ -207,5 +300,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getBills }
+  { getBills, editBill }
 )(ListBills);

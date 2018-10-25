@@ -17,7 +17,7 @@ class ListBills extends Component {
       os_date: "",
       status: "",
       type: "",
-      value: "",
+      value: 0,
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -121,10 +121,12 @@ class ListBills extends Component {
               <TextFieldGroupSmall
                 placeholder="Aberto/Fechado"
                 name="value"
-                value={this.state.value}
+                value={this.state.value ? this.state.value.toString() : ""}
                 onChange={this.onChange}
+                disabled={this.state.status === 'close' ? 'true' : ''}
               />
               </div>
+
               <div className="controls">
                 <a 
                   type="submit" 
@@ -137,6 +139,7 @@ class ListBills extends Component {
                   <p>Cancelar</p>
                 </a>
               </div>
+              {this.state.status === 'close' ? <h5>Conta Fechada não altera valor</h5> : ''}
             </div>
           </form>
         </div>

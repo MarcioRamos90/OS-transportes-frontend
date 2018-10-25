@@ -41,7 +41,6 @@ export const editBill = (data, history) => dispatch => {
       history.push("/contas");
     })
     .catch(err => {
-      console.log(err)
       dispatch({
         type: GET_ERRORS,
         payload: err

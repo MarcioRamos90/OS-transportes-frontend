@@ -196,7 +196,6 @@ class ListServices extends Component {
               <i className="fas fa-check"></i>
             </a>
           }
-          
         </td>
         <td>
           <Popup trigger={
@@ -273,14 +272,14 @@ class ListServices extends Component {
                 />
               </div>
               <Popup trigger={
-                <a className="btn btn-success" style={{ color: 'white'}}>
-                  Geral
-                </a>
-              } modal closeOnDocumentClick>
-                {close => (
-                  <ReportPdf services={this.props.services}/>
-                )}
-            </Popup>
+                  <a className="btn btn-success" style={{ color: 'white'}}>
+                    Geral
+                  </a>
+                } modal closeOnDocumentClick>
+                  {close => (
+                    <ReportPdf services={this.props.services}/>
+                  )}
+              </Popup>
             </div>
 
             <div className="form-row">
