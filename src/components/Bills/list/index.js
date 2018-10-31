@@ -40,11 +40,11 @@ class ListBills extends Component {
     if (nextProps.bills) {
       await this.setState({
         bills: nextProps.bills,
-        total: nextProps.bills.reduce( function(prev, cur){
+        total: nextProps.bills.reduce( function(prev=0, cur){
                   if(cur.type === 'receive')
-                    return cur.value == null ? prev : prev + cur.value;
+                    return cur.value == null ? prev : prev + Number(cur.value);
                   if(cur.type === 'payment')
-                    return cur.value == null ? prev : prev - cur.value;
+                    return cur.value == null ? prev : prev - Number(cur.value);
                   return 0;
                 }, 0)
       });

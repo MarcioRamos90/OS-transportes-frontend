@@ -41,7 +41,8 @@ class Menu extends Component {
             </div>
           </Link>
         </div>
-        <h1 className="text-left">Serviços</h1>
+
+        <h1 className="text-left">Controles</h1>
         <div className="row">
           <Link
               to="/servicos"
@@ -53,9 +54,6 @@ class Menu extends Component {
                 <i className="fas fa-wrench" />
               </div>
           </Link>
-        </div>
-        <h1 className="text-left">Controles</h1>
-        <div className="row">
           <Link t
             to="/contas"
             className="card bg-light mb-3"
