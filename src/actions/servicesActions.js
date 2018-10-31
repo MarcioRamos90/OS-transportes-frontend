@@ -68,7 +68,21 @@ export const editService = (data, history) => dispatch => {
   api
     .put("/api/services/edit", data)
     .then(res => {
-      history.push("/servicos");
+      if(history) history.push("/servicos");
+      dispatch(cleanService())
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
+
+export const cancelService = (data, history) => dispatch => {
+  api
+    .put("/api/services/cancel", data)
+    .then(res => {
       dispatch(cleanService())
     })
     .catch(err => {

@@ -120,3 +120,10 @@ a {
 a p{
   margin-top: 5px
 }
+
+.popup-overlay{
+  /*position: absolute !important;*/
+  /*width: 100% !important;*/
+  overflow: scroll !important;
+  height: 100% !important
+}

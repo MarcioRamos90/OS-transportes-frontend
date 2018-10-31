@@ -22,7 +22,7 @@ class ListBills extends Component {
       date_finish: "",
       status: "",
       typeInput: "receive",
-      statusInput:"",
+      statusInput:"open",
       value: "",
       errorMessage: "",
       bills: [],
@@ -59,7 +59,8 @@ class ListBills extends Component {
   }
 
   onSubmit(e) {
-    e.preventDefault();
+    if(!isEmpyt(e))
+      e.preventDefault();
 
     const filter = {};
     filter.name = this.state.name
@@ -170,7 +171,7 @@ class ListBills extends Component {
         <td>{bill.name}</td>
         <td>{moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
         <td>{bill.status === 'open'? "Aberta" : "Fechada" }</td>
-        <td>{bill.value}</td>
+        <td>R$ {bill.value || '_'}</td>
          <td>
           <Popup trigger={
             <a>
@@ -185,6 +186,7 @@ class ListBills extends Component {
               (<PopupEdit 
                 bill={bill} 
                 cancel={close}
+                submit={this.onSubmit}
               />)
             }
           </Popup>
@@ -220,7 +222,7 @@ class ListBills extends Component {
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
               <div className="col-md-2 mb-3">
-                <label>Contas</label>
+                <label>Código</label>
                 <TextFieldGroupSmall
                   placeholder="Código os"
                   name="os_code"
@@ -228,12 +230,22 @@ class ListBills extends Component {
                   onChange={this.onChange}
                 />
               </div>
+              <div className="col-md-2 mb-3">
+                <label>Nome</label>
+                <TextFieldGroupSmall
+                  placeholder="Nome"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.onChange}
+                />
+              </div>
               <div className="form-group col-md-2">
                 <label htmlFor="inputStatus">Status</label>
                 <select onChange={this.onChange} name="statusInput" id="inputStatus" className="form-control">
-                  <option value='' defaultValue>Todos</option>
-                  <option value='open'>Abertos</option>
+                  <option value='open' defaultValue>Abertos</option>
                   <option value='close'>Fechados</option>
+                  <option value=''>Todos</option>
+
                 </select>
               </div>
             </div>

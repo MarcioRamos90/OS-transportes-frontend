@@ -30,7 +30,8 @@ class ListServices extends Component {
       reserve:"",
       requester:"",
       hour:"",
-      services: []
+      services: [],
+      finalized: false,
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -83,6 +84,8 @@ class ListServices extends Component {
     this.state.car.length > 0
       ? (filter.car = this.state.car)
       : (filter.car = "");
+
+    filter.finalized = this.state.finalized;
     filter.status = this.state.status;
 
     this.props.getServices(filter);
@@ -151,7 +154,7 @@ class ListServices extends Component {
   }
 
   retuntOS(os){
-    this.handleError('Desfazer finalização ainda não implementado')
+    this.handleError('OS finalizada não retorna à em aberto. \nCancele está OS e crie outra para modificações necessárias.')
   }
 
   renderOS() {
@@ -189,7 +192,7 @@ class ListServices extends Component {
         <td>
           {os.finalized ? 
             <a onClick={() => this.retuntOS(os)} >
-              <i className="fas fa-undo"></i>
+              <i className="fas fa-times"></i>
             </a>
             :
             <a onClick={() => this.finishOS(os)} >
@@ -198,7 +201,7 @@ class ListServices extends Component {
           }
         </td>
         <td>
-          <Popup trigger={
+          <Popup style={{ position:'absolute' }} trigger={
             <a onClick={() => this.cancelClick(os._id)} >
               <i className="fas fa-ban"></i>
             </a>
@@ -216,14 +219,18 @@ class ListServices extends Component {
     return (
       <Container>
       {this.state.errorMessage && 
-        <div class="alert alert-danger" style={{ position:'fixed', top:30, right:30, zIndex: 5}} role="alert">
+        <div 
+          className="alert alert-danger" 
+          style={{ position:'fixed', top:30, right:30, zIndex: 5}} role="alert">
           {this.state.errorMessage}
         </div>
       }
 
         <h1 className="text-left">Serviços</h1>
         <Popup trigger={
-          <a className="btn btn-success" style={{ color: 'white', position: 'absolute', right: 30, top:90}}>
+          <a 
+            className="btn btn-success" 
+            style={{ color: 'white', position: 'absolute', right: 30, top:90}}>
             Ralatório Geral
           </a>
         } modal closeOnDocumentClick>
@@ -333,6 +340,16 @@ class ListServices extends Component {
                   style={{ width:30, borderRadius: 0 }}
                 />
               </div>
+              </div>
+              <div className="form-row">
+               <div className="form-group col-md-2">
+                <label htmlFor="inputStatus">Tipo</label>
+                <select onChange={this.onChange} name="finalized" id="inputStatus" className="form-control">
+                  <option value={false} defaultValue>Em Aberto</option>
+                  <option value={true}>Finalizada</option>
+                </select>
+              </div>
+
              <div className="controls">
                 <button type="submit" className="btn btn-primary mb-1">
                   <i className="fas fa-search" />

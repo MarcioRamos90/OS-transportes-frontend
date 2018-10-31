@@ -118,19 +118,21 @@ class ListBills extends Component {
 
               <div className="col-md-3 mb-3">
               <label>Valor</label>
-              <TextFieldGroupSmall
-                placeholder="Aberto/Fechado"
-                name="value"
-                value={this.state.value ? this.state.value.toString() : ""}
-                onChange={this.onChange}
-                disabled={this.state.status === 'close' ? 'true' : ''}
-              />
+              <div style={{ display:'flex', alignItems: 'center' }}>
+                <p className="mr-1">R$</p>
+                <TextFieldGroupSmall
+                  name="value"
+                  value={this.state.value ? this.state.value.toString() : ""}
+                  onChange={this.onChange}
+                  disabled={this.state.status === 'close' ? 'true' : ''}
+                /> 
+              </div>
               </div>
 
               <div className="controls">
                 <a 
                   type="submit" 
-                  onClick={() => {this.onSubmit(); this.props.cancel()}} 
+                  onClick={() => {this.onSubmit(); this.props.submit(); this.props.cancel()}} 
                   className="btn btn-primary mb-1"
                   >
                   <p>Confirmar</p>
