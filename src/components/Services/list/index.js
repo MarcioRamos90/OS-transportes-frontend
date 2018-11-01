@@ -29,6 +29,7 @@ class ListServices extends Component {
       status: true,
       reserve:"",
       requester:"",
+      canceled: true,
       hour:"",
       services: [],
       finalized: false,
@@ -86,7 +87,7 @@ class ListServices extends Component {
       : (filter.car = "");
 
     filter.finalized = this.state.finalized;
-    filter.status = this.state.status;
+    filter.status = this.state.canceled;
 
     this.props.getServices(filter);
   }
@@ -158,9 +159,11 @@ class ListServices extends Component {
   }
 
   renderOS() {
+    
     if(this.state.services){
     return this.state.services.map(os => (
-      <tr key={os._id}>
+
+      <tr key={os._id} style={{ color: os.status === true ? 'blue' : 'red' }}>
         <td>
           <Popup trigger={
               <a>
@@ -340,14 +343,21 @@ class ListServices extends Component {
               </div>
               </div>
               <div className="form-row">
-               <div className="form-group col-md-2">
-                <label htmlFor="inputStatus">Tipo</label>
-                <select onChange={this.onChange} name="finalized" id="inputStatus" className="form-control">
-                  <option value={false} defaultValue>Em Aberto</option>
-                  <option value={true}>Finalizada</option>
-                  <option value={''}>Todas</option>
-                </select>
-              </div>
+                <div className="form-group col-md-2">
+                  <label htmlFor="inputStatus">Tipo</label>
+                  <select onChange={this.onChange} name="finalized" id="inputStatus" className="form-control">
+                    <option value={false} defaultValue>Em Aberto</option>
+                    <option value={true}>Finalizada</option>
+                    <option value={''}>Todas</option>
+                  </select>
+                </div>
+                <div className="form-group col-md-2">
+                  <label htmlFor="inputCanceled">Calcelada</label>
+                  <select onChange={this.onChange} name="canceled" id="inputCanceled" className="form-control">
+                    <option value={true} defaultValue>Não Cancelada</option>
+                    <option value={false}>Cancelada</option>
+                  </select>
+                </div>
 
              <div className="controls">
                 <button type="submit" className="btn btn-primary mb-1">
