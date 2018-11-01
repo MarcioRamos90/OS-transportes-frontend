@@ -36,10 +36,10 @@ const styles = StyleSheet.create({
     padding: padding,
   },
   collunmDestinys: {
-      flexGrow: 1,
-      width: 90,
-      borderRight: '1px solid black',
-      padding: padding,
+    flexGrow: 1,
+    width: 90,
+    borderRight: '1px solid black',
+    padding: padding,
     },
   collunmDate: {
     width: 55,

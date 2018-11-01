@@ -54,7 +54,7 @@ class Menu extends Component {
                 <i className="fas fa-wrench" />
               </div>
           </Link>
-          <Link t
+          <Link
             to="/contas"
             className="card bg-light mb-3"
             style={{ maxWidth: "18rem" }}

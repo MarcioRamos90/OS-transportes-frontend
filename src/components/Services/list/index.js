@@ -345,6 +345,7 @@ class ListServices extends Component {
                 <select onChange={this.onChange} name="finalized" id="inputStatus" className="form-control">
                   <option value={false} defaultValue>Em Aberto</option>
                   <option value={true}>Finalizada</option>
+                  <option value={''}>Todas</option>
                 </select>
               </div>
 
