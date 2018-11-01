@@ -127,3 +127,7 @@ a p{
   overflow: scroll !important;
   height: 100% !important
 }
+
+.popup-content{
+  width: 75% !important;
+}

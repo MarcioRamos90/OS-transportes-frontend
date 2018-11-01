@@ -7,6 +7,7 @@ import TextFieldGroupSmall from "../common/TextFieldGroupSmall";
 import { 
   cancelService, 
 } from "../../actions/servicesActions";
+import isEmpyt from  '../../validation/is-empty'
 
 class PopupCancel extends Component{
 	constructor(props){
@@ -54,8 +55,9 @@ class PopupCancel extends Component{
 
   validate(){
     var error = "";
-    if(this.state.message.length < 16) error = "Menssagem precisa ter no mínimo 15 caracteres!";
+    if(this.state.message.length < 10) error = "Menssagem precisa ter no mínimo 10 caracteres!";
     if(this.props.os.finalized) error = "OS finalizada não cancela";
+
 
     if( Number.isNaN(Number(this.state.valuetoReceive)) || 
         Number.isNaN(Number(this.state.valuetoPay))){
@@ -63,6 +65,20 @@ class PopupCancel extends Component{
         error = "insira valores válidos nos campos de contas"
     }
     return error;
+  }
+
+  validateCheckBillGenerator(os){
+    var error = "";
+
+    if(isEmpyt(os.driver)) error = "Sem Motorista o cancelamento não pode gerar valor de conta"
+    if(isEmpyt(os.car)) error = "Sem Carro o cancelamento não pode gerar valor de conta"
+    if(isEmpyt(os.passengers)) error = "Sem Passageiro o cancelamento não pode gerar valor de conta"
+    if(isEmpyt(os.requesters)) error = "Sem Solicitante o cancelamento não pode gerar valor de conta"
+    if(isEmpyt(os.company)) error = "Sem Empresa o cancelamento não pode gerar valor de conta"
+    if(isEmpyt(os.os_date)) error = "Sem data o cancelamento não pode gerar valor de conta"
+    if(isEmpyt(os.destinys)) error = "Sem destinos o cancelamento não pode gerar valor de conta"
+
+    return error
   }
 
   handlerError(message){
@@ -78,9 +94,16 @@ class PopupCancel extends Component{
   }
 
   checkClick(e) {
-    this.setState({
-      [e.target.name]: !this.state[e.target.name]
-    });
+    const error = this.validateCheckBillGenerator(this.props.os)
+
+    if(!error){
+      this.handlerError(null);
+      this.setState({
+        [e.target.name]: !this.state[e.target.name]
+      });  
+    }else{
+      this.handlerError(error)
+    }
   }
 
   renderListDestinations() {

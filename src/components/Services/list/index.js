@@ -206,9 +206,7 @@ class ListServices extends Component {
               <i className="fas fa-ban"></i>
             </a>
           }  modal closeOnDocumentClick>
-            {close => (
-              <PopupCancel os={os} close={close}/>
-            )}
+            {close => (<PopupCancel os={os} close={close}/>)}
           </Popup>
         </td>
       </tr>

@@ -171,6 +171,13 @@ class ListBills extends Component {
         <td>{bill.name}</td>
         <td>{moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
         <td>{bill.status === 'open'? "Aberta" : "Fechada" }</td>
+        <td style={{padding:'30px !important'}}>{!isEmpyt(bill.passengers.length) 
+          && bill.passengers.map(pass => (
+            <p className='list-td' key={pass._id}>{pass.name}</p>))}</td>
+
+        <td className='list-td'>{!isEmpyt(bill.destinys) 
+          && bill.destinys.map(dest => ( <p key={dest._id}>{dest.local}</p> ))}</td>
+        <td>{!isEmpyt(bill.car) && bill.car[0].name}</td>
         <td>R$ {bill.value || '_'}</td>
          <td>
           <Popup trigger={
@@ -295,6 +302,9 @@ class ListBills extends Component {
                 <th scope="col">Nome</th>
                 <th scope="col">Data</th>
                 <th scope="col">Status</th>
+                <th scope="col">Passageiros</th>
+                <th scope="col">Destinos</th>
+                <th scope="col">Carro</th>
                 <th scope="col">Valor</th>
                 <th scope="col">Edit</th>
               </tr>
