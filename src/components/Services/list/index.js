@@ -134,6 +134,8 @@ class ListServices extends Component {
     if(isEmpyt(os.hour)) errorFinish = "Sem hora a ordem de serviço não pode ser finalizada"
     if(isEmpyt(os.os_date)) errorFinish = "Sem data a ordem de serviço não pode ser finalizada"
     if(isEmpyt(os.destinys)) errorFinish = "Sem destinos a ordem de serviço não pode ser finalizada"
+    if(isEmpyt(!os.status)) errorFinish = "Os já cancelada"
+    if(isEmpyt(!os.finalized)) errorFinish = "Os já finalizada"
     
 
     return errorFinish
@@ -155,7 +157,7 @@ class ListServices extends Component {
   }
 
   retuntOS(os){
-    this.handleError('OS finalizada não retorna à em aberto. \nCancele está OS e crie outra para modificações necessárias.')
+    this.handleError('OS finalizada ou cancelada não retorna à em aberto.')
   }
 
   renderOS() {
@@ -176,9 +178,15 @@ class ListServices extends Component {
             </Popup>
         </td>
         <td>
-          <a onClick={() => this.editClick(os._id)}>
-            <i className="fas fa-pen"></i>
-          </a>
+          {os.finalized || !os.status ?
+            <a onClick={() => this.retuntOS(os)} >
+              <i className="fas fa-times"></i>
+            </a>
+            :
+            <a onClick={() => this.editClick(os._id)}>
+              <i className="fas fa-pen"></i>
+            </a>
+          }
         </td>
         <td>{moment(os.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
         <td>{os.hour}</td>
@@ -193,7 +201,7 @@ class ListServices extends Component {
         <td>{os.driver.length > 0 && os.driver[0].name}</td>
         <td>{os.car.length > 0 && os.car[0].name}</td>
         <td>
-          {os.finalized ? 
+          {os.finalized || !os.status ? 
             <a onClick={() => this.retuntOS(os)} >
               <i className="fas fa-times"></i>
             </a>
@@ -204,13 +212,18 @@ class ListServices extends Component {
           }
         </td>
         <td>
+          {os.status ?
           <Popup style={{ position:'absolute' }} trigger={
             <a onClick={() => this.cancelClick(os._id)} >
               <i className="fas fa-ban"></i>
             </a>
           }  modal closeOnDocumentClick>
             {close => (<PopupCancel os={os} close={close}/>)}
-          </Popup>
+          </Popup> :
+            <a onClick={() => this.retuntOS(os)} >
+              <i className="fas fa-times"></i>
+            </a>
+          }
         </td>
       </tr>
     ))}
