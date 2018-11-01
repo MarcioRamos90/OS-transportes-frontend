@@ -380,7 +380,6 @@ class ListServices extends Component {
           <Table className="table">
             <thead className="thead-dark">
               <tr>
-
                 <th scope="col">PDF</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Data</th>
@@ -392,7 +391,6 @@ class ListServices extends Component {
                 <th scope="col">Carro</th>
                 <th scope="col">Finalizar</th>
                 <th scope="col">Cancelar</th>
-
               </tr>
             </thead>
             <tbody>{this.renderOS()}</tbody>
