@@ -94,23 +94,15 @@ class MyDocument extends Component{
     return(
       <View style={styles.passengers}>
         {passengers.map(passenger => 
-          (<View key={passenger._id}>{!isEmpty(passenger)&& <Text key={passenger._id}>Passageiro(a): {passenger.name}</Text>}</View>)
+          (<View key={passenger._id} >{!isEmpty(passenger)&& <Text key={passenger._id}>Passageiro(a): {passenger.name}</Text>}</View>)
         )}
       </View>
     )
   }
 
   concatDestiny(destinys){
-    let lengthMax = 55;
     return destinys.reduce((prev, dest)=>{
       prev += '/ ' + dest.local;
-
-      if(prev.length > lengthMax){
-        prev = prev.split('')
-        prev.splice(lengthMax, 0, '-\n')
-        prev = prev.join('')
-        lengthMax += 55;
-      }
       return prev;
     }, '')
   }
@@ -119,7 +111,7 @@ class MyDocument extends Component{
     return(
       <View style={styles.destiny}>
         <Text style={styles.hour}>{!isEmpty(hour) && hour}</Text>
-        <Text>{this.concatDestiny(destinys)}</Text>
+        <Text style={{width: 520}} >{this.concatDestiny(destinys)}</Text>
       </View>
     )
   }
