@@ -23,6 +23,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     borderBottom: '1px solid black'
   },
+  adress:{
+    marginLeft: 5,
+    marginRight: 5,
+    marginTop: 5,
+    flexGrow: 1,
+    fontSize: 15,
+    borderBottom: '1px solid black'
+  },
   passengers: {
     marginLeft: 5,
     marginRight: 5,
@@ -34,8 +42,10 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
+    // flexGrow: 1,
     flexDirection: 'row',
-
+    flexWrap: 'inherit',
+    // flexDirection: 'column',
     borderBottom: '1px solid black'
   },
   hour:{
@@ -75,37 +85,50 @@ const styles = StyleSheet.create({
 });
 
 
-class MyDocument extends Component {
-  componentDidMount(){
-    console.log(this.props.os)
-  }
+class MyDocument extends Component{
+  // componentDidMount(){
+  //   console.log(this.props.os)
+  // }
 
   passengers(passengers){
     return(
       <View style={styles.passengers}>
         {passengers.map(passenger => 
-          (<View>{!isEmpty(passenger)&& <Text key={passenger._id}>Passageiro(a): {passenger.name}</Text>}</View>)
+          (<View key={passenger._id}>{!isEmpty(passenger)&& <Text key={passenger._id}>Passageiro(a): {passenger.name}</Text>}</View>)
         )}
       </View>
     )
+  }
+
+  concatDestiny(destinys){
+    let lengthMax = 55;
+    return destinys.reduce((prev, dest)=>{
+      prev += '/ ' + dest.local;
+
+      if(prev.length > lengthMax){
+        prev = prev.split('')
+        prev.splice(lengthMax, 0, '-\n')
+        prev = prev.join('')
+        lengthMax += 55;
+      }
+      return prev;
+    }, '')
   }
 
   destiny(hour, destinys){
     return(
       <View style={styles.destiny}>
         <Text style={styles.hour}>{!isEmpty(hour) && hour}</Text>
-        {destinys.map(destiny =>(
-          <View>{!isEmpty(destiny.local) && <Text key={destiny._id}>{destiny.local} /</Text>}</View>
-          ))}
+        <Text>{this.concatDestiny(destinys)}</Text>
       </View>
     )
   }
 
   adress(destinys){
     return(
-      <View style={styles.passengers}>
+      <View style={styles.adress}>
         {destinys.map(destiny =>
-          (<View>{!isEmpty(destiny.adress) && <Text style={styles.list} key={destiny._id}>{destiny.adress}</Text>}</View>)
+          (<View key={destiny._id}>{!isEmpty(destiny.adress) && <Text style={styles.list} key={destiny._id}>{destiny.adress}</Text>}</View>)
           )}
       </View>
     )

@@ -255,15 +255,7 @@ class ListServices extends Component {
         <div className="container screen text-left">
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
-              <div className="col-md-2 mb-3">
-                <label>Código</label>
-                <TextFieldGroupSmall
-                  placeholder="Código"
-                  name="code"
-                  value={this.state.code}
-                  onChange={this.onChange}
-                />
-              </div>
+
               <div className="col-md-2 mb-3">
                 <label>Empresa</label>
                 <TextFieldGroupSmall
@@ -271,6 +263,7 @@ class ListServices extends Component {
                   name="company"
                   value={this.state.company}
                   onChange={this.onChange}
+                  disabled={false}
                 />
               </div>
 

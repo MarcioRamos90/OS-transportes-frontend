@@ -174,7 +174,6 @@ class ListBills extends Component {
         <td style={{padding:'30px !important'}}>{!isEmpyt(bill.passengers.length) 
           && bill.passengers.map(pass => (
             <p className='list-td' key={pass._id}>{pass.name}</p>))}</td>
-
         <td className='list-td'>{!isEmpyt(bill.destinys) 
           && bill.destinys.map(dest => ( <p key={dest._id}>{dest.local}</p> ))}</td>
         <td>{!isEmpyt(bill.car) && bill.car[0].name}</td>
@@ -189,7 +188,6 @@ class ListBills extends Component {
             </a>
           }  modal closeOnDocumentClick>
             {close => 
-             
               (<PopupEdit 
                 bill={bill} 
                 cancel={close}
