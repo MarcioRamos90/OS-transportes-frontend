@@ -180,7 +180,7 @@ class ListBills extends Component {
         <td className='list-td'>{!isEmpyt(bill.destinys) 
           && bill.destinys.map(dest => ( <p key={dest._id}>{dest.local}</p> ))}</td>
         <td>{!isEmpyt(bill.car) && bill.car[0].name}</td>
-        {<td>{bill.driver}</td> || <td>{bill.company}</td> }
+        {bill.type === 'receive' ? <td>{bill.driver}</td> : <td>{bill.company}</td> }
         <td>R$ {bill.value || '_'}</td>
          <td>
           <Popup trigger={
