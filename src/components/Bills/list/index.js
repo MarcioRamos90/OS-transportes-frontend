@@ -16,6 +16,7 @@ class ListBills extends Component {
     this.state = {
       service: "", // objectId
       os_code:"", // numeric id
+      reserve: "",
       name: "",
       os_date: "",
       date_init: "",
@@ -63,6 +64,7 @@ class ListBills extends Component {
       e.preventDefault();
 
     const filter = {};
+    filter.reserve = this.state.reserve
     filter.name = this.state.name
     filter.os_code = this.state.os_code
     filter.start = this.state.date_init
@@ -167,6 +169,7 @@ class ListBills extends Component {
           }  
         </td>
         <td>{bill.type === 'receive'? "Recebimento" : "Pagamento"}</td>
+        <td>{bill.reserve}</td>
         <td>{bill.os_code}</td>
         <td>{bill.name}</td>
         <td>{moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
@@ -177,6 +180,7 @@ class ListBills extends Component {
         <td className='list-td'>{!isEmpyt(bill.destinys) 
           && bill.destinys.map(dest => ( <p key={dest._id}>{dest.local}</p> ))}</td>
         <td>{!isEmpyt(bill.car) && bill.car[0].name}</td>
+        {<td>{bill.driver}</td> || <td>{bill.company}</td> }
         <td>R$ {bill.value || '_'}</td>
          <td>
           <Popup trigger={
@@ -222,10 +226,11 @@ class ListBills extends Component {
               <ReportBill bills={this.state.bills} total={this.state.total} type={this.state.typeInput}/>
             )}
         </Popup>
-        <div className="container screen text-left">
+        <div className="screen text-left">
           <h4 style={{ textAlign:'right' }}>Total: {this.state.total}</h4>
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
+
               <div className="col-md-2 mb-3">
                 <label>Código</label>
                 <TextFieldGroupSmall
@@ -241,6 +246,15 @@ class ListBills extends Component {
                   placeholder="Nome"
                   name="name"
                   value={this.state.name}
+                  onChange={this.onChange}
+                />
+              </div>
+              <div className="col-md-2 mb-3">
+                <label>Reserva</label>
+                <TextFieldGroupSmall
+                  placeholder="Numero reserva"
+                  name="reserve"
+                  value={this.state.reserve}
                   onChange={this.onChange}
                 />
               </div>
@@ -296,6 +310,7 @@ class ListBills extends Component {
               <tr>
                 <th scope="col">*</th>
                 <th scope="col">Tipo</th>
+                <th scope="col">Reserva</th>
                 <th scope="col">OS</th>
                 <th scope="col">Nome</th>
                 <th scope="col">Data</th>
@@ -303,6 +318,8 @@ class ListBills extends Component {
                 <th scope="col">Passageiros</th>
                 <th scope="col">Destinos</th>
                 <th scope="col">Carro</th>
+                {this.state.typeInput === 'receive'? <th scope="col">Motorista</th>
+                  :<th scope="col">Empresa</th>}
                 <th scope="col">Valor</th>
                 <th scope="col">Edit</th>
               </tr>

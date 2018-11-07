@@ -17,6 +17,7 @@ class ListBills extends Component {
       os_date: "",
       status: "",
       type: "",
+      observation: "",
       value: 0,
     };
 
@@ -34,7 +35,8 @@ class ListBills extends Component {
       os_date: moment(this.props.bill.os_date).add(1, 'day').format('DD/MM/YYYY'),
       status: this.props.bill.status,
       type: this.props.bill.type,
-      value: this.props.bill.value
+      value: String(this.props.bill.value),
+      observation: this.props.bill.observation
     })
   }
 
@@ -48,6 +50,7 @@ class ListBills extends Component {
     data.status = this.state.status
     data.type = this.state.type
     data.value = this.state.value
+    data.observation = this.state.observation
 
     this.props.editBill(data)
 
@@ -128,7 +131,19 @@ class ListBills extends Component {
                 /> 
               </div>
               </div>
-
+            </div>
+            <div className="form-row">
+              
+              <div className="col-md-8 mb-3">
+                <label>Observação</label>
+                <TextFieldGroupSmall
+                  name="observation"
+                  value={this.state.observation}
+                  onChange={this.onChange}
+                  disabled={this.state.status === 'close' ? 'true' : ''}
+                  />
+              </div>
+              {this.state.status === 'open' &&
               <div className="controls">
                 <a 
                   type="submit" 
@@ -141,6 +156,8 @@ class ListBills extends Component {
                   <p>Cancelar</p>
                 </a>
               </div>
+
+            }
               {this.state.status === 'close' ? <h5>Conta Fechada não altera valor</h5> : ''}
             </div>
           </form>

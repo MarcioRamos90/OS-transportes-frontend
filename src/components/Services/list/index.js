@@ -178,7 +178,7 @@ class ListServices extends Component {
             </Popup>
         </td>
         <td>
-          {os.finalized || !os.status ?
+          {!os.status ?
             <a onClick={() => this.retuntOS(os)} >
               <i className="fas fa-times"></i>
             </a>
@@ -252,7 +252,7 @@ class ListServices extends Component {
             <ReportPdf services={this.props.services}/>
           )}
         </Popup>
-        <div className="container screen text-left">
+        <div className="container text-left">
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
 
