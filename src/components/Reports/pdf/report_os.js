@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
   },
   footer:{
     flexDirection: 'row',
-    justifyContent: 'space-between',
-    fontSize: 15,
+    // justifyContent: 'space-between',
+    fontSize: 10,
     marginLeft: 5,
     marginRight: 5,
     marginTop: 5,
@@ -77,6 +77,7 @@ const styles = StyleSheet.create({
     border: '1px solid black',
     
   },
+
   blankLine:{
     height:20,
     marginLeft: 5,
@@ -162,18 +163,21 @@ class MyDocument extends Component{
               <Text style={styles.observation} >{!isEmpty(this.props.os.observation) && this.props.os.observation}</Text>
             </View>
             <View style={styles.footer}>
-              <View>
+              <View style={{width: 150}}>
                 <Text>Horário inicial:</Text>
                 <Text>Horário final:</Text>
                 <Text>Centro de custo: {!isEmpty(this.props.os.custCenter) && this.props.os.custCenter}</Text>
               </View>
-              <View>
+              <View style={{width: 150}}>
                 <Text>Km inicial:</Text>
                 <Text>Km final:</Text>
                 <Text>Valores das despesas:</Text>
               </View>
-              <View>
-                <Text>Motorista: {this.props.os.driver.length > 0 && this.props.os.driver[0].name}</Text>
+              <View style={{width: 250}}>
+                <Text>
+                  Motorista: {this.props.os.driver.length > 0 && this.props.os.driver[0].name}
+                </Text>
+                {isEmpty(this.props.os.driver) && <Text>{'           '}</Text>} 
                 {this.props.os.driver.length > 0 && this.props.os.driver[0].bilingue && <Text>Biligue: Sim</Text>}
                 <Text>Carro: {this.props.os.car.length > 0 && this.props.os.car[0].name}</Text>
                 
