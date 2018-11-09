@@ -5,7 +5,7 @@ import moment from 'moment'
 import { editBill } from "../../actions/billsActions";
 
 import TextFieldGroupSmall from "../common/TextFieldGroupSmall";
-
+import isEmpyt from  '../../validation/is-empty'
 class ListBills extends Component {
   constructor(props) {
     super(props);
@@ -125,7 +125,7 @@ class ListBills extends Component {
                 <p className="mr-1">R$</p>
                 <TextFieldGroupSmall
                   name="value"
-                  value={this.state.value ? this.state.value.toString() : ""}
+                  value={this.state.value === 'undefined' || isEmpyt(this.state.value) ? '': this.state.value}
                   onChange={this.onChange}
                   disabled={this.state.status === 'close' ? 'true' : ''}
                 /> 

@@ -118,6 +118,9 @@ class ListBills extends Component {
       data.date = bill.os_date
       data.status = status
       data.type = bill.type
+      data.custCenter = bill.custCenter
+      data.passengers = bill.passengers
+      data.destinys = bill.destinys
       data.value = bill.value
       this.handleError('')
        try {
@@ -156,24 +159,27 @@ class ListBills extends Component {
             <a 
               onClick={() => this.finishBill(bill, "open")} >
               <i 
-                style={{ fontSize:'30px', marginTop: 0, hover:{color:'blue'}}} 
+                style={{ fontSize:'25px', marginTop: 0, hover:{color:'blue !important'}}} 
                 className="fas fa-undo"></i>
             </a>
             :
             <a 
               onClick={() => this.finishBill(bill, "close")} >
               <i 
-                style={{ fontSize:'30px', marginTop: 0, hover:{color:'blue'}}} 
+                style={{ fontSize:'25px', marginTop: 0, hover:{color:'blue'}}} 
                 className="fas fa-check"></i>
             </a>
           }  
         </td>
-        <td>{bill.type === 'receive'? "Recebimento" : "Pagamento"}</td>
+        <td>{moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
         <td>{bill.reserve}</td>
+        <td>{bill.custCenter}</td>
         <td>{bill.os_code}</td>
         <td>{bill.name}</td>
-        <td>{moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
-        <td>{bill.status === 'open'? "Aberta" : "Fechada" }</td>
+        <td style={{padding:'30px !important'}}>{!isEmpyt(bill.requesters.length) 
+          && bill.requesters.map(req => (
+            <p className='list-td' key={req._id}>{req.name}</p>))}</td>       
+
         <td style={{padding:'30px !important'}}>{!isEmpyt(bill.passengers.length) 
           && bill.passengers.map(pass => (
             <p className='list-td' key={pass._id}>{pass.name}</p>))}</td>
@@ -186,7 +192,7 @@ class ListBills extends Component {
           <Popup trigger={
             <a>
               <i 
-                style={{ fontSize:'30px', marginTop: 0, hover:{color:'blue'}}} 
+                style={{ fontSize:'25px', marginTop: 0, hover:{color:'blue'}}} 
                 className="fas fa-pen">
               </i>
             </a>
@@ -226,15 +232,15 @@ class ListBills extends Component {
               <ReportBill bills={this.state.bills} total={this.state.total} type={this.state.typeInput}/>
             )}
         </Popup>
-        <div className="screen text-left">
-          <h4 style={{ textAlign:'right' }}>Total: {this.state.total}</h4>
+        <div className="text-left">
           <form onSubmit={this.onSubmit} className="container search">
+          <h4 style={{ textAlign:'right' }}>Total: {this.state.total}</h4>
             <div className="form-row">
 
-              <div className="col-md-2 mb-3">
+              <div className="col-md-1 mb-3">
                 <label>Código</label>
                 <TextFieldGroupSmall
-                  placeholder="Código os"
+                  placeholder="Código"
                   name="os_code"
                   value={this.state.os_code}
                   onChange={this.onChange}
@@ -305,16 +311,16 @@ class ListBills extends Component {
               </div>
             </div>
           </form>
-          <table className="table">
+          <table className="table" >
             <thead className="thead-dark">
               <tr>
                 <th scope="col">*</th>
-                <th scope="col">Tipo</th>
+                <th scope="col">Data</th>
                 <th scope="col">Reserva</th>
+                <th scope="col">CC</th>
                 <th scope="col">OS</th>
                 <th scope="col">Nome</th>
-                <th scope="col">Data</th>
-                <th scope="col">Status</th>
+                <th scope="col">Solicitantes</th>
                 <th scope="col">Passageiros</th>
                 <th scope="col">Destinos</th>
                 <th scope="col">Carro</th>

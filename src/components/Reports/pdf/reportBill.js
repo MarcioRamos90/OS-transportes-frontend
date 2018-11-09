@@ -6,7 +6,7 @@ import isEmpty from '../../../validation/is-empty'
 const padding = 3
 
 const styles = StyleSheet.create({
-  page: { padding: 10 },
+  page: { padding: 10, paddingLeft: 15 },
   title:{
     textAlign: 'center',
     marginTop: 5,
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
 
 class MyDocument extends Component {
   componentDidMount(){
-    console.log(this.props.services)
+    console.log(this.props)
   }
 
   destiny(destinys){
@@ -136,6 +136,12 @@ class MyDocument extends Component {
                   <Text>{bill.company}</Text> 
                 </View>
               }
+
+              {this.props.type === 'receive' && 
+                <View style={styles.collunmPassengers}>
+                  {!isEmpty(bill.requesters) && this.passengers(bill.requesters)}
+                </View> }
+
               <View style={styles.collunmPassengers}>
                 {!isEmpty(bill.passengers) && this.passengers(bill.passengers)}
               </View>
@@ -149,6 +155,7 @@ class MyDocument extends Component {
                 <Text>R$ {bill.value ? bill.value : 0}</Text>
               </View>
               <View style={styles.collunmObservation}>
+                <Text>{bill.observation}</Text> 
               </View>
             </View>
             
@@ -177,7 +184,8 @@ class MyDocument extends Component {
 
                 {this.props.type === 'payment' && <Text  style={styles.collunmCompany}>Empresa</Text>}
                 
-                <Text  style={styles.collunmPassengers}>Passgeiros</Text>
+                {this.props.type === 'receive' && <Text  style={styles.collunmPassengers}>Solicitantes</Text>}
+                <Text  style={styles.collunmPassengers}>Passageiros</Text>
                 <Text  style={styles.collunmDestinys}>Destinos</Text>
                 <Text  style={styles.collunmCar}>Carro</Text>
                 <Text  style={styles.collunmValue}>Valor</Text>

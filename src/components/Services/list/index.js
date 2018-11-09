@@ -29,6 +29,7 @@ class ListServices extends Component {
       status: true,
       reserve:"",
       requester:"",
+      custCenter: "",
       canceled: true,
       hour:"",
       services: [],
@@ -61,6 +62,9 @@ class ListServices extends Component {
     this.state.company.length > 0
       ? (filter.company = this.state.company)
       : (filter.company = "");
+    this.state.custCenter.length > 0
+      ? (filter.custCenter = this.state.custCenter)
+      : (filter.custCenter = "");
     this.state.reserve.length > 0
       ? (filter.reserve = this.state.reserve)
       : (filter.reserve = "");
@@ -165,7 +169,7 @@ class ListServices extends Component {
     if(this.state.services){
     return this.state.services.map(os => (
 
-      <tr key={os._id} style={{ color: os.status === true ? 'blue' : 'red' }}>
+      <tr key={os._id} style={{ color: os.finalized === true ? 'blue' : 'black' }}>
         <td>
           <Popup trigger={
               <a>
@@ -190,6 +194,8 @@ class ListServices extends Component {
         </td>
         <td>{moment(os.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
         <td>{os.hour}</td>
+        <td>{os.id}</td>
+        <td>{os.custCenter}</td>
         <td>{os.company.length > 0 && os.company[0].name}</td>
         <td style={{padding:'30px !important'}}>{os.passengers.length > 0 
           && os.passengers.map(pass => (
@@ -255,7 +261,26 @@ class ListServices extends Component {
         <div className="container text-left">
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
-
+              <div className="col-md-1 mb-3">
+                <label>Código</label>
+                <TextFieldGroupSmall
+                  placeholder="Código"
+                  name="code"
+                  value={this.state.code}
+                  onChange={this.onChange}
+                  disabled={false}
+                />
+              </div>
+              <div className="col-md-2 mb-3">
+                <label>Centro de custo</label>
+                <TextFieldGroupSmall
+                  placeholder="CC"
+                  name="custCenter"
+                  value={this.state.custCenter}
+                  onChange={this.onChange}
+                  disabled={false}
+                />
+              </div>
               <div className="col-md-2 mb-3">
                 <label>Empresa</label>
                 <TextFieldGroupSmall
@@ -390,6 +415,8 @@ class ListServices extends Component {
                 <th scope="col">Edit</th>
                 <th scope="col">Data</th>
                 <th scope="col">HR</th>
+                <th scope="col">Cód</th>
+                <th scope="col">CC</th>
                 <th scope="col">Empresa</th>
                 <th scope="col">Passageiros</th>
                 <th scope="col">Destinos</th>
