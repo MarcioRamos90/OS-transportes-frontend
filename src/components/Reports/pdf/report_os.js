@@ -6,6 +6,7 @@ import isEmpty from '../../../validation/is-empty'
 
 // Create styles
 const styles = StyleSheet.create({
+  page: { padding: 10},
   title:{
     textAlign: 'center',
     marginTop: 5,
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
   },
   observation:{
     fontSize: 25,
-    fontWeight:'bolder',
+    fontWeight: '900 !important',
     marginLeft: 5,
     marginRight: 5,
     paddingTop: 15,
@@ -130,7 +131,7 @@ class MyDocument extends Component{
     return(
       <PDFViewer>
         <Document>
-          <Page size="A4">
+          <Page size="A4" style={styles.page}>
             <View style={styles.title}>
               <Text>Nº: {this.props.os.id} / Ordem de Serviço:{!isEmpty(this.props.os.reserve) && this.props.os.reserve}</Text> 
             </View>
