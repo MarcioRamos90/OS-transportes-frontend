@@ -30,14 +30,14 @@ const styles = StyleSheet.create({
     borderBottom: '1px solid black',
   },
   collunmPassengers: {
-    flexGrow: 1,
     width: 80,
+    flexGrow: 1,
     borderRight: '1px solid black',
     padding: padding,
   },
   collunmDestinys: {
-      flexGrow: 1,
       width: 80,
+      flexGrow: 1,
       borderRight: '1px solid black',
       padding: padding,
     },
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
     padding: padding,
   },
   collunmValue: {
-    width: 50,
+    width: 45,
     borderRight: '1px solid black',
     padding: padding,
   },
@@ -95,24 +95,24 @@ class MyDocument extends Component {
 
   destiny(destinys){
     return(
-      <View>
+      <Text>
         {destinys.map(destiny =>(
-          <View key={destiny._id}>{!isEmpty(destiny.local) && <Text>{destiny.local}</Text>}</View>
+          <Text key={destiny._id}>{!isEmpty(destiny.local) && <Text>{destiny.local}</Text>}</Text>
           ))}
-      </View>
+      </Text>
     )
   }
 
   passengers(passengers){
     return(
-      <View >
+      <Text >
         {passengers.map(passenger => 
           (
-          <View key={passenger._id}>{!isEmpty(passenger) && 
+          <Text key={passenger._id}>{!isEmpty(passenger) && 
             <Text>{passenger.name}</Text>}
-          </View>)
+          </Text>)
         )}
-      </View>
+      </Text>
     )
   }
 
@@ -140,17 +140,19 @@ class MyDocument extends Component {
               {this.props.type === 'receive' && 
                 <View style={styles.collunmPassengers}>
                   {!isEmpty(bill.requesters) && this.passengers(bill.requesters)}
-                </View> }
-
+                </View> 
+              }
               <View style={styles.collunmPassengers}>
                 {!isEmpty(bill.passengers) && this.passengers(bill.passengers)}
               </View>
               <View style={styles.collunmDestinys}>
                 {!isEmpty(bill.destinys) && this.destiny(bill.destinys)}
               </View>
-              <View style={styles.collunmCar}>
-                <Text>{bill.car.length > 0 && bill.car[0].name}</Text>
-              </View>
+              {this.props.type === 'payment' && 
+                <View style={styles.collunmCar}>
+                  <Text>{bill.car.length > 0 && bill.car[0].name}</Text>
+                </View>
+              }
               <View style={styles.collunmValue}>
                 <Text>R$ {bill.value ? bill.value : 0}</Text>
               </View>
@@ -187,7 +189,7 @@ class MyDocument extends Component {
                 {this.props.type === 'receive' && <Text  style={styles.collunmPassengers}>Solicitantes</Text>}
                 <Text  style={styles.collunmPassengers}>Passageiros</Text>
                 <Text  style={styles.collunmDestinys}>Destinos</Text>
-                <Text  style={styles.collunmCar}>Carro</Text>
+                {this.props.type === 'payment' && <Text  style={styles.collunmCar}>Carro</Text>}
                 <Text  style={styles.collunmValue}>Valor</Text>
                 <Text  style={styles.collunmObservation}>Observação</Text>
 
