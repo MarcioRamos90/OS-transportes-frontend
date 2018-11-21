@@ -113,7 +113,7 @@ class MyDocument extends Component{
     return(
       <View style={styles.destiny}>
         <Text style={styles.hour}>{!isEmpty(hour) && hour}</Text>
-        <Text style={{width: 520}} >{this.concatDestiny(destinys)}</Text>
+        <Text style={{width: 470}} >{this.concatDestiny(destinys)}</Text>
       </View>
     )
   }
@@ -122,7 +122,8 @@ class MyDocument extends Component{
     return(
       <View style={styles.adress}>
         {destinys.map(destiny =>
-          (<View key={destiny._id}>{!isEmpty(destiny.adress) && <Text style={styles.list} key={destiny._id}>{destiny.adress}</Text>}</View>)
+          (<View key={destiny._id}>{!isEmpty(destiny.adress) 
+            && <Text style={styles.list} key={destiny._id}>{destiny.adress}</Text>}</View>)
           )}
       </View>
     )
@@ -180,10 +181,8 @@ class MyDocument extends Component{
                 {isEmpty(this.props.os.driver) && <Text>{'           '}</Text>} 
                 {this.props.os.driver.length > 0 && this.props.os.driver[0].bilingue && <Text>Biligue: Sim</Text>}
                 <Text>Carro: {this.props.os.car.length > 0 && this.props.os.car[0].name}</Text>
-                
               </View>
             </View>
-
           </Page>
         </Document>
       </PDFViewer>

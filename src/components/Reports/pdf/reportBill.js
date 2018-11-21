@@ -79,25 +79,25 @@ const styles = StyleSheet.create({
     position: 'relative',
     textAlign: 'right'
   },
+  collunmReserve: {
+    width: 50,
+    borderRight: '1px solid black',
+    padding: padding,
+  },
   collunmObservation: {
-      width: 90,
+      width: 80,
       borderRight: '1px solid black',
-      minHeight:20,
       padding: padding,
     },
 
 })
 
 class MyDocument extends Component {
-  componentDidMount(){
-    console.log(this.props)
-  }
-
   destiny(destinys){
     return(
       <Text>
         {destinys.map(destiny =>(
-          <Text key={destiny._id}>{!isEmpty(destiny.local) && <Text>{destiny.local}</Text>}</Text>
+          <Text key={destiny._id}>{!isEmpty(destiny.local) && <Text> / {destiny.local}</Text>}</Text>
           ))}
       </Text>
     )
@@ -121,12 +121,12 @@ class MyDocument extends Component {
       <View >
         {this.props.bills.map(bill => (
             <View style={styles.row} key={bill._id}>
-
               <View style={styles.collunmDate}>
                 <Text >
                   {bill.os_date && moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}
                 </Text>
               </View>
+              
               <View style={styles.collunmName}>
                 <Text>{bill.name}</Text>
               </View>
@@ -154,8 +154,15 @@ class MyDocument extends Component {
                 </View>
               }
               <View style={styles.collunmValue}>
-                <Text>R$ {bill.value ? bill.value : 0}</Text>
+              
+                <Text>R$ {(!isEmpty(bill.value) && Number(bill.value).toFixed(2)) || (0).toFixed(2)}</Text>
               </View>
+              {this.props.type === 'receive' && 
+                <View style={styles.collunmReserve}>
+                  <Text>{!isEmpty(bill.reserve) && bill.reserve}</Text>
+                  <Text>{!isEmpty(bill.custCenter) && bill.custCenter}</Text>
+                </View>
+              }
               <View style={styles.collunmObservation}>
                 <Text>{bill.observation}</Text> 
               </View>
@@ -166,7 +173,6 @@ class MyDocument extends Component {
         <View style={styles.total}>
           <Text>Total: R$ {this.props.total ? this.props.total : 0}</Text>
         </View>
-       
       </View>)
       
   }
@@ -183,16 +189,14 @@ class MyDocument extends Component {
               <View style={styles.row}>
                 <Text  style={styles.collunmDate}>Data</Text>
                 <Text  style={styles.collunmName}>Nome</Text>
-
                 {this.props.type === 'payment' && <Text  style={styles.collunmCompany}>Empresa</Text>}
-                
                 {this.props.type === 'receive' && <Text  style={styles.collunmPassengers}>Solicitantes</Text>}
                 <Text  style={styles.collunmPassengers}>Passageiros</Text>
                 <Text  style={styles.collunmDestinys}>Destinos</Text>
                 {this.props.type === 'payment' && <Text  style={styles.collunmCar}>Carro</Text>}
                 <Text  style={styles.collunmValue}>Valor</Text>
+                {this.props.type === 'receive' && <Text  style={styles.collunmReserve}>Reserva/CC/CTE</Text>}
                 <Text  style={styles.collunmObservation}>Observação</Text>
-
               </View>
               {this.renderBill()}
             </View>
