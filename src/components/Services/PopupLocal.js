@@ -165,18 +165,22 @@ class PopupLocal extends Component {
   }
 
   renderListDestinations() {
-    const { local } = this.state
+    const { local } = this.state;
+    const { isEdit } = this.props;
+
     if (!isEmpty(local)){
       return local.map(local => (
       	<Fragment key={local.local}>
 	        <tr >
 	          <td>{local.local}</td>
 	          <td>{local.adress}</td>
-	        	<td>
-			        <a onClick={() => this.delDestiny(local)}>
-			          <i className="fas fa-trash text-center"/>
-			        </a>
-		        </td>
+	        	{isEdit &&
+              <td>
+  			        <a onClick={() => this.delDestiny(local)}>
+  			          <i className="fas fa-trash text-center"/>
+  			        </a>
+  		        </td>
+            }
 	        </tr>
 	      </Fragment>
       ))}else{
@@ -190,24 +194,26 @@ class PopupLocal extends Component {
   }
 
 	render() {
+    const { isEdit } = this.props
 		return (
 			<Container>
 				<label>Local</label>
 				<div className='content'>
-					<Popup trigger={
-						<a className="plus-button">
-							<i className="fas fa-search" />
-						</a>} modal closeOnDocumentClick>
-	          {close => (
-	            <div>
-             		{this.renderSearchLocal(close)}
-            	</div>
-	          )}
-	        </Popup>
-	        <Table className="table table-bordered" >
+					{isEdit && 
+            <Popup trigger={
+  						<a className="plus-button">
+  							<i className="fas fa-search" />
+  						</a>} modal closeOnDocumentClick>
+  	          {close => (
+  	            <div>
+               		{this.renderSearchLocal(close)}
+              	</div>
+  	          )}
+  	        </Popup>
+          }
+	        <Table className="table table-bordered" disabled={!isEdit}>
 	          <tbody>
 	            {this.renderListDestinations()}
-	            
 	          </tbody>
 	        </Table>
 	      </div>

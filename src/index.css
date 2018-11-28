@@ -107,6 +107,8 @@ h1 {
   height: 40px;
   font-size: 20px;
   padding: 0;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 .btn i {
@@ -130,4 +132,10 @@ a p{
 
 .popup-content{
   width: 75% !important;
+}
+
+
+.arrow-back{
+  color: black;
+  font-size: 30px
 }

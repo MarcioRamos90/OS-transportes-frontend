@@ -75,19 +75,22 @@ class PopupDriver extends Component {
   }
 
   renderListDriver() {
-    const { driver } = this.state
+    const { driver } = this.state;
+    const { isEdit } = this.props;
     if (!isEmpty(driver)){
       return (
         <div className="li-trash">
           <li className="list-group-item d-flex justify-content-between align-items-center">
             {driver.name}
           </li>
-          <a>
-            <i 
-              onClick={() => this.delDriver()}
-              className="fas fa-trash"
-            />
-          </a>
+          {isEdit &&
+            <a>
+              <i 
+                onClick={() => this.delDriver()}
+                className="fas fa-trash"
+              />
+            </a>
+          }
         </div>
         )
       }else{
@@ -169,22 +172,24 @@ class PopupDriver extends Component {
   }
 
   render() {
+    const { isEdit } = this.props
     return (
       <Container>
         <label>Motorista</label>
         <div className='content'>
-          <Popup  trigger={
-            <a className="plus-button">
-              <i className="fas fa-search" />
-            </a>} modal closeOnDocumentClick>
-            {close => (
-              <div>
-               {this.renderSearchDrivers(close)}
-              </div>
-            )}
-          </Popup>
-
-          <Listul>
+          {isEdit &&
+            <Popup  trigger={
+              <a className="plus-button">
+                <i className="fas fa-search" />
+              </a>} modal closeOnDocumentClick>
+              {close => (
+                <div>
+                 {this.renderSearchDrivers(close)}
+                </div>
+              )}
+            </Popup>
+          }
+          <Listul disabled={!isEdit}>
             {this.renderListDriver()}
           </Listul>
 

@@ -88,9 +88,10 @@ const styles = StyleSheet.create({
 
 
 class MyDocument extends Component{
-  // componentDidMount(){
-  //   console.log(this.props.os)
-  // }
+  componentDidMount(){
+    const { _id } = this.props.os
+    this.props.createlog(_id)
+  }
 
   passengers(passengers){
     return(

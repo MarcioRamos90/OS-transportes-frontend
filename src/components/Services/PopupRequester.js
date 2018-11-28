@@ -147,16 +147,19 @@ class PopupRequester extends Component {
 
   renderListItensonService() {
     const { requester } = this.state
+    const { isEdit } = this.props
     if (!isEmpty(requester)){
       return requester.map(item => (
         <Fragment key={item.name}>
           <tr >
             <td>{item.name}</td>
-            <td>
-              <a onClick={() => this.props.delServiceRequester(item)}>
-                <i className="fas fa-trash text-center"/>
-              </a>
-            </td>
+            { isEdit && 
+              <td>
+                <a onClick={() => this.props.delServiceRequester(item)}>
+                  <i className="fas fa-trash text-center"/>
+                </a>
+              </td>
+            }
           </tr>
         </Fragment>
       ))}
@@ -170,24 +173,26 @@ class PopupRequester extends Component {
   }
 
   render() {
+    const { isEdit } = this.props
     return (
       <Container>
         <label>Solicitante</label>
         <div className='content'>
-          <Popup trigger={
-            <a className="plus-button">
-              <i className="fas fa-search" />
-            </a>} modal closeOnDocumentClick>
-            {close => (
-              <div>
-                {this.renderSearchFieldsPassenger(close)}
-              </div>
-            )}
-          </Popup>
-          <Table className="table table-bordered" >
+          {isEdit && 
+            <Popup trigger={
+              <a className="plus-button">
+                <i className="fas fa-search" />
+              </a>} modal closeOnDocumentClick>
+              {close => (
+                <div>
+                  {this.renderSearchFieldsPassenger(close)}
+                </div>
+              )}
+            </Popup>
+          }
+          <Table className="table table-bordered" disabled={!isEdit}>
             <tbody>
               {this.renderListItensonService()}
-              
             </tbody>
           </Table>
         </div>

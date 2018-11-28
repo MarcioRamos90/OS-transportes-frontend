@@ -68,7 +68,8 @@ export const editService = (data, history) => dispatch => {
   api
     .put("/api/services/edit", data)
     .then(res => {
-      if(history) history.push("/servicos");
+      console.log(data)
+      if(history) history.push(`/visualizar-servico/${data._id}`);
       dispatch(cleanService())
     })
     .catch(err => {
@@ -81,7 +82,7 @@ export const editService = (data, history) => dispatch => {
 
 export const cancelService = (data, history) => dispatch => {
   api
-    .put("/api/services/cancel", data)
+    .put("/api/services/cancel", data._id)
     .then(res => {
       dispatch(cleanService())
     })

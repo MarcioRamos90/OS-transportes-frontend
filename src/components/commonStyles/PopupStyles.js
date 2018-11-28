@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 	margin-left: 5px;
-
 	.content{
 		margin-left:10px;
 		display: flex;
@@ -33,6 +32,7 @@ export const Listul = styled.ul`
 			height: 40px;
 			padding: 5px;
 			width: 300px;
+			background-color: ${props => props.disabled ? '#E9ECEF' : '#FFFFFF'}
 	}
 
 	.li-trash{
@@ -50,7 +50,6 @@ export const Listul = styled.ul`
 `
 
 export const Table = styled.table`
-	
 	height:40px;
 	margin-top: 0 !important;
 	margin-left: 0px !important;
@@ -74,7 +73,7 @@ export const Table = styled.table`
 		padding: 0 !important;
 		padding-rigth: 0px !important;
 		padding-left: 10px !important;
-		min-width: 50px !important;
+		background-color: ${props => props.disabled ? '#E9ECEF' : '#FFFFFF'}
 				
 		a i{
 			font-size: 20px !important;
@@ -90,16 +89,13 @@ export const Table = styled.table`
 		}
 
 		.fas.fa-search{
-			color:red;
 			margin-right: 10px !important;
 		}
 
 		a .fas.fa-pen{
 			&:hover{
-				color: blue !important;
+				color: green !important;
 			}
 		}
-	}
-
-	
+	}	
 `

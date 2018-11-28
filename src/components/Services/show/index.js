@@ -2,25 +2,22 @@ import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import moment from 'moment'
-import { 
-  getServiceById,
-  editService, 
-  newDestiny,
-  delDestiny
-} from "../../../actions/servicesActions";
+import Popup from "reactjs-popup";
 
-import { defaultAction } from "../../../actions/default"
-
+import { getServiceById } from "../../../actions/servicesActions";
+import { createLogPrintAction } from '../../../actions/logsActions'
+import OsPdf from '../../Reports/pdf/report_os'
 import PopupLocal from '../PopupLocal';
 import PopupCompany from '../PopupCompany';
 import PopupCar from '../PopupCar';
 import PopupDriver from '../PopupDriver';
 import PopupPassenger from '../PopupPassenger'
 import PopupRequester from '../PopupRequester'
+import LogsComponent from  '../LogsComponent'
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 
-class EditService extends Component {
+class ShowService extends Component {
   constructor(props) {
     super(props);
 
@@ -47,7 +44,6 @@ class EditService extends Component {
       local:[],
     };
 
-    this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
   }
 
@@ -81,58 +77,13 @@ class EditService extends Component {
         custCenter: nextProps.service.custCenter || '',
         hour: nextProps.service.hour || '',
         log: nextProps.service.log || [],
-        id: nextProps.service.id.toString(),
+        id: nextProps.service.id ? nextProps.service.id.toString(): '',
       })
     }
   }
 
   componentDidMount(){
     this.props.getServiceById(this.props.match.params.id)
-    // this.props.defaultAction();
-  }
-
-  onSubmit(e) {
-    e.preventDefault();
-    const editService = {};
-    editService._id = this.props.match.params.id
-    
-    this.state.company ? 
-      editService.company = this.state.company : editService.company = []
-    
-    this.state.requester.length ? 
-      editService.requester = this.state.requester : editService.requester = []
-
-    this.state.driver.name || this.state.driver.length ?
-     editService.driver = this.state.driver : editService.driver = []
-
-    this.state.car.name || this.state.car.length? 
-      editService.car = this.state.car : editService.car = []
-
-    this.state.local.length 
-      ? editService.destiny = this.state.local : editService.destiny = []
-
-    this.state.passengers.length ? 
-      editService.passenger = this.state.passengers : editService.passenger = []
-
-    this.state.reserve ? 
-      editService.reserve = this.state.reserve : editService.reserve = ""
-
-    this.state.hour ? 
-      editService.hour = this.state.hour : editService.hour = ""
-
-    this.state.custCenter ? 
-      editService.custCenter = this.state.custCenter : editService.custCenter = ""
-
-    this.state.observation ? 
-      editService.observation = this.state.observation : editService.observation = ""
-
-    editService.date = this.state.date 
-    editService.status = this.state.status;
-
-    // add logs
-    editService.log = this.state.log
-
-    this.props.editService(editService, this.props.history);
   }
 
   onChange(e) {
@@ -145,12 +96,43 @@ class EditService extends Component {
     this.props.history.push("editar-carro/" + id);
   }
 
+  printOSHandler(os){    
+    return (
+      <Popup trigger={
+        <button className='btn btn-success'>
+          <p>Imprimir</p>
+        </button>
+      }modal closeOnDocumentClick>
+        {close => (
+          <OsPdf os={os} createlog={this.props.createLogPrintAction}/>
+        )}
+      </Popup>)
+  }
+
+  renderLog(){
+    return (
+      <Popup trigger={
+        <button className='btn btn-primary'>
+          <p>logs</p>
+        </button>
+      }modal closeOnDocumentClick>
+        {close => <LogsComponent logs={this.props.service.log || []}/>}
+      </Popup>
+    )
+  }
+
   render() {
     const { id:_id } = this.props.match.params
     return (
       <div>
+        <Link to={'/servicos'}>
+          <i className="fas fa-arrow-left arrow-back"> 
+          </i>        </Link>
+
         <h1 className="text-left">Serviços</h1>
         <div className="container screen text-left">
+          <Link className="btn btn-success" to={'/editar-servico/' + _id}>Editar</Link>
+          {this.printOSHandler(this.props.service)}
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row mb-3">
             <div className="col-md-2">
@@ -168,8 +150,9 @@ class EditService extends Component {
                 <TextFieldGroupSmall
                   placeholder="Nº Reserva"
                   name="reserve"
-                  value={this.state.reserve}
+                  value={this.state.reserve || ''}
                   onChange={this.onChange}
+                  disabled={'true'}
                 />
               </div>
             </div>
@@ -182,20 +165,18 @@ class EditService extends Component {
                   className="date"
                   value={this.state.date}
                   onChange={this.onChange}
+                  disabled={'true'}
                   style={{ width:30, borderRadius: 0 }}
                 />
               </div>
-              {/*---------- Empresa ----------*/}
-              <PopupCompany isEdit={true}/>
+              <PopupCompany isCreate={false}/> {/*---------- Empresa ----------*/}
 
-              {/*---------- SOLICITANTE ----------*/}
-              <PopupRequester isEdit={true}/>
+              <PopupRequester /> {/*---------- SOLICITANTE ----------*/}
 
             </div>
 
             <div className="form-row mb-3">
-              {/* -----------PASSAGEIROS----------- */}
-              <PopupPassenger isEdit={true}/>
+              <PopupPassenger /> {/* -----------PASSAGEIROS----------- */}
 
             </div>  
             <div className="form-row mb-3">
@@ -207,10 +188,10 @@ class EditService extends Component {
                   name="hour"
                   value={this.state.hour}
                   onChange={this.onChange}
+                  disabled={'true'}
                 />
               </div>
-              {/* -----------LOCAL----------- */}
-              <PopupLocal isEdit={true}/>
+              <PopupLocal /> {/* -----------LOCAL----------- */}
 
             </div>
             <div className="form-row">
@@ -219,17 +200,15 @@ class EditService extends Component {
                 <TextFieldGroupSmall
                   placeholder="Observação"
                   name="observation"
-                  value={this.state.observation}
+                  value={this.state.observation || ""}
                   onChange={this.onChange}
+                  disabled={'true'}
                 />
               </div>
             </div>
               <div className="form-row mb-3">
-              {/* -----------MOTORISTAS----------- */}
-              <PopupDriver isEdit={true} />
-
-              {/* -----------  CARROS ------------ */}
-              <PopupCar isEdit={true} />
+              <PopupDriver /> {/* -----------MOTORISTAS----------- */}
+              <PopupCar /> {/* -----------  CARROS ------------ */}
               <div className="col-md-3 ml-4">
                 <label>Centro de custo</label>
                 <TextFieldGroupSmall
@@ -237,24 +216,12 @@ class EditService extends Component {
                   name="custCenter"
                   value={this.state.custCenter}
                   onChange={this.onChange}
+                  disabled={'true'}
                 />
               </div>
-            </div>
-            <div className="form-row">
-              <div className="controls">
-                <a 
-                  className="btn btn-primary mb-1" 
-                  style={{ color: 'white'}}
-                  onClick={this.onSubmit}
-                  >
-                  <p>Confirma</p>
-                </a>
-                <Link to={'/visualizar-servico/' + _id} className="cancel btn btn-danger mb-1">
-                  <p>Cancelar</p>
-                </Link>
-              </div>             
             </div> 
           </form>
+          {this.renderLog()}
         </div>
       </div>
     );
@@ -264,11 +231,10 @@ class EditService extends Component {
 const mapStateToProps = state => ({
   driver: state.services.service.driver,
   local: state.services.service.destinys,
-  service: state.services.service,
-  user: state.auth.user.name
+  service: state.services.service
 })
 
 export default connect(
   mapStateToProps,
-  { editService, newDestiny, delDestiny, getServiceById }
-)(withRouter(EditService));
+  { getServiceById, createLogPrintAction }
+)(withRouter(ShowService));

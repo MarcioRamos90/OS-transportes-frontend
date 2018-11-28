@@ -8,6 +8,8 @@ import {
   delDestiny
 } from "../../../actions/servicesActions";
 
+import { defaultAction } from "../../../actions/default"
+
 import PopupLocal from '../PopupLocal';
 import PopupCompany from '../PopupCompany';
 import PopupCar from '../PopupCar';
@@ -44,6 +46,10 @@ class CreateService extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+  }
+
+  componentDidMount(){
+    this.props.defaultAction()
   }
 
   componentWillReceiveProps(nextProps){
@@ -88,6 +94,11 @@ class CreateService extends Component {
     newService.observation = this.state.observation
     newService.status = this.state.status;
 
+    newService.user = this.props.username
+    newService.tipo = "criado"
+
+    console.log(newService)
+    
     this.props.newService(newService, this.props.history);
   }
 
@@ -135,18 +146,18 @@ class CreateService extends Component {
                 />
               </div>
               {/*---------- Empresa ----------*/}
-              <PopupCompany />
+              <PopupCompany isEdit={true} />
               {/*---------- Fim - Empresa ----------*/}
 
               {/*---------- SOLICITANTE ----------*/}
-              <PopupRequester />
+              <PopupRequester isEdit={true} />
               {/*---------- Fim ----------*/}
               
             </div>
 
             <div className="form-row mb-3">
           {/* -----------PASSAGEIROS----------- */}
-            <PopupPassenger />
+            <PopupPassenger isEdit={true}/>
           {/* -----------END----------- */}
             </div>  
             <div className="form-row mb-3">
@@ -161,7 +172,7 @@ class CreateService extends Component {
                 />
               </div>
               {/* -----------LOCAL----------- */}
-              <PopupLocal />
+              <PopupLocal isEdit={true}/>
               {/* -----------END----------- */}
             </div>
             <div className="form-row">
@@ -178,9 +189,9 @@ class CreateService extends Component {
               <div className="form-row mb-3">
 
             {/* -----------MOTORISTAS----------- */}
-              <PopupDriver />
+              <PopupDriver isEdit={true}/>
             {/* -----------  CARROS ------------ */}
-              <PopupCar />
+              <PopupCar isEdit={true}/>
               <div className="col-md-3 ml-4">
                 <label>Centro de custo</label>
                 <TextFieldGroupSmall
@@ -218,10 +229,11 @@ const mapStateToProps = state => ({
   passengers: state.services.service.passengers,
   driver: state.services.service.driver,
   local: state.services.service.destinys,
-  service: state.services.service
+  service: state.services.service,
+  username: state.auth.user.name
 })
 
 export default connect(
   mapStateToProps,
-  { newService, newDestiny, delDestiny }
+  { newService, newDestiny, delDestiny, defaultAction }
 )(withRouter(CreateService));

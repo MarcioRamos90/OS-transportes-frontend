@@ -34,6 +34,7 @@ class ListServices extends Component {
       hour:"",
       services: [],
       finalized: false,
+      username: ""
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -48,8 +49,9 @@ class ListServices extends Component {
       this.setState({
         services: nextProps.services
       });
-    }
+    };
   }
+
 
   onSubmit(e) {
     e.preventDefault();
@@ -88,7 +90,7 @@ class ListServices extends Component {
       : (filter.end = "");
     this.state.car.length > 0
       ? (filter.car = this.state.car)
-      : (filter.car = "");
+      : (filter.car = "")
 
     filter.finalized = this.state.finalized;
     filter.status = this.state.canceled;
@@ -104,6 +106,10 @@ class ListServices extends Component {
 
   editClick(id) {
     this.props.history.push("/editar-servico/" + id);
+  }
+
+  visualiseOSClick(id){
+    this.props.history.push("/visualizar-servico/" + id);
   }
 
   cancelClick(id){
@@ -149,61 +155,52 @@ class ListServices extends Component {
     this.setState({
       errorMessage: error
     })
-    
-    setTimeout(
-      function() {
-          this.setState({errorMessage: null});
+    setTimeout(function() {
+        this.setState({errorMessage: null});
       }
       .bind(this),
       5000
       );
-    
   }
 
   retuntOS(os){
     this.handleError('OS finalizada ou cancelada não retorna à em aberto.')
   }
 
+  showComponentHandler(os){
+    return (
+      <a onClick={() => this.visualiseOSClick(os._id)}>
+        <i className="far fa-eye"></i>
+      </a>)
+  }
+
+  passengerTextHandler(passenger = []){
+    return passenger.map(val => val.name + ' /').join('\n') || ''
+  }
+  
+  localTextHandler(destiny = []){
+    return destiny.map(val => val.local + ' /').join('\n') || ''
+  }
+
   renderOS() {
-    
     if(this.state.services){
     return this.state.services.map(os => (
 
       <tr key={os._id} style={{ color: os.finalized === true ? 'blue' : 'black' }}>
         <td>
-          <Popup trigger={
-              <a>
-                <i className="fas fa-file-pdf"></i>
-              </a>
-            }  modal closeOnDocumentClick>
-              {close => (
-                <OsPdf os={os}/>
-              )}
-            </Popup>
-        </td>
-        <td>
-          {!os.status ?
-            <a onClick={() => this.retuntOS(os)} >
-              <i className="fas fa-times"></i>
-            </a>
-            :
-            <a onClick={() => this.editClick(os._id)}>
-              <i className="fas fa-pen"></i>
-            </a>
-          }
+          {this.showComponentHandler(os)}
         </td>
         <td>{moment(os.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
         <td>{os.hour}</td>
         <td>{os.id}</td>
         <td>{os.custCenter}</td>
         <td>{os.company.length > 0 && os.company[0].name}</td>
-        <td style={{padding:'30px !important'}}>{os.passengers.length > 0 
-          && os.passengers.map(pass => (
-            <p className='list-td' key={pass._id}>{pass.name}</p>))}</td>
-
-        <td className='list-td'>{os.destinys.length > 0 
-          && os.destinys.map(dest => ( <p key={dest._id}>{dest.local}</p> ))}</td>
-
+        <td style={{padding:'30px !important', maxWidth:250}}>
+          {this.passengerTextHandler(os.passengers)}
+        </td>
+        <td style={{padding:'30px !important', maxWidth:250}}>
+          {this.localTextHandler(os.destinys)}
+        </td>
         <td>{os.driver.length > 0 && os.driver[0].name}</td>
         <td>{os.car.length > 0 && os.car[0].name}</td>
         <td>
@@ -252,7 +249,7 @@ class ListServices extends Component {
             className="btn btn-success" 
             style={{ color: 'white', position: 'absolute', right: 30, top:90}}>
             Ralatório Geral
-          </a>
+          </a> 
         } modal closeOnDocumentClick>
           {close => (
             <ReportPdf services={this.props.services}/>
@@ -411,8 +408,7 @@ class ListServices extends Component {
           <Table className="table">
             <thead className="thead-dark">
               <tr>
-                <th scope="col">PDF</th>
-                <th scope="col">Edit</th>
+                <th scope="col">Ver</th>
                 <th scope="col">Data</th>
                 <th scope="col">HR</th>
                 <th scope="col">Cód</th>
@@ -435,7 +431,7 @@ class ListServices extends Component {
 }
 
 const mapStateToProps = state => ({
-  services: state.services.list
+  services: state.services.list,
 });
 export default connect(
   mapStateToProps,

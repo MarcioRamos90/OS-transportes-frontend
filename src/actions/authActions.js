@@ -42,6 +42,12 @@ export const loginUser = userData => dispatch => {
     });
 };
 
+// Get current
+// export const getCurrentUser =>{
+//   api.get('api/users/current')
+//     .then(res => {})
+// }
+
 // Set logged User
 export const setCurrentUser = decoded => {
   return {

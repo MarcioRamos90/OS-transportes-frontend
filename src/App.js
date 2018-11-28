@@ -16,19 +16,16 @@ import Menu from "./components/Menu";
 import ListCompanies from "./components/Companies/list";
 import EditCompanie from "./components/Companies/edit";
 import CreateCompanie from "./components/Companies/create";
-
 import ListCars from "./components/Cars/list";
 import CreateCar from "./components/Cars/create";
 import EditCar from "./components/Cars/edit";
-
 import ListDrivers from "./components/Drivers/list";
 import CreateDriver from "./components/Drivers/create";
 import EditDriver from "./components/Drivers/edit";
-
 import ListServices from "./components/Services/list";
 import CreateService from "./components/Services/create";
 import EditService from "./components/Services/edit";
-
+import ShowService from "./components/Services/show";
 import ListBills from "./components/Bills/list";
 
 import store from "./store";
@@ -132,6 +129,14 @@ class App extends Component {
                 exact
                 path="/editar-servico/:id"
                 component={EditService}
+              />
+            </Switch>
+            
+            <Switch>
+              <PrivateRoute
+                exact
+                path="/visualizar-servico/:id"
+                component={ShowService}
               />
             </Switch>
 

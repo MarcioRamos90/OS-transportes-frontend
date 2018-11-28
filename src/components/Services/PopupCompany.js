@@ -79,18 +79,22 @@ class PopupCompany extends Component {
 
   renderListCompany() {
     const { company } = this.state
+    const { isEdit } = this.props
+
     if (!isEmpty(company)){
       return (
         <div className="li-trash">
           <li className="list-group-item d-flex justify-content-between align-items-center">
             {company.name}
           </li>
-          <a>
-            <i 
-              onClick={() => {this.delCompany()}}
-              className="fas fa-trash"
-            />
-          </a>
+          { isEdit &&
+            <a>
+              <i 
+                onClick={() => {this.delCompany()}}
+                className="fas fa-trash"
+              />
+            </a>
+          }
         </div>
         )
       }else{
@@ -165,22 +169,25 @@ class PopupCompany extends Component {
   }
 
   render() {
+    const { isEdit } = this.props
     return (
       <Container>
         <label>Empresa</label>
         <div className='content'>
-          <Popup trigger={
-            <a className="plus-button">
-              <i className="fas fa-search" />
-            </a>} modal closeOnDocumentClick>
-            {close => (
-              <div>
-                {this.renderSearchCompany(close)}
-              </div>
-            )}
-          </Popup>
+          { isEdit && 
+            <Popup trigger={
+              <a className="plus-button">
+                <i className="fas fa-search" />
+              </a>} modal closeOnDocumentClick>
+              {close => (
+                <div>
+                  {this.renderSearchCompany(close)}
+                </div>
+              )}
+            </Popup>
+          }
 
-          <Listul>
+          <Listul disabled={!isEdit}>
             {this.renderListCompany()}
           </Listul>
 

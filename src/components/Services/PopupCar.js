@@ -64,19 +64,23 @@ class PopupCar extends Component {
   }
 
   renderListCar() {
-    const { car } = this.state
+    const { car } = this.state;
+    const { isEdit } = this.props;
+
     if (!isEmpty(car)){
       return (
         <div className="li-trash">
           <li className="list-group-item d-flex justify-content-between align-items-center">
             {car.name}
           </li>
-          <a>
-            <i 
-              onClick={() => {this.delCar()}}
-              className="fas fa-trash"
-            />
-          </a>
+          {isEdit &&
+            <a>
+              <i 
+                onClick={() => {this.delCar()}}
+                className="fas fa-trash"
+              />
+            </a>
+          }
         </div>
         )
       }else{
@@ -140,22 +144,25 @@ class PopupCar extends Component {
   }
 
   render() {
+    const { isEdit } = this.props;
     return (
       <Container>
         <label>Carro</label>
         <div className='content'>
-          <Popup  trigger={
-            <a className="plus-button">
-              <i className="fas fa-search" />
-            </a>} modal closeOnDocumentClick>
-            {close => (
-              <div>
-               {this.renderSearchCars(close)}
-              </div>
-            )}
-          </Popup>
+          {isEdit &&
+            <Popup  trigger={
+              <a className="plus-button">
+                <i className="fas fa-search" />
+              </a>} modal closeOnDocumentClick>
+              {close => (
+                <div>
+                 {this.renderSearchCars(close)}
+                </div>
+              )}
+            </Popup>
+          }
 
-          <Listul>
+          <Listul disabled={!isEdit}>
             {this.renderListCar()}
           </Listul>
 

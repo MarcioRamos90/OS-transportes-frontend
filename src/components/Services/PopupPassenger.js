@@ -147,17 +147,21 @@ class PopupPassenger extends Component {
   }
 
   renderListPassenger() {
-    const { passenger } = this.state
+    const { passenger } = this.state;
+    const { isEdit } = this.props;
+
     if (!isEmpty(passenger)){
       return passenger.map(passenger => (
         <Fragment key={passenger.name}>
           <tr >
             <td>{passenger.name}</td>
-            <td>
-              <a onClick={() => this.props.delServicePassenger(passenger)}>
-                <i className="fas fa-trash text-center"/>
-              </a>
-            </td>
+            {isEdit && 
+              <td>
+                <a onClick={() => this.props.delServicePassenger(passenger)}>
+                  <i className="fas fa-trash text-center"/>
+                </a>
+              </td>
+            }
           </tr>
         </Fragment>
       ))}
@@ -171,27 +175,30 @@ class PopupPassenger extends Component {
   }
 
   render() {
+    const { isEdit } = this.props
     return (
       <Container>
         <label>Passageiro</label>
         <div className='content'>
-          <Popup trigger={
-            <a className="plus-button">
-              <i className="fas fa-search" />
-            </a>} modal closeOnDocumentClick>
-            {close => (
-              <div>
-                {this.renderSearchPassenger(close)}
-              </div>
-            )}
-          </Popup>
-          <Table className="table table-bordered" >
+
+          {isEdit &&
+            <Popup trigger={
+              <a className="plus-button">
+                <i className="fas fa-search" />
+              </a>} modal closeOnDocumentClick>
+              {close => (
+                <div>
+                  {this.renderSearchPassenger(close)}
+                </div>
+              )}
+            </Popup>
+          }
+          <Table className="table table-bordered" disabled={!isEdit}>
             <tbody>
               {this.renderListPassenger()}
-              
             </tbody>
           </Table>
-        </div>
+          </div>
       </Container>
     )
   }
