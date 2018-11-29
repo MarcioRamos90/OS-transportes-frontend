@@ -71,9 +71,6 @@ const styles = StyleSheet.create({
 })
 
 class MyDocument extends Component {
-  componentDidMount(){
-    console.log(this.props.services)
-  }
 
   destiny(destinys){
     return(

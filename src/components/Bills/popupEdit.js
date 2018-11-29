@@ -27,7 +27,6 @@ class ListBills extends Component {
   }
 
   componentDidMount(){
-    // console.log(this.props.bill)
     this.setState({
       service: this.props.bill.service,
       os_code: this.props.bill.os_code.toString(),

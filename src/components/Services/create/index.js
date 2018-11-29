@@ -96,8 +96,6 @@ class CreateService extends Component {
 
     newService.user = this.props.username
     newService.tipo = "criado"
-
-    console.log(newService)
     
     this.props.newService(newService, this.props.history);
   }

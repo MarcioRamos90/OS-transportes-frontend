@@ -7,10 +7,6 @@ class Logscomponent extends Component {
 		this.renderlogs = this.renderlogs.bind(this)
 	}
 
-	componentDidMount(){
-		console.log(this.props.logs)
-	}
-
 	getDateFormated(date){
 		date = new Date(date)
 		return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`

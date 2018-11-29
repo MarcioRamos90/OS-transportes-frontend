@@ -44,7 +44,6 @@ class CreateDriver extends Component {
     newDriver.active = this.state.active ? "true" : "false";
 
     this.props.newDriver(newDriver, this.props.history);
-    // console.log(newDriver);
   }
 
   onChange(e) {

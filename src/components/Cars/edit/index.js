@@ -65,7 +65,6 @@ class EditCar extends Component {
       active: this.state.active
     };
     this.props.editCar(editCar, this.props.history);
-    // console.log(editCar);
   }
 
   checkClick() {

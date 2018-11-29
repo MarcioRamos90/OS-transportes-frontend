@@ -21,9 +21,6 @@ class EditCar extends Component {
   componentWillReceiveProps(nextProps) {
     if (nextProps.local) {
       const local = nextProps.local;
-
-      console.log('props:' + local.local)
-
       const destiny = local.local ? local.local : "";
       const adress = local.adress ? local.adress : "";
 
@@ -37,7 +34,6 @@ class EditCar extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props)
     this.props.getLocalById(this.props.id);
   }
 

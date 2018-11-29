@@ -44,7 +44,6 @@ class ListCars extends Component {
     filter.active = this.state.active ? "true" : "false";
 
     this.props.getCars(filter);
-    // console.log(filter);
   }
 
   onChange(e) {

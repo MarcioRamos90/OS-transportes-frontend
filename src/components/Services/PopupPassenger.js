@@ -67,7 +67,6 @@ class PopupPassenger extends Component {
     const filter = {};
     filter.name = this.state.name || ""
     
-    // console.log(filter)
     this.props.getPassenger(filter);
 
   }

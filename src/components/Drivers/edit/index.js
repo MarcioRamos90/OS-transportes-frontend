@@ -62,7 +62,6 @@ class EditDriver extends Component {
       bilingue: this.state.bilingue,
       active: this.state.active
     };
-    // console.log(editDriver);
     this.props.editDriver(editDriver, this.props.history);
   }
 

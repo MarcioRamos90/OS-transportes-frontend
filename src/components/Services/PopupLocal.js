@@ -73,7 +73,6 @@ class PopupLocal extends Component {
     filter.destiny = this.state.destiny
     filter.adress= this.state.adress
     
-    // console.log(filter)
     this.props.getLocal(filter);
 
   }

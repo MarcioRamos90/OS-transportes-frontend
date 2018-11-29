@@ -66,7 +66,6 @@ class PopupRequester extends Component {
     const filter = {};
     filter.name = this.state.name || ""
     
-    // console.log(filter)
     this.props.getRequester(filter);
   }
 

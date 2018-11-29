@@ -52,7 +52,6 @@ class ListBills extends Component {
     }
     
     if(this.state.typeInput === "payment"){
-      console.log(this.state.total)
       this.setState({
         total: Math.abs(this.state.total)
       })
@@ -73,7 +72,6 @@ class ListBills extends Component {
     filter.type = this.state.typeInput
 
     this.props.getBills(filter);
-    // console.log(filter);
   }
 
   onChange(e) {

@@ -40,7 +40,6 @@ class CreateCar extends Component {
       active: this.state.active
     };
     this.props.newCar(newCar, this.props.history);
-    // console.log(newCar);
   }
 
   checkClick() {

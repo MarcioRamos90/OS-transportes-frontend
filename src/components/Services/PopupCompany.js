@@ -110,7 +110,6 @@ class PopupCompany extends Component {
 
   renderComp(close) {
     
-    console.log(this.state.companies)
     if(this.state.companies){
       return this.state.companies.map(comp => (
         <tr onClick={() => {this.selectClick(comp); close()}}  key={comp._id}>
