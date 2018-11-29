@@ -26,7 +26,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-app-env react-scripts build",
-    "test": "react-app-env react-scripts test --env=jsdom",
-    "eject": "react-app-env react-scripts eject"
+    "eject": "react-app-env react-scripts eject",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "react-test-renderer": "^16.6.3"
   }
 }

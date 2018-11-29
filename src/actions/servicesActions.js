@@ -82,7 +82,7 @@ export const editService = (data, history) => dispatch => {
 
 export const cancelService = (data, history) => dispatch => {
   api
-    .put("/api/services/cancel", data._id)
+    .post("/api/services/cancel/" + data._id)
     .then(res => {
       dispatch(cleanService())
     })

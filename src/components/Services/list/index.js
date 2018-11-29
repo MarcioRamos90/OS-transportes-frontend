@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import moment from 'moment'
 import Popup from "reactjs-popup";
 
-import { getServices, finishOS } from "../../../actions/servicesActions";
+import { getServices, finishOS, cancelService } from "../../../actions/servicesActions";
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 import { Container, Table } from "../../commonStyles/PopupStyles";
@@ -42,6 +42,7 @@ class ListServices extends Component {
     this.renderOS = this.renderOS.bind(this);
     this.checkClick = this.checkClick.bind(this);
     this.handleError = this.handleError.bind(this);
+    this.cancelIconHandle = this.cancelIconHandle.bind(this)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -112,9 +113,32 @@ class ListServices extends Component {
     this.props.history.push("/visualizar-servico/" + id);
   }
 
-  cancelClick(id){
-    return 
+
+
+  renderLog(os){
+    return (
+      <Popup trigger={
+      <a>
+        <i className="fas fa-ban"></i>
+      </a>
+      } modal closeOnDocumentClick>
+        {close => <PopupCancel os={os} close={close}/>}
+      </Popup>
+    )
   }
+
+  cancelIconHandle(os){
+    return (<td>{!os.status ? 
+      <a onClick={() => this.retuntOS(os)} >
+        <i className="fas fa-times"></i>
+      </a>
+      :
+      this.renderLog(os)
+    }</td>)
+  }
+
+
+
 
   checkClick() {
     this.setState({
@@ -214,20 +238,9 @@ class ListServices extends Component {
             </a>
           }
         </td>
-        <td>
-          {os.status ?
-          <Popup style={{ position:'absolute' }} trigger={
-            <a onClick={() => this.cancelClick(os._id)} >
-              <i className="fas fa-ban"></i>
-            </a>
-          }  modal closeOnDocumentClick>
-            {close => (<PopupCancel os={os} close={close}/>)}
-          </Popup> :
-            <a onClick={() => this.retuntOS(os)} >
-              <i className="fas fa-times"></i>
-            </a>
-          }
-        </td>
+        
+          {this.cancelIconHandle(os)}
+        
       </tr>
     ))}
   }
@@ -435,5 +448,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getServices, finishOS }
+  { getServices, finishOS, cancelService }
 )(withRouter(ListServices));

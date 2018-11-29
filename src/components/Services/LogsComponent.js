@@ -19,7 +19,7 @@ class Logscomponent extends Component {
 
 	renderlogs(log){
 		const dateStr = this.getDateFormated(log.when)
-		const acao = {create: 'criou', update:'editou', finish: 'finalizou', canceled: 'cancelou', print: 'imprimiu'}
+		const acao = {create: 'criou', update:'editou', finish: 'finalizou', cancel: 'cancelou', print: 'imprimiu'}
 		return <li key={log._id}>o usuário {log.who}, {acao[log.what]} um serviço, em {dateStr}</li>
 	}
 
