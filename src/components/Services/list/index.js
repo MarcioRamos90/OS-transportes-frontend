@@ -10,7 +10,6 @@ import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 import { Container, Table } from "../../commonStyles/PopupStyles";
 import PopupCancel from '../PopupCancel';
 import isEmpyt from  '../../../validation/is-empty'
-import OsPdf from '../../Reports/pdf/report_os'
 import ReportPdf from '../../Reports/pdf/reportAll'
 
 class ListServices extends Component {

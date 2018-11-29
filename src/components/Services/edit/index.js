@@ -9,8 +9,6 @@ import {
   delDestiny
 } from "../../../actions/servicesActions";
 
-import { defaultAction } from "../../../actions/default"
-
 import PopupLocal from '../PopupLocal';
 import PopupCompany from '../PopupCompany';
 import PopupCar from '../PopupCar';

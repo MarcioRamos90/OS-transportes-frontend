@@ -17,8 +17,8 @@ class PopupCancel extends Component{
 			message:"",
       errorMessage:"",
 			status: false,
-      createBill: false,
-      valuetoPay:'',
+      createBills: false,
+      valuetoPayment:'',
       valuetoReceive: ''
 		}
 
@@ -36,16 +36,12 @@ class PopupCancel extends Component{
         this.handlerError("");
         var cancelSubmit = {};
 
-        cancelSubmit = {...this.props.os}
         cancelSubmit.message = this.state.message;
-        cancelSubmit.status = false;
-        cancelSubmit.id = cancelSubmit._id;
-
-        cancelSubmit.createBill = this.state.createBill
+        cancelSubmit.createBills = this.state.createBills
         cancelSubmit.valuetoReceive = this.state.valuetoReceive
-        cancelSubmit.valuetoPay = this.state.valuetoPay
-        
-        this.props.cancelService(cancelSubmit);
+        cancelSubmit.valuetoPayment = this.state.valuetoPayment
+
+        this.props.cancelService(this.props.os._id, cancelSubmit);
         this.props.close();
         
       }else{
@@ -60,7 +56,7 @@ class PopupCancel extends Component{
 
 
     if( Number.isNaN(Number(this.state.valuetoReceive)) || 
-        Number.isNaN(Number(this.state.valuetoPay))){
+        Number.isNaN(Number(this.state.valuetoPayment))){
         
         error = "insira valores válidos nos campos de contas"
     }
@@ -229,8 +225,8 @@ class PopupCancel extends Component{
                 <input
                   className="form-check-input"
                   type="checkbox"
-                  name="createBill"
-                  checked={this.state.createBill}
+                  name="createBills"
+                  checked={this.state.createBills}
                   onChange={this.checkClick}
                 />
                 <label className="form-check-label">Gera conta?</label>
@@ -239,10 +235,10 @@ class PopupCancel extends Component{
                 <label>Valor a pagar</label>
                 <TextFieldGroupSmall
                   placeholder="R$"
-                  name="valuetoPay"
-                  value={this.state.valuetoPay}
+                  name="valuetoPayment"
+                  value={this.state.valuetoPayment}
                   onChange={this.onChange}
-                  disabled={!this.state.createBill}
+                  disabled={!this.state.createBills}
                   className="ml-5"
                 />
               </div>
@@ -253,7 +249,7 @@ class PopupCancel extends Component{
                   name="valuetoReceive"
                   value={this.state.valuetoReceive}
                   onChange={this.onChange}
-                  disabled={!this.state.createBill}
+                  disabled={!this.state.createBills}
                   className="ml-5"
                 />
               </div>

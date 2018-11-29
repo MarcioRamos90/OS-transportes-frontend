@@ -80,9 +80,9 @@ export const editService = (data, history) => dispatch => {
     });
 };
 
-export const cancelService = (data, history) => dispatch => {
+export const cancelService = (id, data, history) => dispatch => {
   api
-    .post("/api/services/cancel/" + data._id)
+    .post("/api/services/cancel/" + id, data)
     .then(res => {
       dispatch(cleanService())
     })
