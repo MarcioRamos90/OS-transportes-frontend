@@ -12,7 +12,8 @@ import {
   NEW_SERVICE_CAR,
   NEW_SERVICE_COMPANY,
   NEW_SERVICE_REQUESTER,
-  DEL_SERVICE_REQUESTER
+  DEL_SERVICE_REQUESTER,
+  CLEAN_SERVICE
 } 
 from "./types";
 
@@ -25,7 +26,7 @@ export const finishOS = id => dispatch => {
 
 export const cleanService = () => {
   return {
-    type: "CLEAN_SERVICE",
+    type: CLEAN_SERVICE,
     payload: {}
   }
 }

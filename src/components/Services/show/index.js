@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import moment from 'moment'
 import Popup from "reactjs-popup";
 
-import { getServiceById } from "../../../actions/servicesActions";
+import { getServiceById, cleanService } from "../../../actions/servicesActions";
 import { createLogPrintAction } from '../../../actions/logsActions'
 import OsPdf from '../../Reports/pdf/report_os'
 import PopupLocal from '../PopupLocal';
@@ -45,6 +45,7 @@ class ShowService extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.onBackToServices = this.onBackToServices.bind(this)
   }
 
   componentWillReceiveProps(nextProps){
@@ -121,14 +122,21 @@ class ShowService extends Component {
     )
   }
 
+  onBackToServices(){
+    this.props.cleanService()
+    this.props.history.push('/servicos')
+  }
+
   render() {
     const { id:_id } = this.props.match.params
     return (
       <div>
-        <Link to={'/servicos'}>
+        <a 
+          onClick={this.onBackToServices}
+          >
           <i className="fas fa-arrow-left arrow-back"> 
           </i>
-        </Link>
+        </a>
 
         <h1 className="text-left">Serviços</h1>
         <div className="container screen text-left">
@@ -237,5 +245,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getServiceById, createLogPrintAction }
+  { getServiceById, createLogPrintAction,cleanService }
 )(withRouter(ShowService));

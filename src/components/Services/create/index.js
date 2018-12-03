@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 import { 
   newService, 
   newDestiny,
-  delDestiny
+  delDestiny,
+  cleanService
 } from "../../../actions/servicesActions";
 
 import { defaultAction } from "../../../actions/default"
@@ -46,6 +47,7 @@ class CreateService extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.onCancel = this.onCancel.bind(this);
   }
 
   componentDidMount(){
@@ -112,6 +114,11 @@ class CreateService extends Component {
 
   pdfPrint(){
     return 
+  }
+
+  onCancel(){
+    this.props.cleanService()
+    this.props.history.push('/servicos/')
   }
 
   render() {
@@ -211,9 +218,13 @@ class CreateService extends Component {
                     >
                     <p>Confirma</p>
                   </a>
-                  <Link to="/servicos/" className="cancel btn btn-danger mb-1">
+                  <a
+                    style={{ color: 'white'}}
+                    className="cancel btn btn-danger mb-1"
+                    onClick={this.onCancel}
+                    >
                     <p>Cancelar</p>
-                  </Link>
+                  </a>
                 </div>             
               </div> 
           </form>
@@ -233,5 +244,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { newService, newDestiny, delDestiny, defaultAction }
+  { newService, newDestiny, delDestiny, defaultAction, cleanService }
 )(withRouter(CreateService));

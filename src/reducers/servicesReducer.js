@@ -9,7 +9,8 @@ import {
   NEW_SERVICE_CAR,
   NEW_SERVICE_COMPANY,
   NEW_SERVICE_REQUESTER,
-  DEL_SERVICE_REQUESTER
+  DEL_SERVICE_REQUESTER,
+  CLEAN_SERVICE
 } 
 from "../actions/types";
 
@@ -25,7 +26,7 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case "CLEAN_SERVICE":
+    case CLEAN_SERVICE:
       return INITIAL_STATE
     case 'CHANGE_STATE':
       return {

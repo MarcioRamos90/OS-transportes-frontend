@@ -1,12 +1,13 @@
 import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import moment from 'moment'
 import { 
   getServiceById,
   editService, 
   newDestiny,
-  delDestiny
+  delDestiny,
+  cleanService
 } from "../../../actions/servicesActions";
 
 import PopupLocal from '../PopupLocal';
@@ -47,6 +48,7 @@ class EditService extends Component {
 
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.cancelEditClick = this.cancelEditClick.bind(this)
   }
 
   componentWillReceiveProps(nextProps){
@@ -143,8 +145,13 @@ class EditService extends Component {
     this.props.history.push("editar-carro/" + id);
   }
 
-  render() {
+  cancelEditClick(){
     const { id:_id } = this.props.match.params
+    this.props.cleanService();
+    this.props.history.push('/visualizar-servico/' + _id)
+  }
+
+  render() {
     return (
       <div>
         <h1 className="text-left">Serviços</h1>
@@ -247,9 +254,11 @@ class EditService extends Component {
                   >
                   <p>Confirma</p>
                 </a>
-                <Link to={'/visualizar-servico/' + _id} className="cancel btn btn-danger mb-1">
-                  <p>Cancelar</p>
-                </Link>
+                <button
+                  className="cancel btn btn-danger mb-1"
+                  onClick={this.cancelEditClick}
+                  >Cancelar
+                </button>
               </div>             
             </div> 
           </form>
@@ -268,5 +277,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { editService, newDestiny, delDestiny, getServiceById }
+  { editService, newDestiny, delDestiny, getServiceById, cleanService }
 )(withRouter(EditService));
