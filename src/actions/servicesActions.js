@@ -20,7 +20,7 @@ from "./types";
 export const finishOS = id => dispatch => {
   api.post('api/services/finish/'+ id)
     .then(res => {
-      dispatch(cleanService())
+      console.log(res.data)
     })
 }
 

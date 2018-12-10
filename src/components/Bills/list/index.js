@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Popup from "reactjs-popup";
 import moment from 'moment'
-import { getBills, editBill } from "../../../actions/billsActions";
+import { getBills, finishBill } from "../../../actions/billsActions";
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 import PopupEdit from '../popupEdit'
@@ -92,19 +92,8 @@ class ListBills extends Component {
       </Popup>)
 }
 
-  async filter(status) {
-    const filter = {};
-    filter.name = this.state.name
-    filter.os_code = this.state.os_code
-    filter.start = this.state.date_init
-    filter.end = this.state.date_finish
-    filter.status = status
-    filter.type = this.state.typeInput
 
-    this.props.getBills(filter);
-  }
-
-  async finishBill(bill, status){
+  finishBill = (bill, status)=>{
 
     var error = this.validateFinish(bill, status);
 
@@ -121,12 +110,11 @@ class ListBills extends Component {
       data.destinys = bill.destinys
       data.value = bill.value
       this.handleError('')
-       try {
-         await this.props.editBill(data)
-         await this.filter(status)
-       }catch (error){
-         console.log(error)
-       }
+      
+      this.props.finishBill(data)
+
+      this.onSubmit()
+
     }else{
       this.handleError(error)
     }
@@ -341,5 +329,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getBills, editBill }
+  { getBills, finishBill }
 )(ListBills);

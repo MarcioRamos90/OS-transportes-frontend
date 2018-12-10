@@ -47,3 +47,17 @@ export const editBill = (data, history) => dispatch => {
       });
     });
 };
+
+export const finishBill = (data, history) => dispatch => {
+  api
+    .put("/api/bills/edit", data)
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err
+      });
+    });
+};

@@ -54,7 +54,7 @@ class ListServices extends Component {
 
 
   onSubmit(e) {
-    e.preventDefault();
+    if(e) e.preventDefault();
 
     const filter = {};
     filter.date = {};
@@ -145,12 +145,13 @@ class ListServices extends Component {
     });
   }
 
-  finishOS(os){
+  finishOS = (os) => {
     var errorFinish = this.validateFinish(os)
 
     if(isEmpyt(errorFinish)){
       this.handleError(null)
       this.props.finishOS(os._id)
+      this.onSubmit()
     }else{
       this.handleError(errorFinish)
     }
@@ -174,7 +175,7 @@ class ListServices extends Component {
     return errorFinish
   }
 
-  handleError(error){
+  handleError = (error) => {
     this.setState({
       errorMessage: error
     })
