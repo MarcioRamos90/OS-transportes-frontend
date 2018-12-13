@@ -158,6 +158,7 @@ class ListBills extends Component {
           }  
         </td>
         <td>{moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
+        <td>{bill.hour}</td>
         <td>{bill.reserve}</td>
         <td>{bill.custCenter}</td>
         <td>{bill.os_code}</td>
@@ -302,6 +303,7 @@ class ListBills extends Component {
               <tr>
                 <th scope="col">*</th>
                 <th scope="col">Data</th>
+                <th scope="col">Hour</th>
                 <th scope="col">Reserva</th>
                 <th scope="col">CC</th>
                 <th scope="col">OS</th>
