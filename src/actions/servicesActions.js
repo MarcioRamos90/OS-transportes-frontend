@@ -18,10 +18,8 @@ import {
 from "./types";
 
 export const finishOS = id => dispatch => {
-  api.post('api/services/finish/'+ id)
-    .then(res => {
-      console.log(res.data)
-    })
+  return api.post('api/services/finish/'+ id)
+
 }
 
 export const cleanService = () => {

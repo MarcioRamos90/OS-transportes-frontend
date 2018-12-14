@@ -112,8 +112,6 @@ class ListServices extends Component {
     this.props.history.push("/visualizar-servico/" + id);
   }
 
-
-
   renderLog(os){
     return (
       <Popup trigger={
@@ -136,9 +134,6 @@ class ListServices extends Component {
     }</td>)
   }
 
-
-
-
   checkClick() {
     this.setState({
       status: !this.state.status
@@ -150,8 +145,9 @@ class ListServices extends Component {
 
     if(isEmpyt(errorFinish)){
       this.handleError(null)
-      this.props.finishOS(os._id)
-      this.onSubmit()
+      this.props.finishOS(os._id).then(res => {
+        this.onSubmit()
+      })
     }else{
       this.handleError(errorFinish)
     }
