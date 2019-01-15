@@ -47,6 +47,12 @@ class PopupLocal extends Component {
     }
   }
 
+  componentDidMount(){ 
+    if (this.props.local && this.props.local.length > 0){
+      this.setState({local: this.props.local})
+    }
+  }
+
   submitLocal(){
     const newDestiny ={ destiny:this.state.destiny , adress:this.state.adress}
     this.props.newDestiny(newDestiny)

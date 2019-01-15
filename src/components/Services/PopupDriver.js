@@ -40,6 +40,10 @@ class PopupDriver extends Component {
     }
   }
 
+  componentDidMount(){
+    this.setState({driver: this.props.driver[0]})
+  }
+
   onSubmit(e) {
     e.preventDefault();
 

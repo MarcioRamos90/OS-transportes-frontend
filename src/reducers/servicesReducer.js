@@ -38,10 +38,7 @@ export default (state = INITIAL_STATE, action) => {
         }
       }
     case 'DEFAULT':
-      return { 
-        ...state,
-        service: {...state.service}
-        }
+      return state
 
     case GET_SERVICES:
       return {

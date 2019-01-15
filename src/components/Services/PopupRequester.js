@@ -50,6 +50,12 @@ class PopupRequester extends Component {
     }
   }
 
+  componentDidMount(){ 
+    if (this.props.requester && this.props.requester.length > 0){
+      this.setState({requester: this.props.requester})
+    }
+  }
+
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value

@@ -51,6 +51,12 @@ class PopupPassenger extends Component {
     }
   }
 
+  componentDidMount(){ 
+    if (this.props.passenger && this.props.passenger.length > 0){
+      this.setState({passenger: this.props.passenger})
+    }
+  }
+
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value

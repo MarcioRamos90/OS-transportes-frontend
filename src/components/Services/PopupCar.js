@@ -18,7 +18,7 @@ class PopupCar extends Component {
       yearfab: "",
       chassi: "",
       active: true,
-      cars: []
+      cars: [],
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -38,6 +38,12 @@ class PopupCar extends Component {
       }else{
         this.setState({car: nextProps.car})
       }
+    }
+  }
+
+  componentDidMount(){ 
+    if (this.props.car && this.props.car.length > 0){
+      this.setState({car: this.props.car[0]})
     }
   }
 

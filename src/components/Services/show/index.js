@@ -142,6 +142,7 @@ class ShowService extends Component {
         <div className="container screen text-left">
           <Link className="btn btn-success" to={'/editar-servico/' + _id}>Editar</Link>
           {this.printOSHandler(this.props.service)}
+          <Link className="btn btn-success" to={'/novo/servico'} params={this.state}>Copiar</Link>
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row mb-3">
             <div className="col-md-2">

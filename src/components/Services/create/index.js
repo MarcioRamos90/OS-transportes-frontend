@@ -19,6 +19,7 @@ import PopupPassenger from '../PopupPassenger'
 import PopupRequester from '../PopupRequester'
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
+import moment from 'moment'
 
 class CreateService extends Component {
   constructor(props) {
@@ -50,10 +51,6 @@ class CreateService extends Component {
     this.onCancel = this.onCancel.bind(this);
   }
 
-  componentDidMount(){
-    this.props.defaultAction()
-  }
-
   componentWillReceiveProps(nextProps){
     if(nextProps.passengers){
       this.setState({
@@ -76,6 +73,30 @@ class CreateService extends Component {
         car:nextProps.service.car ? nextProps.service.car : "",
         requester:nextProps.service.requesters,
       })
+    }
+  }
+
+  componentDidMount(){
+
+    if("service" in this.props && "_id" in this.props.service){
+      // copying the informations
+      let { hour, observation, os_date:date , reserve, custCenter, 
+        company, passengers, requesters, car, driver, destinys:local } = this.props.service 
+      // company.length > 0 ? company = company[0].name : company = ""
+      this.setState({
+        reserve: reserve,
+        hour: hour,
+        date: moment(date).add(1, 'day').format('YYYY-MM-DD'),
+        custCenter: custCenter,
+        observation: observation,
+
+        company: company,
+        passengers:passengers,
+        requester: requesters,
+        car: car,
+        local:local,
+        driver: driver,
+      });
     }
   }
 

@@ -46,6 +46,13 @@ class PopupCompany extends Component {
     }
   }
 
+  componentDidMount(){ 
+    if (this.props.company && this.props.company.length > 0){
+      this.setState({company: this.props.company[0]})
+    }
+  }
+
+
   onSubmit(e) {
     e.preventDefault();
 
