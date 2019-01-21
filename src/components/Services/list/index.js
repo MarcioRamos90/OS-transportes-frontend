@@ -6,9 +6,11 @@ import Popup from "reactjs-popup";
 
 import { getServices, finishOS, cancelService } from "../../../actions/servicesActions";
 
+
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 import { Container, Table } from "../../commonStyles/PopupStyles";
 import PopupCancel from '../PopupCancel';
+import PopupFinishAll from '../PopupFinishAll';
 import isEmpyt from  '../../../validation/is-empty'
 import ReportPdf from '../../Reports/pdf/reportAll'
 
@@ -33,7 +35,10 @@ class ListServices extends Component {
       hour:"",
       services: [],
       finalized: false,
-      username: ""
+      username: "",
+
+      selectMany: false,
+      servicesSelected: []
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -125,13 +130,13 @@ class ListServices extends Component {
   }
 
   cancelIconHandle(os){
-    return (<td>{!os.status ? 
+    return !os.status ? 
       <a onClick={() => this.retuntOS(os)} >
         <i className="fas fa-times"></i>
       </a>
       :
       this.renderLog(os)
-    }</td>)
+    
   }
 
   checkClick() {
@@ -164,10 +169,9 @@ class ListServices extends Component {
     if(isEmpyt(os.hour)) errorFinish = "Sem hora a ordem de serviço não pode ser finalizada"
     if(isEmpyt(os.os_date)) errorFinish = "Sem data a ordem de serviço não pode ser finalizada"
     if(isEmpyt(os.destinys)) errorFinish = "Sem destinos a ordem de serviço não pode ser finalizada"
-    if(isEmpyt(!os.status)) errorFinish = "Os já cancelada"
-    if(isEmpyt(!os.finalized)) errorFinish = "Os já finalizada"
+    if(!os.status) errorFinish = "Os já cancelada"
+    if(os.finalized) errorFinish = "Os já finalizada"
     
-
     return errorFinish
   }
 
@@ -202,14 +206,134 @@ class ListServices extends Component {
     return destiny.map(val => val.local + ' /').join('\n') || ''
   }
 
+  checkClickMany = e => {
+    this.setState({
+      [e.target.name]: !this.state[e.target.name]
+    });
+  }
+
+  cleanSelecteds = ()=> {
+    this.setState({
+      servicesSelected: []
+    })
+  }
+
+  handleFinishMany = () => {
+    return <Popup trigger={
+      <a
+        className="btn btn-info ml-4"
+
+        >
+        {this.state.servicesSelected.length } OS's
+      </a> 
+      } modal closeOnDocumentClick>
+        {close => 
+          <PopupFinishAll 
+            services={this.state.servicesSelected} 
+            finishOS={this.props.finishOS} 
+            submit={this.onSubmit}
+            close={close}
+            cleanSelecteds={this.cleanSelecteds}
+            />
+
+        }
+      </Popup>
+  }
+
+  tableHandle(){
+    return (<div className="container">
+      <div
+        className="btn-group mt-2"
+        role="group"
+      >
+        <Link to="/novo/servico" className="btn btn-secondary" >
+           Adicionar Serviço
+        </Link>
+        <div className="custom-control custom-switch ml-4">
+          <input 
+            type="checkbox" 
+            className="custom-control-input" 
+            id="customControlAutosizing"
+            name="selectMany"
+            onChange={this.checkClickMany}
+            checked={this.state.selectMany}
+            />
+          <label 
+            className="custom-control-label" 
+            htmlFor="customControlAutosizing">Selecionar várias OS's</label>
+        </div>
+        { this.state.selectMany ? this.handleFinishMany() : undefined }
+      </div>
+
+      <Table className="table">
+        <thead className="thead-dark">
+          <tr>
+            <th scope="col">Ver</th>
+            <th scope="col">Data</th>
+            <th scope="col">HR</th>
+            <th scope="col">Cód</th>
+            <th scope="col">CC</th>
+            <th scope="col">Empresa</th>
+            <th scope="col">Passageiros</th>
+            <th scope="col">Destinos</th>
+            <th scope="col">Motoristas</th>
+            <th scope="col">Carro</th>
+            { !this.state.selectMany ?
+            <th scope="col">Finalizar</th> : undefined}
+            { !this.state.selectMany ?
+            <th scope="col">Cancelar</th> : undefined}
+          </tr>
+        </thead>
+        <tbody>{this.renderOS()}</tbody>
+      </Table>
+    </div>)
+  }
+
+  itemsSelectMany = (e,  i) => {
+    var errorFinish = this.validateFinish(this.state.services[i])
+
+    if(e.target.checked && isEmpyt(errorFinish)){
+      this.setState({
+        servicesSelected: [...this.state.servicesSelected, this.state.services[i]]
+      })
+    }else if (!isEmpyt(errorFinish)) {
+      e.target.checked = false;
+      this.handleError(errorFinish)
+    }else if(!e.target.checked){
+      const listServices = [...this.state.servicesSelected]
+      const newListServices = listServices.filter(item => {
+        return item.id !== Number(e.target.id)}
+      )
+      this.setState({
+        servicesSelected: [...newListServices]
+      })
+    }
+  }
+
   renderOS() {
+    const { servicesSelected } = this.state
     if(this.state.services){
-    return this.state.services.map(os => (
+    return this.state.services.map((os,index) => (
 
       <tr key={os._id} style={{ color: os.finalized === true ? 'blue' : 'black' }}>
-        <td>
-          {this.showComponentHandler(os)}
-        </td>
+        {!this.state.selectMany ?
+            <td>
+              {this.showComponentHandler(os)}
+            </td> :
+            <td>
+              <div className="custom-control custom-switch">
+                <input 
+                 type="checkbox"  
+                 id={`${os.id}`} 
+                 onChange={(os) => this.itemsSelectMany(os, index)}
+                 checked={
+                  !isEmpyt(servicesSelected.filter(item => item.id === Number(os.id)))
+                  }
+                 />
+              </div>
+            </td>
+        }
+
         <td>{moment(os.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
         <td>{os.hour}</td>
         <td>{os.id}</td>
@@ -223,6 +347,7 @@ class ListServices extends Component {
         </td>
         <td>{os.driver.length > 0 && os.driver[0].name}</td>
         <td>{os.car.length > 0 && os.car[0].name}</td>
+        { !this.state.selectMany ?
         <td>
           {os.finalized || !os.status ? 
             <a onClick={() => this.retuntOS(os)} >
@@ -233,10 +358,12 @@ class ListServices extends Component {
               <i className="fas fa-check"></i>
             </a>
           }
-        </td>
-        
+        </td> : undefined}
+
+        { !this.state.selectMany ?
+        <td>
           {this.cancelIconHandle(os)}
-        
+        </td> : undefined}
       </tr>
     ))}
   }
@@ -253,6 +380,8 @@ class ListServices extends Component {
       }
 
         <h1 className="text-left">Serviços</h1>
+        
+        <div className="container text-left">
         <Popup trigger={
           <a 
             className="btn btn-success" 
@@ -264,7 +393,6 @@ class ListServices extends Component {
             <ReportPdf services={this.props.services}/>
           )}
         </Popup>
-        <div className="container text-left">
           <form onSubmit={this.onSubmit} className="container search">
             <div className="form-row">
               <div className="col-md-1 mb-3">
@@ -403,41 +531,13 @@ class ListServices extends Component {
               </div>
             </div>
           </form>
-
-          <div
-            className="btn-group mt-2"
-            role="group"
-            style={{ marginBotton: 0 }}
-          >
-            <Link to="/novo/servico" className="btn btn-secondary" style={{marginBottom:10}}>
-               Adicionar Serviço
-            </Link>
-          </div>
-
-          <Table className="table">
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">Ver</th>
-                <th scope="col">Data</th>
-                <th scope="col">HR</th>
-                <th scope="col">Cód</th>
-                <th scope="col">CC</th>
-                <th scope="col">Empresa</th>
-                <th scope="col">Passageiros</th>
-                <th scope="col">Destinos</th>
-                <th scope="col">Motoristas</th>
-                <th scope="col">Carro</th>
-                <th scope="col">Finalizar</th>
-                <th scope="col">Cancelar</th>
-              </tr>
-            </thead>
-            <tbody>{this.renderOS()}</tbody>
-          </Table>
         </div>
+         {this.tableHandle()}
       </Container>
     );
   }
 }
+
 
 const mapStateToProps = state => ({
   services: state.services.list,

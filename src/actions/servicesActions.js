@@ -51,7 +51,8 @@ export const newService = (data, history) => dispatch => {
   api
     .post("/api/services", data)
     .then(res => {
-      history.push("/servicos");
+      console.log(res)
+      history.push("/visualizar-servico/" + res.data._id);
       dispatch(cleanService())
     })
     .catch(err => {

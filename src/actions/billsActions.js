@@ -61,3 +61,8 @@ export const finishBill = (data, history) => dispatch => {
       });
     });
 };
+
+
+export const finishBillWithReturn = data => dispatch => {
+  return api.put("/api/bills/edit", data)
+}

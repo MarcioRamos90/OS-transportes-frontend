@@ -2,12 +2,14 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import Popup from "reactjs-popup";
 import moment from 'moment'
-import { getBills, finishBill } from "../../../actions/billsActions";
+import { getBills, finishBill, finishBillWithReturn } from "../../../actions/billsActions";
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 import PopupEdit from '../popupEdit'
+import PopupFinishAll from '../PopupFinishAll';
 import isEmpyt from  '../../../validation/is-empty'
 import ReportBill from '../../Reports/pdf/reportBill'
+import ReactToExcel from 'react-html-table-to-excel'
 
 class ListBills extends Component {
   constructor(props) {
@@ -28,6 +30,9 @@ class ListBills extends Component {
       errorMessage: "",
       bills: [],
       total: 0,
+
+      selectMany: false,
+      billsSelected: []
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -127,36 +132,151 @@ class ListBills extends Component {
     })    
   }
 
-  validateFinish(bill, status){
+  validateFinish(bill, status="close"){
     var errorFinish = ""
 
     if(status === "close"){
-      if(isEmpyt(bill.value)) errorFinish = "Conta sem valor não pode ser fechada"
+      if(isEmpyt(bill.value)) errorFinish = "Conta sem valor não pode ser fechada";
+      if(bill.status === status) errorFinish = "Conta fechada não seleciona!";
     }
 
     return errorFinish
   }
 
+  checkClickMany = e => {
+    this.setState({
+      [e.target.name]: !this.state[e.target.name]
+    });
+  }
+
+  cleanSelecteds = ()=> {
+    this.setState({
+      billsSelected: []
+    })
+  }
+
+  handleFinishMany = () => {
+    return <Popup trigger={
+      <a
+        className="btn btn-info ml-4"
+
+        >
+        {this.state.billsSelected.length } Constas
+      </a> 
+      } modal closeOnDocumentClick>
+        {close => 
+          <PopupFinishAll 
+            bills={this.state.billsSelected} 
+            finishBill={this.props.finishBillWithReturn} 
+            submit={this.onSubmit}
+            close={close}
+            cleanSelecteds={this.cleanSelecteds}
+            typeInput={this.state.typeInput}
+            />
+        }
+      </Popup>
+  }
+
+  itemsSelectMany = (e,  i) => {
+    var errorFinish = this.validateFinish(this.state.bills[i])
+    if(e.target.checked && isEmpyt(errorFinish)){
+      this.setState({
+        billsSelected: [...this.state.billsSelected, this.state.bills[i]]
+      })
+    }else if (!isEmpyt(errorFinish)) {
+      e.target.checked = false;
+      this.handleError(errorFinish)
+    }else if(!e.target.checked){
+      const listBills = [...this.state.billsSelected]
+      const newListBills = listBills.filter(item => {
+        return item._id !== e.target.id}
+      )
+      this.setState({
+        billsSelected: [...newListBills]
+      })
+    }
+  }
+
+  renderTable(){
+    return (
+      <div >
+        <div style={{ display:"flex",flexDirection: "row"}}>
+        <div className="custom-control custom-switch ml-4">
+            <input 
+              type="checkbox" 
+              className="custom-control-input" 
+              id="customControlAutosizing"
+              name="selectMany"
+              onChange={this.checkClickMany}
+              checked={this.state.selectMany}
+              />
+            <label 
+              className="custom-control-label" 
+              htmlFor="customControlAutosizing">Selecionar várias OS's</label>
+          </div>
+          { this.state.selectMany ? this.handleFinishMany() : undefined }
+        </div>
+        <table className="table" id="table-to-xls">
+          <thead className="thead-dark">
+            <tr>
+              <th scope="col">*</th>
+              <th scope="col">Data</th>
+              <th scope="col">Hour</th>
+              <th scope="col">Reserva</th>
+              <th scope="col">CC</th>
+              <th scope="col">OS</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Solicitantes</th>
+              <th scope="col">Passageiros</th>
+              <th scope="col">Destinos</th>
+              <th scope="col">Carro</th>
+              {this.state.typeInput === 'receive'? <th scope="col">Motorista</th>
+                :<th scope="col">Empresa</th>}
+              <th scope="col">Valor</th>
+              {!this.state.selectMany ? <th scope="col">Edit</th> : undefined}
+            </tr>
+          </thead>
+          <tbody >{this.renderBills()}</tbody>
+        </table>
+      </div>
+    )
+  }
+
   renderBills() {
-    return this.state.bills.map(bill => (
+    return this.state.bills.map((bill, index) => (
       <tr key={bill._id}>
-        <td >
-          {bill.status === 'close' ? 
-            <a 
-              onClick={() => this.finishBill(bill, "open")} >
-              <i 
-                style={{ fontSize:'25px', marginTop: 0, hover:{color:'blue !important'}}} 
-                className="fas fa-undo"></i>
-            </a>
-            :
-            <a 
-              onClick={() => this.finishBill(bill, "close")} >
-              <i 
-                style={{ fontSize:'25px', marginTop: 0, hover:{color:'blue'}}} 
-                className="fas fa-check"></i>
-            </a>
-          }  
-        </td>
+        {!this.state.selectMany ?
+          <td >
+            {bill.status === 'close' ? 
+              <a 
+                onClick={() => this.finishBill(bill, "open")} >
+                <i 
+                  style={{ fontSize:'25px', marginTop: 0, hover:{color:'blue !important'}}} 
+                  className="fas fa-undo"></i>
+              </a>
+              :
+              <a 
+                onClick={() => this.finishBill(bill, "close")} >
+                <i 
+                  style={{ fontSize:'25px', marginTop: 0, hover:{color:'blue'}}} 
+                  className="fas fa-check"></i>
+              </a>
+            }  
+          </td> : 
+          <td>
+              <div className="custom-control custom-switch">
+                <input 
+                 type="checkbox"  
+                 id={`${bill._id}`} 
+                 onChange={(bill) => this.itemsSelectMany(bill, index)}
+                 checked={
+                  !isEmpyt(this.state.billsSelected.filter(
+                    item => item._id === bill._id))
+                  }
+                 />
+              </div>
+            </td>
+        }
         <td>{moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
         <td>{bill.hour}</td>
         <td>{bill.reserve}</td>
@@ -175,24 +295,27 @@ class ListBills extends Component {
         <td>{!isEmpyt(bill.car) && bill.car[0].name}</td>
         {bill.type === 'receive' ? <td>{bill.driver}</td> : <td>{bill.company}</td> }
         <td>R$ {bill.value || '_'}</td>
-         <td>
-          <Popup trigger={
-            <a>
-              <i 
-                style={{ fontSize:'25px', marginTop: 0, hover:{color:'blue'}}} 
-                className="fas fa-pen">
-              </i>
-            </a>
-          }  modal closeOnDocumentClick>
-            {close => 
-              (<PopupEdit 
-                bill={bill} 
-                cancel={close}
-                submit={this.onSubmit}
-              />)
-            }
-          </Popup>
-        </td>
+
+        {!this.state.selectMany ?
+           <td>
+            <Popup trigger={
+              <a>
+                <i 
+                  style={{ fontSize:'25px', marginTop: 0, hover:{color:'blue'}}} 
+                  className="fas fa-pen">
+                </i>
+              </a>
+            }  modal closeOnDocumentClick>
+              {close => 
+                (<PopupEdit 
+                  bill={bill} 
+                  cancel={close}
+                  submit={this.onSubmit}
+                />)
+              }
+            </Popup>
+          </td> : undefined
+        }
       </tr>
     ));
   }
@@ -210,8 +333,10 @@ class ListBills extends Component {
           </div>
         }
         <h1 className="text-left">Contas</h1>
-        <Popup trigger={
-            <a className="btn btn-success" style={{ color: 'white', position: 'absolute', right: 30, top:90}}>
+       
+        <div className="text-left container">
+         <Popup trigger={
+            <a  className="btn btn-success btn-bills" style={{color:'#fff'}} >
               Relatório de Contas
             </a>
           } modal closeOnDocumentClick>
@@ -219,8 +344,14 @@ class ListBills extends Component {
               <ReportBill bills={this.state.bills} total={this.state.total} type={this.state.typeInput}/>
             )}
         </Popup>
-        <div className="text-left">
-          <form onSubmit={this.onSubmit} className="container search">
+        <ReactToExcel 
+          className="btn btn-success btn-bills"
+          table="table-to-xls"
+          filename="contaExcel"
+          sheet="sheet 1"
+          buttonText="Exportar para Excel"
+        />
+          <form onSubmit={this.onSubmit} className="search">
           <h4 style={{ textAlign:'right' }}>Total: {this.state.total}</h4>
             <div className="form-row">
 
@@ -298,29 +429,8 @@ class ListBills extends Component {
               </div>
             </div>
           </form>
-          <table className="table" >
-            <thead className="thead-dark">
-              <tr>
-                <th scope="col">*</th>
-                <th scope="col">Data</th>
-                <th scope="col">Hour</th>
-                <th scope="col">Reserva</th>
-                <th scope="col">CC</th>
-                <th scope="col">OS</th>
-                <th scope="col">Nome</th>
-                <th scope="col">Solicitantes</th>
-                <th scope="col">Passageiros</th>
-                <th scope="col">Destinos</th>
-                <th scope="col">Carro</th>
-                {this.state.typeInput === 'receive'? <th scope="col">Motorista</th>
-                  :<th scope="col">Empresa</th>}
-                <th scope="col">Valor</th>
-                <th scope="col">Edit</th>
-              </tr>
-            </thead>
-            <tbody>{this.renderBills()}</tbody>
-          </table>
         </div>
+          {this.renderTable()}
       </div>
     );
   }
@@ -331,5 +441,5 @@ const mapStateToProps = state => ({
 });
 export default connect(
   mapStateToProps,
-  { getBills, finishBill }
+  { getBills, finishBill,finishBillWithReturn }
 )(ListBills);
