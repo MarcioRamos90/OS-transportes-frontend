@@ -6,10 +6,11 @@ import { getBills, finishBill, finishBillWithReturn } from "../../../actions/bil
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 import PopupEdit from '../popupEdit'
+import BillExcel from '../ExcelConvert'
+
 import PopupFinishAll from '../PopupFinishAll';
 import isEmpyt from  '../../../validation/is-empty'
 import ReportBill from '../../Reports/pdf/reportBill'
-import ReactToExcel from 'react-html-table-to-excel'
 
 class ListBills extends Component {
   constructor(props) {
@@ -216,7 +217,7 @@ class ListBills extends Component {
           </div>
           { this.state.selectMany ? this.handleFinishMany() : undefined }
         </div>
-        <table className="table" id="table-to-xls">
+        <table className="table">
           <thead className="thead-dark">
             <tr>
               <th scope="col">*</th>
@@ -341,16 +342,22 @@ class ListBills extends Component {
             </a>
           } modal closeOnDocumentClick>
             {close => (
-              <ReportBill bills={this.state.bills} total={this.state.total} type={this.state.typeInput}/>
+              <ReportBill 
+                bills={this.state.bills} total={this.state.total} type={this.state.typeInput}/>
             )}
         </Popup>
-        <ReactToExcel 
-          className="btn btn-success btn-bills"
-          table="table-to-xls"
-          filename="contaExcel"
-          sheet="sheet 1"
-          buttonText="Exportar para Excel"
-        />
+        
+        <Popup trigger={
+        <a className="btn btn-success btn-bills ml-3" style={{color:'white'}}>
+          Exportar para Excel
+        </a>} modal closeOnDocumentClick>
+        {close => (
+           <BillExcel 
+                bills={this.state.bills} 
+                total={this.state.total} 
+                typeInput={this.state.typeInput}/>
+        )}
+      </Popup>
           <form onSubmit={this.onSubmit} className="search">
           <h4 style={{ textAlign:'right' }}>Total: {this.state.total}</h4>
             <div className="form-row">

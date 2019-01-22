@@ -136,7 +136,7 @@ class PopupFinishAll extends Component {
 	      </Table>
 	      {!this.state.finishing ?
 	      <button
-	      	className="btn btn-success"
+	      	className="btn btn-success btn-excel"
 	      	style ={{ width:'100%', margin: 0}}
 	      	onClick={this.finislAll}
 	      >Finalizar Todas</button>: undefined }
