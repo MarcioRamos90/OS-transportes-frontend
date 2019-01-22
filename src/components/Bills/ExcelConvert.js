@@ -68,7 +68,7 @@ class BillExcel extends Component {
 	render(){
 		return (
 			<div>
-				<h2 className="text-center">Relatorio de {this.props.type === 'receive'? "Empresas" : "Motoristas"}</h2>
+				<h2 className="text-center">Relatorio de {this.props.typeInput === 'receive'? "Empresas" : "Motoristas"}</h2>
 				<Table className="table" id="table-to-xls">
 	        <thead className="thead-dark">
 	          <tr>
