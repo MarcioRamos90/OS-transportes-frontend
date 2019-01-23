@@ -63,7 +63,10 @@ class BillExcel extends Component {
         	: undefined
         }
         <td>R$ {bill.value || '_'}</td>
-        {this.props.typeInput === 'receive'? <td>{`${bill.reserve} / cc:${bill.custCenter}`}</td>: undefined}
+        {this.props.typeInput === 'receive' ? 
+          <td>{`${!isEmpyt(bill.reserve) ? 
+                  bill.reserve + ' /' : "" } cc:${bill.custCenter || ""}`}</td>
+            : undefined}
         <td style={{maxWidth: '110px', overflow: 'hidden'}}>{bill.observation}</td>
        
       </tr>

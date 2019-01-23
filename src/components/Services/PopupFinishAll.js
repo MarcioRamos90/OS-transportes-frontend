@@ -1,7 +1,7 @@
 import React,  { Component} from 'react';
 import moment from 'moment'
 
-import { Container, Table } from "../commonStyles/PopupStyles";
+import { Table } from "../commonStyles/PopupStyles";
 
 
 class PopupFinishAll extends Component {
