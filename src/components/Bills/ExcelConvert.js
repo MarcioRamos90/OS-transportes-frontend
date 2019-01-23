@@ -39,26 +39,27 @@ class BillExcel extends Component {
       <tr key={bill._id}>
       	<td>{moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
         {
-         	bill.type === 'receive' ? <td>{bill.driver}</td> : <td>{bill.name}</td> 
+         	this.props.typeInput  === 'payment' ? <td>{bill.driver}</td> : <td>{bill.company}</td> 
         }
         { this.props.typeInput === 'receive' ?
         <td style={{padding:'30px !important'}}>{!isEmpyt(bill.requesters.length) 
           && 
             this.passengerTextHandler(bill.requesters)}</td>
-        : <td>{bill.company}</td>
-
+        : <td>
+            { bill.company }
+          </td> 
       	}    
         <td style={{padding:'30px !important'}}>{!isEmpyt(bill.passengers.length) 
           && this.passengerTextHandler(bill.passengers)}</td>
         <td className='list-td'>{!isEmpyt(bill.destinys)
           && this.localTextHandler(bill.destinys)}</td>
         
-        {this.props.typeInput === 'receive'?
+        {this.props.typeInput === 'payment'?
         	<td>{!isEmpyt(bill.car) && bill.car[0].name}</td>
         	: undefined
         }
         <td>R$ {bill.value || '_'}</td>
-        {this.props.typeInput === 'payment'? <td>{`${bill.reserve} / cc:${bill.custCenter}`}</td>: undefined}
+        {this.props.typeInput === 'receive'? <td>{`${bill.reserve} / cc:${bill.custCenter}`}</td>: undefined}
         <td style={{maxWidth: '110px', overflow: 'hidden'}}>{bill.observation}</td>
        
       </tr>
@@ -78,10 +79,10 @@ class BillExcel extends Component {
               	:<th scope="col">Empresa</th>}	
               <th scope="col">Passageiros</th>
               <th scope="col">Destinos</th>
-              {this.props.typeInput === 'receive'? <th scope="col">Carro</th>
+              {this.props.typeInput === 'payment'? <th scope="col">Carro</th>
               	: undefined}
               <th scope="col">Valor</th>
-              {this.props.typeInput === 'payment'? <th scope="col">Reserva /CC/CTE</th>
+              {this.props.typeInput === 'receive'? <th scope="col">Reserva /CC/CTE</th>
               	: undefined}
               <th scope="col">Obs</th>
 	          </tr>
