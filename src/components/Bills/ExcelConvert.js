@@ -38,17 +38,21 @@ class BillExcel extends Component {
     return this.state.bills.map(bill => (
       <tr key={bill._id}>
       	<td>{moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
-        {
-         	this.props.typeInput  === 'payment' ? <td>{bill.driver}</td> : <td>{bill.company}</td> 
-        }
-        { this.props.typeInput === 'receive' ?
-        <td style={{padding:'30px !important'}}>{!isEmpyt(bill.requesters.length) 
-          && 
-            this.passengerTextHandler(bill.requesters)}</td>
-        : <td>
-            { bill.company }
-          </td> 
-      	}    
+        <td>
+          {
+           	this.props.typeInput  === 'payment' ? bill.driver: bill.name
+          }
+        </td>
+        <td style={{padding:'30px !important'}}>
+          { 
+            this.props.typeInput === 'receive' ?
+             !isEmpyt(bill.requesters.length) && 
+                this.passengerTextHandler(bill.requesters)
+            
+          : 
+              bill.name
+      	}
+        </td>    
         <td style={{padding:'30px !important'}}>{!isEmpyt(bill.passengers.length) 
           && this.passengerTextHandler(bill.passengers)}</td>
         <td className='list-td'>{!isEmpyt(bill.destinys)
