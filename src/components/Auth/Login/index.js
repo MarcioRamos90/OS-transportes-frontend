@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom'
 
 import TextFieldGroup from "../../common/TextFieldGroup";
 import { loginUser } from "../../../actions/authActions";
@@ -20,15 +21,11 @@ class Login extends Component {
   }
 
   componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/menu");
-    }
+    this.props.setLoading(false)
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.isAuthenticated) {
-      this.props.history.push("/menu");
-    }
+    this.props.setLoading(false)
 
     if (nextProps.errors) {
       this.setState({
@@ -44,6 +41,8 @@ class Login extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
+    this.props.setLoading(true);
+
     const loginUserData = {
       email: this.state.email,
       password: this.state.password
@@ -54,6 +53,10 @@ class Login extends Component {
     const { errors } = this.state;
     return (
       <main id="main" className="">
+      { this.props.auth.isAuthenticated ?
+          <Redirect push to="/menu" />:
+          undefined        
+      }
         <section className="login">
           <h1 className="text-center">Login</h1>
           <div className="container">

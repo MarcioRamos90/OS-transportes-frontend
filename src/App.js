@@ -7,6 +7,7 @@ import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import PrivateRoute from "./components/common/PrivateRoute";
 
+import Loading from "./components/layout/Loading";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
@@ -50,14 +51,33 @@ if (localStorage.jwtToken) {
 }
 
 class App extends Component {
+  state = {
+    isLoading: false
+  }
+
+  setLoading = (val) => {
+    this.setState({
+      isLoading: val
+    })
+  }
+
   render() {
     return (
       <Provider store={store}>
+      
         <Router>
+
           <div className="App">
+          { this.state.isLoading ?
+            <Loading />
+      
+            : undefined
+          }
             <Navbar />
             <Route exact path="/" component={Landing} />
-            <Route exact path="/login" component={Login} />
+            <Route exact path="/login"  
+              render={() => <Login {...this.props} setLoading={this.setLoading} />}
+              />
             <Route exact path="/registro" component={Register} />
             <Switch>
               <PrivateRoute exact path="/menu" component={Menu} />
