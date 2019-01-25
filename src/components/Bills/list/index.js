@@ -21,6 +21,7 @@ class ListBills extends Component {
       os_code:"", // numeric id
       reserve: "",
       name: "",
+      passenger:"",
       os_date: "",
       date_init: "",
       date_finish: "",
@@ -72,6 +73,7 @@ class ListBills extends Component {
     filter.reserve = this.state.reserve
     filter.name = this.state.name
     filter.os_code = this.state.os_code
+    filter.passenger = this.state.passenger
     filter.start = this.state.date_init
     filter.end = this.state.date_finish
     filter.status = this.state.statusInput
@@ -389,17 +391,27 @@ class ListBills extends Component {
                   onChange={this.onChange}
                 />
               </div>
-              <div className="form-group col-md-2">
+              <div className="col-md-2 mb-3">
+                <label>Passageiro</label>
+                <TextFieldGroupSmall
+                  placeholder="Nome passageiro"
+                  name="passenger"
+                  value={this.state.passenger}
+                  onChange={this.onChange}
+                />
+              </div>
+             
+            </div>
+            <div className="form-row">
+               <div className="form-group col-md-2">
                 <label htmlFor="inputStatus">Status</label>
                 <select onChange={this.onChange} name="statusInput" id="inputStatus" className="form-control">
                   <option value='open' defaultValue>Abertos</option>
                   <option value='close'>Fechados</option>
                   <option value=''>Todos</option>
-
                 </select>
               </div>
-            </div>
-            <div className="form-row">
+              
               <div className="form-group col-md-2">
                 <label htmlFor="inputType">Tipo</label>
                 <select onChange={this.onChange} name="typeInput" id="inputType" className="form-control">

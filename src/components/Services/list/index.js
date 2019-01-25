@@ -36,6 +36,7 @@ class ListServices extends Component {
       services: [],
       finalized: false,
       username: "",
+      local:"",
 
       selectMany: false,
       servicesSelected: []
@@ -81,6 +82,9 @@ class ListServices extends Component {
     this.state.passenger.length > 0
       ? (filter.passenger = this.state.passenger)
       : (filter.passenger = "");
+    this.state.local.length > 0
+      ? (filter.local = this.state.local)
+      : (filter.local = "");
     this.state.hour.length > 0
       ? (filter.hour = this.state.hour)
       : (filter.hour = "");
@@ -466,6 +470,15 @@ class ListServices extends Component {
                   onChange={this.onChange}
                 />
               </div>
+              {/* <div className="col-md-2 mb-3">
+                <label>Local</label>
+                <TextFieldGroupSmall
+                  placeholder="Local"
+                  name="local"
+                  value={this.state.local}
+                  onChange={this.onChange 
+                />
+              </div>*/}
               <div className="col-md-2 mb-3">
                 <label>Carro</label>
                 <TextFieldGroupSmall

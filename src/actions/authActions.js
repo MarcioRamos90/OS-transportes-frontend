@@ -37,7 +37,7 @@ export const loginUser = userData => dispatch => {
       dispatch({
         type: GET_ERRORS,
 
-        payload: err.response.data
+        payload: err.response.hasOwnProperty('data') ? err.response.data : err.response
       });
     });
 };
