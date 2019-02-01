@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from 'moment'
 
 class Logscomponent extends Component {
 	constructor(props){
@@ -8,8 +9,7 @@ class Logscomponent extends Component {
 	}
 
 	getDateFormated(date){
-		date = new Date(date)
-		return `${date.getDate()}-${date.getMonth()}-${date.getFullYear()}`
+		return moment(date).format('DD/MM/YYYY')
 	}
 
 	renderlogs(log){
