@@ -9,7 +9,7 @@ class Logscomponent extends Component {
 	}
 
 	getDateFormated(date){
-		return moment(date).format('DD/MM/YYYY')
+		return moment(date).add(0, 'days').format('DD/MM/YYYY')
 	}
 
 	renderlogs(log){
