@@ -52,9 +52,9 @@ class ListBills extends Component {
                   if(cur.type === 'receive')
                     return cur.value == null ? prev : prev + Number(cur.value);
                   if(cur.type === 'payment')
-                    return cur.value == null ? prev : prev - Number(cur.value);
+                    return cur.value == null ? prev : parseFloat((prev - Number(cur.value)));
                   return 0;
-                }, 0)
+                }, 0).toFixed(2)
       });
     }
     
