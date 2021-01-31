@@ -124,7 +124,7 @@ class MyDocument extends Component {
             <View style={styles.row} key={bill._id}>
               <View style={styles.collunmDate}>
                 <Text >
-                  {bill.os_date && formattedDate(bill.os_date, 1, 'DD/MM/YYYY')}
+                  {bill.os_date && formattedDate(bill.os_date, 0, 'DD/MM/YYYY')}
                 </Text>
               </View>
               

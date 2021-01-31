@@ -39,7 +39,7 @@ class PopupFinishAll extends Component {
 
       <tr key={os._id} style={{ color: os.finalized === true ? 'blue' : 'black' }}>
 
-        <td>{formattedDate(os.os_date, 1, 'DD/MM/YYYY')}</td>
+        <td>{formattedDate(os.os_date, 0, 'DD/MM/YYYY')}</td>
         <td>{os.hour}</td>
         <td>{os.id}</td>
         <td>{os.custCenter}</td>

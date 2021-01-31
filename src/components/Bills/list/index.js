@@ -281,7 +281,7 @@ class ListBills extends Component {
               </div>
             </td>
         }
-        <td>{formattedDate(bill.os_date, 1, 'DD/MM/YYYY')}</td>
+        <td>{formattedDate(bill.os_date, 0, 'DD/MM/YYYY')}</td>
         <td>{bill.hour}</td>
         <td>{bill.reserve}</td>
         <td>{bill.custCenter}</td>

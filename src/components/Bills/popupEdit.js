@@ -32,7 +32,7 @@ class ListBills extends Component {
       service: this.props.bill.service,
       os_code: this.props.bill.os_code.toString(),
       name: this.props.bill.name,
-      os_date: formattedDate(this.props.bill.os_date, 1, 'DD/MM/YYYY'),
+      os_date: formattedDate(this.props.bill.os_date, 0, 'DD/MM/YYYY'),
       status: this.props.bill.status,
       type: this.props.bill.type,
       value: String(this.props.bill.value),

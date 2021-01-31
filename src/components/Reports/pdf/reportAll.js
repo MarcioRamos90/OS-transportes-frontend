@@ -104,7 +104,7 @@ class MyDocument extends Component {
 
               <View style={styles.collunmDate}>
                 <Text >
-                  {os.os_date && formattedDate(os.os_date, 1, 'DD/MM/YYYY')}
+                  {os.os_date && formattedDate(os.os_date, 0, 'DD/MM/YYYY')}
                 </Text>
               </View>
               <Text style={styles.columnHour}>{!isEmpty(os.hour) && os.hour}</Text>

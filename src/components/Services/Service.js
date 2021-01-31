@@ -92,7 +92,7 @@ class ServiceConfirm extends Component {
   }
 
   renderDate(){
-		return formattedDate(this.state.date || this.props.fields.date, 1, 'DD/MM/YYYY')
+		return formattedDate(this.state.date || this.props.fields.date, 0, 'DD/MM/YYYY')
 	}
 
 	render(){

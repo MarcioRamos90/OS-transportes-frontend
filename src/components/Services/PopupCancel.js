@@ -168,7 +168,7 @@ class PopupCancel extends Component{
 	          <label>Data OS</label>
 	          <TextFieldGroupSmall
 	            name="date"
-	            value={formattedDate(this.props.os.os_date, 1, 'DD/MM/YYYY')}
+	            value={formattedDate(this.props.os.os_date, 0, 'DD/MM/YYYY')}
 	            onChange={this.onChange}
 	            disabled={'true'}
 	          />

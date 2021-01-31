@@ -141,7 +141,7 @@ class MyDocument extends Component{
               <Text>Nº: {this.props.os.id} / Ordem de Serviço:{!isEmpty(this.props.os.reserve) && this.props.os.reserve}</Text> 
             </View>
             <View style={styles.heading}>
-              <Text>Data: {this.props.os.os_date && formattedDate(this.props.os.os_date, 1, 'DD/MM/YYYY')}</Text>
+              <Text>Data: {this.props.os.os_date && formattedDate(this.props.os.os_date, 0, 'DD/MM/YYYY')}</Text>
               <Text>Empresa: {this.props.os.company.length > 0 && this.props.os.company[0].name}</Text>
               <Text>Solicitante: {this.props.os.requesters.length > 0 && this.props.os.requesters[0].name}</Text>
             </View>

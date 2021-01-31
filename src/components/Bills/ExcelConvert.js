@@ -37,7 +37,7 @@ class BillExcel extends Component {
   renderBill() {
     return this.state.bills.map(bill => (
       <tr key={bill._id}>
-      	<td>{formattedDate(bill.os_dat, 1, 'DD/MM/YYYY')}</td>
+      	<td>{formattedDate(bill.os_dat, 0, 'DD/MM/YYYY')}</td>
         <td>
           {
            	this.props.typeInput  === 'payment' ? bill.driver: bill.name
