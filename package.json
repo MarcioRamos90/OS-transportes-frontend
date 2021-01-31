@@ -17,7 +17,7 @@
     "react-pdf": "^3.0.5",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "4.0.1",
     "react-scrollbar": "^0.5.4",
     "reactjs-popup": "^1.2.0",
     "redux": "^4.0.0",
@@ -32,5 +32,17 @@
   },
   "devDependencies": {
     "react-test-renderer": "^16.6.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
