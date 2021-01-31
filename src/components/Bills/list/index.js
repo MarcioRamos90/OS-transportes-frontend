@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Popup from "reactjs-popup";
-import moment from 'moment'
+
 import { getBills, finishBill, finishBillWithReturn } from "../../../actions/billsActions";
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
@@ -11,6 +11,7 @@ import BillExcel from '../ExcelConvert'
 import PopupFinishAll from '../PopupFinishAll';
 import isEmpyt from  '../../../validation/is-empty'
 import ReportBill from '../../Reports/pdf/reportBill'
+import { formattedDate } from '../../../helpers/date.helper'
 
 class ListBills extends Component {
   constructor(props) {
@@ -280,7 +281,7 @@ class ListBills extends Component {
               </div>
             </td>
         }
-        <td>{moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
+        <td>{formattedDate(bill.os_date, 1, 'DD/MM/YYYY')}</td>
         <td>{bill.hour}</td>
         <td>{bill.reserve}</td>
         <td>{bill.custCenter}</td>

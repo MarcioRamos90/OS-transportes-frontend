@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import moment from 'moment'
 import { 
   getServiceById,
   editService, 
@@ -17,6 +16,7 @@ import PopupDriver from '../PopupDriver';
 import PopupPassenger from '../PopupPassenger'
 import PopupRequester from '../PopupRequester'
 
+import { formattedDate } from '../../../helpers/date.helper'
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
 
 class EditService extends Component {
@@ -72,7 +72,7 @@ class EditService extends Component {
       this.setState({
         company: nextProps.service.company,
         requester: nextProps.service.requesters,
-        date: moment(nextProps.service.os_date).add(1, 'day').format('YYYY-MM-DD'),
+        date: formattedDate(nextProps.service.os_date, 1, 'YYYY-MM-DD'),
         car: nextProps.service.car,
         reserve: nextProps.service.reserve,
         driver: nextProps.service.driver,

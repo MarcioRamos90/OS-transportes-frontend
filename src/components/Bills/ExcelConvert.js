@@ -1,10 +1,10 @@
 import React,  { Component} from 'react';
-import moment from 'moment'
 
 import ReactToExcel from 'react-html-table-to-excel'
 
 import { Table } from "../commonStyles/PopupStyles";
 import isEmpyt from  '../../validation/is-empty'
+import { formattedDate } from '../../helpers/date.helper'
 
 class BillExcel extends Component {
 
@@ -37,7 +37,7 @@ class BillExcel extends Component {
   renderBill() {
     return this.state.bills.map(bill => (
       <tr key={bill._id}>
-      	<td>{moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
+      	<td>{formattedDate(bill.os_dat, 1, 'DD/MM/YYYY')}</td>
         <td>
           {
            	this.props.typeInput  === 'payment' ? bill.driver: bill.name

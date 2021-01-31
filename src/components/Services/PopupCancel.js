@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from 'react'
-import moment from 'moment'
 import { connect } from "react-redux";
 
 import isEmpty from "../../validation/is-empty";
@@ -8,7 +7,7 @@ import {
   cancelService, 
 } from "../../actions/servicesActions";
 import isEmpyt from  '../../validation/is-empty'
-
+import { formattedDate } from "../../helpers/date.helper"
 class PopupCancel extends Component{
 	constructor(props){
 		super(props)
@@ -169,7 +168,7 @@ class PopupCancel extends Component{
 	          <label>Data OS</label>
 	          <TextFieldGroupSmall
 	            name="date"
-	            value={moment(this.props.os.os_date).format('DD/MM/YYYY')}
+	            value={formattedDate(this.props.os.os_date, 1, 'DD/MM/YYYY')}
 	            onChange={this.onChange}
 	            disabled={'true'}
 	          />

@@ -1,8 +1,7 @@
 import React,  { Component} from 'react';
-import moment from 'moment'
 
 import { Table } from "../commonStyles/PopupStyles";
-
+import { formattedDate } from "../../helpers/date.helper"
 
 class PopupFinishAll extends Component {
 
@@ -40,7 +39,7 @@ class PopupFinishAll extends Component {
 
       <tr key={os._id} style={{ color: os.finalized === true ? 'blue' : 'black' }}>
 
-        <td>{moment(os.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
+        <td>{formattedDate(os.os_date, 1, 'DD/MM/YYYY')}</td>
         <td>{os.hour}</td>
         <td>{os.id}</td>
         <td>{os.custCenter}</td>

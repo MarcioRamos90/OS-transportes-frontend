@@ -1,13 +1,13 @@
 import React , {Component} from 'react'
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import moment from 'moment'
 
 import { 
   defaultAction
 } from "../../actions/default";
 
 import './styleServiceConfirm.css'
+import { formattedDate } from '../../helpers/date.helper'
 
 class ServiceConfirm extends Component {
 	constructor(props){
@@ -83,7 +83,7 @@ class ServiceConfirm extends Component {
     ));
   }
 
-  renderAdress() {
+  renderAddress() {
   	 return this.state.local.map(local => (
       <div style={{backgroundColor:'white'}} key={local._id}>
        <div className='adress'>{local.adress}</div>
@@ -92,8 +92,8 @@ class ServiceConfirm extends Component {
   }
 
   renderDate(){
-  	return moment(this.state.date || this.props.fields.date).format('DD/MM/YYYY')
-  }
+		return formattedDate(this.state.date || this.props.fields.date, 1, 'DD/MM/YYYY')
+	}
 
 	render(){
 		return (
@@ -122,7 +122,7 @@ class ServiceConfirm extends Component {
 						</div>
 							<hr/>
 						<div>
-							{this.renderAdress()}
+							{this.renderAddress()}
 						</div>
 
 						{(this.state.observation || this.props.fields.observation) && 

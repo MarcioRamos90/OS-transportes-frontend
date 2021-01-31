@@ -19,7 +19,7 @@ import PopupPassenger from '../PopupPassenger'
 import PopupRequester from '../PopupRequester'
 
 import TextFieldGroupSmall from "../../common/TextFieldGroupSmall";
-import moment from 'moment'
+import { formattedDate } from '../../../helpers/date.helper'
 
 class CreateService extends Component {
   constructor(props) {
@@ -86,7 +86,7 @@ class CreateService extends Component {
       this.setState({
         reserve: reserve,
         hour: hour,
-        date: moment(date).add(1, 'day').format('YYYY-MM-DD'),
+        date: formattedDate(date, 1, 'YYYY-MM-DD'),
         custCenter: custCenter,
         observation: observation,
 

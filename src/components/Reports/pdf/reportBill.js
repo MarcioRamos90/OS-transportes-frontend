@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { Page, Text, View, Document, StyleSheet, PDFViewer } from '@react-pdf/renderer';
-import moment from 'moment'
+
 import isEmpty from '../../../validation/is-empty'
+import { formattedDate } from '../../../helpers/date.helper'
 
 const padding = 3
 
@@ -123,7 +124,7 @@ class MyDocument extends Component {
             <View style={styles.row} key={bill._id}>
               <View style={styles.collunmDate}>
                 <Text >
-                  {bill.os_date && moment(bill.os_date).add(1, 'day').format('DD/MM/YYYY')}
+                  {bill.os_date && formattedDate(bill.os_date, 1, 'DD/MM/YYYY')}
                 </Text>
               </View>
               

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import moment from 'moment'
 import Popup from "reactjs-popup";
 
 import { getServices, finishOS, cancelService } from "../../../actions/servicesActions";
@@ -13,6 +12,7 @@ import PopupCancel from '../PopupCancel';
 import PopupFinishAll from '../PopupFinishAll';
 import isEmpyt from  '../../../validation/is-empty'
 import ReportPdf from '../../Reports/pdf/reportAll'
+import { formattedDate } from '../../../helpers/date.helper'
 
 class ListServices extends Component {
   constructor(props) {
@@ -338,7 +338,7 @@ class ListServices extends Component {
             </td>
         }
 
-        <td>{moment(os.os_date).add(1, 'day').format('DD/MM/YYYY')}</td>
+        <td>{formattedDate(os.os_date, 1, 'DD/MM/YYYY')}</td>
         <td>{os.hour}</td>
         <td>{os.id}</td>
         <td>{os.custCenter}</td>

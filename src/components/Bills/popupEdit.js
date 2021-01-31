@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import moment from 'moment'
 
 import { editBill } from "../../actions/billsActions";
 
 import TextFieldGroupSmall from "../common/TextFieldGroupSmall";
 import isEmpyt from  '../../validation/is-empty'
+import { formattedDate } from '../../helpers/date.helper'
+
 class ListBills extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ class ListBills extends Component {
       service: this.props.bill.service,
       os_code: this.props.bill.os_code.toString(),
       name: this.props.bill.name,
-      os_date: moment(this.props.bill.os_date).add(1, 'day').format('DD/MM/YYYY'),
+      os_date: formattedDate(this.props.bill.os_date, 1, 'DD/MM/YYYY'),
       status: this.props.bill.status,
       type: this.props.bill.type,
       value: String(this.props.bill.value),
