@@ -23,3 +23,5 @@ src/front.sublime-
 src/front.sublime-project
 src/front.sublime-workspace
 front.sublime-*
+
+.env
