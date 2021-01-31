@@ -34,11 +34,18 @@ export const loginUser = userData => dispatch => {
       dispatch(setCurrentUser(decoded));
     })
     .catch(err => {
-      dispatch({
-        type: GET_ERRORS,
-
-        payload: err.response.hasOwnProperty('data') ? err.response.data : err.response
-      });
+      if (err.response) {
+        dispatch({
+          type: GET_ERRORS,
+  
+          payload: err.response.hasOwnProperty('data') ? err.response.data : err.response
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: 'LOGIN_ERROR'
+        });
+      }
     });
 };
 
