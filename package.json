@@ -8,7 +8,7 @@
   "dependencies": {
     "@react-pdf/renderer": "^1.0.0-alpha.18",
     "@react-pdf/styled-components": "^1.2.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "bootstrap-css-only": "^4.1.1",
     "classnames": "^2.2.6",
     "dotenv-safe": "^6.0.0",
