@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
-    "node": "8.x"
+    "node": "10.x"
   },
   "dependencies": {
     "@react-pdf/renderer": "^1.0.0-alpha.18",
@@ -14,26 +14,36 @@
     "dotenv-safe": "^6.0.0",
     "jwt-decode": "^2.2.0",
     "moment": "^2.22.2",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
     "react-html-table-to-excel": "^2.0.0",
     "react-pdf": "^3.0.5",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "4.0.1",
     "react-scrollbar": "^0.5.4",
     "reactjs-popup": "^1.2.0",
     "redux": "^4.0.0",
     "redux-thunk": "^2.3.0",
-    "styled-components": "^3.4.9"
+    "styled-components": "^5.2.1"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-app-env react-scripts build",
+    "build": "node node_modules/react-scripts/scripts/build.js",
     "eject": "react-app-env react-scripts eject",
     "test": "jest"
   },
-  "devDependencies": {
-    "react-test-renderer": "^16.6.3"
+  "devDependencies": {},
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
