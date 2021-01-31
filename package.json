@@ -2,6 +2,9 @@
   "name": "front",
   "version": "0.1.0",
   "private": true,
+  "engines" : {
+    "node" : "10.x"
+  },
   "dependencies": {
     "@react-pdf/renderer": "^1.0.0-alpha.18",
     "@react-pdf/styled-components": "^1.2.0",
